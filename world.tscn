@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://duhvseumku5rs"]
+
+[ext_resource type="Texture2D" uid="uid://bju11m6kkfleb" path="res://assets/world-assets/black-bg.png" id="1_rwnq2"]
+[ext_resource type="Texture2D" uid="uid://cdkcdqqalvng2" path="res://assets/world-assets/gray-bg.png" id="2_kerpy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlt4m"]
+size = Vector2(1081, 103)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikxyy"]
+size = Vector2(160.5, 1083)
+
+[node name="World" type="Node2D"]
+
+[node name="Black-bg" type="Sprite2D" parent="."]
+position = Vector2(960.5, 540.25)
+scale = Vector2(1.06427, 1.06552)
+texture = ExtResource("1_rwnq2")
+
+[node name="Gray-bg" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_kerpy")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Boundaries" type="StaticBody2D" parent="Control"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Boundaries"]
+position = Vector2(960.5, 1131.5)
+shape = SubResource("RectangleShape2D_rlt4m")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Control/Boundaries"]
+position = Vector2(959, -52)
+shape = SubResource("RectangleShape2D_rlt4m")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Control/Boundaries"]
+position = Vector2(1580, 540.5)
+shape = SubResource("RectangleShape2D_ikxyy")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Control/Boundaries"]
+position = Vector2(340, 540)
+shape = SubResource("RectangleShape2D_ikxyy")
