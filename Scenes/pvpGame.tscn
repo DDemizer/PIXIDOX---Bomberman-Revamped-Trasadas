@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhqvumkbu7jcr"]
+
+[ext_resource type="PackedScene" uid="uid://be13jgfm7k3mv" path="res://Scenes/PauseMenu.tscn" id="1_h5wss"]
+[ext_resource type="Script" path="res://Scripts/pvpGame.gd" id="1_n1kta"]
+
+[node name="PVP" type="Node2D"]
+script = ExtResource("1_n1kta")
+
+[node name="PauseMenu" parent="." instance=ExtResource("1_h5wss")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
