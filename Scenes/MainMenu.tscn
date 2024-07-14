@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmntloexb52bh"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_as46o"]
+[ext_resource type="FontFile" path="res://Crang.ttf" id="2_h625l"]
+[ext_resource type="FontFile" path="res://04B_30__.TTF" id="2_kh5fr"]
+[ext_resource type="Texture2D" path="res://Bomb.png" id="2_wvi4d"]
+
+[sub_resource type="Gradient" id="Gradient_24jss"]
+offsets = PackedFloat32Array(0.526667, 1)
+colors = PackedColorArray(0.314032, 0.566114, 0.25067, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7g1lw"]
+gradient = SubResource("Gradient_24jss")
+fill_from = Vector2(-1.385, 0.475)
+fill_to = Vector2(0.935, 0.13)
+
+[sub_resource type="Theme" id="Theme_aw8nx"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_as46o")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 647.0
+texture = SubResource("GradientTexture2D_7g1lw")
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 2
+offset_left = 33.0
+offset_top = 195.0
+offset_right = 613.0
+offset_bottom = 594.0
+theme = SubResource("Theme_aw8nx")
+theme_override_fonts/font = ExtResource("2_h625l")
+theme_override_font_sizes/font_size = 49
+text = "BATTLE"
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 2
+offset_left = 640.0
+offset_top = 195.0
+offset_right = 1112.0
+offset_bottom = 475.0
+theme_override_fonts/font = ExtResource("2_h625l")
+theme_override_font_sizes/font_size = 30
+text = "CUSTOMIZE"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 2
+offset_left = 640.0
+offset_top = 494.0
+offset_right = 1112.0
+offset_bottom = 592.0
+theme_override_fonts/font = ExtResource("2_h625l")
+theme_override_font_sizes/font_size = 20
+text = "QUIT"
+
+[node name="Bomb" type="Sprite2D" parent="."]
+position = Vector2(122, 76)
+scale = Vector2(0.41875, 0.4175)
+texture = ExtResource("2_wvi4d")
+flip_h = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 62.0
+offset_right = 816.0
+offset_bottom = 212.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_kh5fr")
+theme_override_font_sizes/normal_font_size = 70
+text = "B MBERBEAST
+"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
