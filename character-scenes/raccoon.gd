@@ -18,6 +18,7 @@ func _physics_process(delta):
 	var right1 = Input.is_action_pressed('right_player1')
 	var left1 = Input.is_action_pressed('left_player1')
 	var place_bomb1 = Input.is_action_just_pressed('place_bomb')
+	var escape = Input.is_action_just_pressed('ui_cancel')
 	
 	# WALKING
 	if up1 or down1:
@@ -52,4 +53,6 @@ func _physics_process(delta):
 	if place_bomb1:
 		pass
 	
+	if escape:
+		get_tree().quit()
 	move_and_slide()

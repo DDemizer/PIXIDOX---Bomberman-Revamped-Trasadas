@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dmntloexb52bh"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_as46o"]
-[ext_resource type="FontFile" path="res://Crang.ttf" id="2_h625l"]
-[ext_resource type="FontFile" path="res://04B_30__.TTF" id="2_kh5fr"]
-[ext_resource type="Texture2D" path="res://Bomb.png" id="2_wvi4d"]
+[ext_resource type="FontFile" uid="uid://cg3gxofhp3u6i" path="res://Crang.ttf" id="2_h625l"]
+[ext_resource type="FontFile" uid="uid://bcgfc10ec43fu" path="res://04B_30__.TTF" id="2_kh5fr"]
+[ext_resource type="Texture2D" uid="uid://b8402xnx4p83j" path="res://Bomb.png" id="2_wvi4d"]
 
 [sub_resource type="Gradient" id="Gradient_24jss"]
 offsets = PackedFloat32Array(0.526667, 1)
