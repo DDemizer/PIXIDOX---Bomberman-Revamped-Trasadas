@@ -1,10 +1,11 @@
-[gd_scene load_steps=35 format=3 uid="uid://cqkqkpsrh0gb4"]
+[gd_scene load_steps=36 format=3 uid="uid://cqkqkpsrh0gb4"]
 
 [ext_resource type="Script" path="res://character-scenes/raccoon.gd" id="1_4rwdr"]
 [ext_resource type="Texture2D" uid="uid://bbcwn6pqjk27l" path="res://assets/racoon/idle-Sheet.png" id="1_cpsgj"]
 [ext_resource type="Texture2D" uid="uid://dujcbmxoa1raq" path="res://assets/racoon/running side-Sheet.png" id="2_5ln6h"]
 [ext_resource type="Texture2D" uid="uid://b65ja5glv7oxq" path="res://assets/racoon/running front-Sheet.png" id="2_6uo26"]
 [ext_resource type="Texture2D" uid="uid://cjox6yde0wipm" path="res://assets/racoon/running-Sheet.png" id="3_uhcgl"]
+[ext_resource type="Script" path="res://character-scenes/Player1_Control.gd" id="6_idaob"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bh82n"]
 atlas = ExtResource("1_cpsgj")
@@ -274,3 +275,6 @@ libraries = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_1n3ck")
+
+[node name="Player1Controls" type="Node2D" parent="."]
+script = ExtResource("6_idaob")

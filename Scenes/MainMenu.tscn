@@ -5,12 +5,12 @@
 [ext_resource type="FontFile" uid="uid://bcgfc10ec43fu" path="res://04B_30__.TTF" id="2_kh5fr"]
 [ext_resource type="Texture2D" uid="uid://b8402xnx4p83j" path="res://Bomb.png" id="2_wvi4d"]
 
-[sub_resource type="Gradient" id="Gradient_24jss"]
+[sub_resource type="Gradient" id="Gradient_ng553"]
 offsets = PackedFloat32Array(0.526667, 1)
 colors = PackedColorArray(0.314032, 0.566114, 0.25067, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7g1lw"]
-gradient = SubResource("Gradient_24jss")
+gradient = SubResource("Gradient_ng553")
 fill_from = Vector2(-1.385, 0.475)
 fill_to = Vector2(0.935, 0.13)
 
@@ -23,9 +23,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
 offset_top = 1.0
-offset_right = 1.0
+offset_right = -763.0
+offset_bottom = -432.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.667, 1.667)
 script = ExtResource("1_as46o")
 
 [node name="TextureRect" type="TextureRect" parent="."]

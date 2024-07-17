@@ -1,0 +1,105 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2ucyxe0mx3hd"]
+
+[ext_resource type="Script" path="res://Scripts/CharacterSelectionArea.gd" id="1_7xm6y"]
+[ext_resource type="Script" path="res://Scripts/CharacterSelection.gd" id="2_8e4k3"]
+[ext_resource type="Texture2D" uid="uid://cj6tmd2x4i0x8" path="res://assets/character_selection_assets/Player1.png" id="3_7271i"]
+[ext_resource type="Texture2D" uid="uid://bdlwtocwu8cii" path="res://assets/character_selection_assets/Player2.png" id="4_okd3c"]
+[ext_resource type="Texture2D" uid="uid://dax1i5mbnlux8" path="res://assets/character_selection_assets/Player3.png" id="5_ixj0v"]
+[ext_resource type="Texture2D" uid="uid://dapbijlsltedu" path="res://assets/character_selection_assets/Player4.png" id="6_qqc56"]
+
+[sub_resource type="Gradient" id="Gradient_24jss"]
+offsets = PackedFloat32Array(0.526667, 1)
+colors = PackedColorArray(0.314032, 0.566114, 0.25067, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y2xr5"]
+gradient = SubResource("Gradient_24jss")
+fill_from = Vector2(-1.385, 0.475)
+fill_to = Vector2(0.935, 0.13)
+
+[sub_resource type="Gradient" id="Gradient_0c440"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pgn01"]
+gradient = SubResource("Gradient_0c440")
+width = 400
+height = 1000
+fill_from = Vector2(0.793578, 0.662271)
+
+[node name="CharacterSelectionRoom" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7xm6y")
+
+[node name="Cursor1" type="Sprite2D" parent="."]
+process_mode = 1
+z_index = 1
+position = Vector2(242, 332)
+script = ExtResource("2_8e4k3")
+player1Text = ExtResource("3_7271i")
+player2Text = ExtResource("4_okd3c")
+player3Text = ExtResource("5_ixj0v")
+player4Text = ExtResource("6_qqc56")
+
+[node name="Cursor2" type="Sprite2D" parent="."]
+process_mode = 4
+z_index = 1
+position = Vector2(709, 335)
+script = ExtResource("2_8e4k3")
+player1Text = ExtResource("3_7271i")
+player2Text = ExtResource("4_okd3c")
+player3Text = ExtResource("5_ixj0v")
+player4Text = ExtResource("6_qqc56")
+
+[node name="Cursor3" type="Sprite2D" parent="."]
+process_mode = 4
+z_index = 1
+position = Vector2(1207, 349)
+script = ExtResource("2_8e4k3")
+player1Text = ExtResource("3_7271i")
+player2Text = ExtResource("4_okd3c")
+player3Text = ExtResource("5_ixj0v")
+player4Text = ExtResource("6_qqc56")
+
+[node name="Cursor4" type="Sprite2D" parent="."]
+process_mode = 4
+z_index = 1
+position = Vector2(1688, 332)
+script = ExtResource("2_8e4k3")
+player1Text = ExtResource("3_7271i")
+player2Text = ExtResource("4_okd3c")
+player3Text = ExtResource("5_ixj0v")
+player4Text = ExtResource("6_qqc56")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1922.0
+offset_bottom = 1081.0
+texture = SubResource("GradientTexture2D_y2xr5")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 1943.0
+offset_bottom = 1120.0
+theme_override_constants/h_separation = 80
+columns = 4
+
+[node name="TextureRect" type="TextureRect" parent="GridContainer" groups=["Characters"]]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_pgn01")
+
+[node name="TextureRect2" type="TextureRect" parent="GridContainer" groups=["Characters"]]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_pgn01")
+
+[node name="TextureRect3" type="TextureRect" parent="GridContainer" groups=["Characters"]]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_pgn01")
+
+[node name="TextureRect4" type="TextureRect" parent="GridContainer" groups=["Characters"]]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_pgn01")

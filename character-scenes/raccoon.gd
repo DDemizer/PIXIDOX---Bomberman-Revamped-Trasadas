@@ -8,8 +8,6 @@ const SPEED = 70
 @onready var sprite = $AnimatedSprite2D
 
 
-# Game Variables
-
 func _physics_process(delta):
 	# buttons
 	var up1 = Input.is_action_pressed('up_player1')
