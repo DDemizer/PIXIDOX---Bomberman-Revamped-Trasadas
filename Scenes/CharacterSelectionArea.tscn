@@ -36,6 +36,10 @@ player1_texture = ExtResource("3_7271i")
 player2_texture = ExtResource("4_okd3c")
 player3_texture = ExtResource("5_ixj0v")
 player4_texture = ExtResource("6_qqc56")
+player1Activated = null
+player2Activated = null
+player3Activated = null
+player4Activated = null
 
 [node name="Cursor1" type="Sprite2D" parent="."]
 z_index = 1

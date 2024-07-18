@@ -48,7 +48,7 @@ func _process(delta):
 	if player1Activated == false:
 		if Input.is_joy_button_pressed(0, start_button):
 			player1Activated = true
-#			cursor1.process_mode = 0
+				cursor1.process_mode = 0
 			cursor1.texture = player1_texture
 			print_debug('Player 1 Activated')
 	if player2Activated == false:
