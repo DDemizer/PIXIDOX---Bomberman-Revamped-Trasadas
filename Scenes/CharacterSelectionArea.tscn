@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://b2ucyxe0mx3hd"]
 
-[ext_resource type="Script" path="res://Scripts/CharacterSelectionArea.gd" id="1_7xm6y"]
-[ext_resource type="Script" path="res://Scripts/CharacterSelection.gd" id="2_8e4k3"]
+[ext_resource type="Script" path="res://Scenes/CharacterSelectionArea.gd" id="1_7jv5l"]
+[ext_resource type="Script" path="res://Scenes/CharacterSelect.gd" id="2_ias01"]
 [ext_resource type="Texture2D" uid="uid://cj6tmd2x4i0x8" path="res://assets/character_selection_assets/Player1.png" id="3_7271i"]
 [ext_resource type="Texture2D" uid="uid://bdlwtocwu8cii" path="res://assets/character_selection_assets/Player2.png" id="4_okd3c"]
 [ext_resource type="Texture2D" uid="uid://dax1i5mbnlux8" path="res://assets/character_selection_assets/Player3.png" id="5_ixj0v"]
@@ -31,47 +31,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7xm6y")
+script = ExtResource("1_7jv5l")
+player1_texture = ExtResource("3_7271i")
+player2_texture = ExtResource("4_okd3c")
+player3_texture = ExtResource("5_ixj0v")
+player4_texture = ExtResource("6_qqc56")
 
 [node name="Cursor1" type="Sprite2D" parent="."]
-process_mode = 1
 z_index = 1
 position = Vector2(242, 332)
-script = ExtResource("2_8e4k3")
-player1Text = ExtResource("3_7271i")
-player2Text = ExtResource("4_okd3c")
-player3Text = ExtResource("5_ixj0v")
-player4Text = ExtResource("6_qqc56")
+script = ExtResource("2_ias01")
 
 [node name="Cursor2" type="Sprite2D" parent="."]
-process_mode = 4
 z_index = 1
-position = Vector2(709, 335)
-script = ExtResource("2_8e4k3")
-player1Text = ExtResource("3_7271i")
-player2Text = ExtResource("4_okd3c")
-player3Text = ExtResource("5_ixj0v")
-player4Text = ExtResource("6_qqc56")
+position = Vector2(727, 328)
+script = ExtResource("2_ias01")
 
 [node name="Cursor3" type="Sprite2D" parent="."]
-process_mode = 4
 z_index = 1
-position = Vector2(1207, 349)
-script = ExtResource("2_8e4k3")
-player1Text = ExtResource("3_7271i")
-player2Text = ExtResource("4_okd3c")
-player3Text = ExtResource("5_ixj0v")
-player4Text = ExtResource("6_qqc56")
+position = Vector2(1198, 328)
+script = ExtResource("2_ias01")
 
 [node name="Cursor4" type="Sprite2D" parent="."]
-process_mode = 4
 z_index = 1
-position = Vector2(1688, 332)
-script = ExtResource("2_8e4k3")
-player1Text = ExtResource("3_7271i")
-player2Text = ExtResource("4_okd3c")
-player3Text = ExtResource("5_ixj0v")
-player4Text = ExtResource("6_qqc56")
+position = Vector2(1682, 328)
+script = ExtResource("2_ias01")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
