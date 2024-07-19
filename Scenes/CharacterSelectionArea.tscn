@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2ucyxe0mx3hd"]
+[gd_scene load_steps=21 format=3 uid="uid://b2ucyxe0mx3hd"]
 
 [ext_resource type="Script" path="res://Scenes/CharacterSelectionArea.gd" id="1_7jv5l"]
 [ext_resource type="Script" path="res://Scenes/CharacterSelect.gd" id="2_ias01"]
@@ -6,6 +6,19 @@
 [ext_resource type="Texture2D" uid="uid://bdlwtocwu8cii" path="res://assets/character_selection_assets/Player2.png" id="4_okd3c"]
 [ext_resource type="Texture2D" uid="uid://dax1i5mbnlux8" path="res://assets/character_selection_assets/Player3.png" id="5_ixj0v"]
 [ext_resource type="Texture2D" uid="uid://dapbijlsltedu" path="res://assets/character_selection_assets/Player4.png" id="6_qqc56"]
+[ext_resource type="FontFile" uid="uid://bcgfc10ec43fu" path="res://04B_30__.TTF" id="7_85lni"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_084wy"]
+size = Vector2(82, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xp1y0"]
+size = Vector2(82, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cuhre"]
+size = Vector2(82, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjrwy"]
+size = Vector2(82, 80)
 
 [sub_resource type="Gradient" id="Gradient_24jss"]
 offsets = PackedFloat32Array(0.526667, 1)
@@ -23,6 +36,23 @@ gradient = SubResource("Gradient_0c440")
 width = 400
 height = 1000
 fill_from = Vector2(0.793578, 0.662271)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kg481"]
+size = Vector2(400, 1001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqtu2"]
+size = Vector2(400, 1003)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1a048"]
+size = Vector2(400, 1003)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltlk0"]
+size = Vector2(400, 1003)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u1v2i"]
+font = ExtResource("7_85lni")
+font_size = 100
+font_color = Color(0.92549, 0, 0, 1)
 
 [node name="CharacterSelectionRoom" type="Control"]
 layout_mode = 3
@@ -46,20 +76,40 @@ z_index = 1
 position = Vector2(242, 332)
 script = ExtResource("2_ias01")
 
+[node name="Area2D" type="Area2D" parent="Cursor1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor1/Area2D"]
+shape = SubResource("RectangleShape2D_084wy")
+
 [node name="Cursor2" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(727, 328)
 script = ExtResource("2_ias01")
+
+[node name="Area2D" type="Area2D" parent="Cursor2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor2/Area2D"]
+shape = SubResource("RectangleShape2D_xp1y0")
 
 [node name="Cursor3" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(1198, 328)
 script = ExtResource("2_ias01")
 
+[node name="Area2D" type="Area2D" parent="Cursor3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor3/Area2D"]
+shape = SubResource("RectangleShape2D_cuhre")
+
 [node name="Cursor4" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(1682, 328)
 script = ExtResource("2_ias01")
+
+[node name="Area2D" type="Area2D" parent="Cursor4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor4/Area2D"]
+shape = SubResource("RectangleShape2D_gjrwy")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -76,18 +126,57 @@ offset_bottom = 1120.0
 theme_override_constants/h_separation = 80
 columns = 4
 
-[node name="TextureRect" type="TextureRect" parent="GridContainer" groups=["Characters"]]
+[node name="RaccoonCard" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_pgn01")
 
-[node name="TextureRect2" type="TextureRect" parent="GridContainer" groups=["Characters"]]
+[node name="Raccoon" type="Area2D" parent="GridContainer/RaccoonCard"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GridContainer/RaccoonCard/Raccoon"]
+position = Vector2(200, 500.5)
+shape = SubResource("RectangleShape2D_kg481")
+
+[node name="CatCard" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_pgn01")
 
-[node name="TextureRect3" type="TextureRect" parent="GridContainer" groups=["Characters"]]
+[node name="Cat" type="Area2D" parent="GridContainer/CatCard"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GridContainer/CatCard/Cat"]
+position = Vector2(200, 501.5)
+shape = SubResource("RectangleShape2D_tqtu2")
+
+[node name="BeaverCard" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_pgn01")
 
-[node name="TextureRect4" type="TextureRect" parent="GridContainer" groups=["Characters"]]
+[node name="Beaver" type="Area2D" parent="GridContainer/BeaverCard"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GridContainer/BeaverCard/Beaver"]
+position = Vector2(200, 501.5)
+shape = SubResource("RectangleShape2D_1a048")
+
+[node name="MonkeyCard" type="TextureRect" parent="GridContainer"]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_pgn01")
+
+[node name="Monkey" type="Area2D" parent="GridContainer/MonkeyCard"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GridContainer/MonkeyCard/Monkey"]
+position = Vector2(200, 501.5)
+shape = SubResource("RectangleShape2D_ltlk0")
+
+[node name="ReadyLabel" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 393.0
+offset_top = 414.0
+offset_right = 1597.0
+offset_bottom = 518.0
+text = "PLAYERS READY"
+label_settings = SubResource("LabelSettings_u1v2i")
+
+[connection signal="area_entered" from="GridContainer/RaccoonCard/Raccoon" to="Cursor4" method="_on_raccoon_area_entered"]
+[connection signal="area_entered" from="GridContainer/CatCard/Cat" to="Cursor1" method="_on_cat_area_entered"]
+[connection signal="area_entered" from="GridContainer/BeaverCard/Beaver" to="Cursor1" method="_on_beaver_area_entered"]
+[connection signal="area_entered" from="GridContainer/MonkeyCard/Monkey" to="Cursor1" method="_on_monkey_area_entered"]
