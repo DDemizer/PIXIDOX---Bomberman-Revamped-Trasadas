@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bf6ug0hg4i48x"]
+
+[ext_resource type="Script" path="res://character-scenes/Bomba.gd" id="1_rx25j"]
+[ext_resource type="Texture2D" uid="uid://cqyujqhluuxby" path="res://bombaa.png" id="2_f13kk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fh1g6"]
+texture = ExtResource("2_f13kk")
+texture_region_size = Vector2i(60, 60)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ds53h"]
+tile_size = Vector2i(60, 60)
+sources/0 = SubResource("TileSetAtlasSource_fh1g6")
+
+[node name="Bomba" type="Node2D"]
+script = ExtResource("1_rx25j")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ds53h")
+cell_quadrant_size = 60
+format = 2

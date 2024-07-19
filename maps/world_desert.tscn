@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://djhi2e8stfblr"]
+[gd_scene load_steps=14 format=3 uid="uid://djhi2e8stfblr"]
 
 [ext_resource type="Script" path="res://maps/world_desert.gd" id="1_4ldhu"]
 [ext_resource type="Texture2D" uid="uid://bju11m6kkfleb" path="res://assets/world-assets/black-bg.png" id="2_n1s8o"]
+[ext_resource type="PackedScene" uid="uid://bf6ug0hg4i48x" path="res://character-scenes/Bomba.tscn" id="2_r0wii"]
 [ext_resource type="Texture2D" uid="uid://cdkcdqqalvng2" path="res://assets/world-assets/gray-bg.png" id="3_4c2nl"]
 [ext_resource type="Texture2D" uid="uid://cx3b5hgaadud4" path="res://assets/world-assets/desert 4.png" id="6_0whln"]
 [ext_resource type="Texture2D" uid="uid://celf4huwgcvyp" path="res://assets/world-assets/desert things.png" id="7_4cnkb"]
@@ -18,71 +19,132 @@ texture = ExtResource("6_0whln")
 texture_region_size = Vector2i(60, 60)
 0:0/0 = 0
 0:0/0/terrain_set = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0 = 0
 1:0/0/terrain_set = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0 = 0
 2:0/0/terrain_set = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
 3:0/0 = 0
 3:0/0/terrain_set = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
 0:1/0 = 0
 0:1/0/terrain_set = 0
 0:1/0/terrain = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
 1:1/0 = 0
 1:1/0/terrain_set = 0
 1:1/0/terrain = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
 2:1/0 = 0
 2:1/0/terrain_set = 0
 2:1/0/terrain = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
 3:1/0 = 0
 3:1/0/terrain_set = 0
 3:1/0/terrain = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
 0:2/0 = 0
 0:2/0/terrain_set = 0
 0:2/0/terrain = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
 1:2/0 = 0
 1:2/0/terrain_set = 0
 1:2/0/terrain = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
 2:2/0 = 0
 2:2/0/terrain_set = 0
 2:2/0/terrain = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
 3:2/0 = 0
 3:2/0/terrain_set = 0
 3:2/0/terrain = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
 0:3/0 = 0
 0:3/0/terrain_set = 0
 0:3/0/terrain = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
 1:3/0 = 0
 1:3/0/terrain_set = 0
 1:3/0/terrain = 0
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
 2:3/0 = 0
 2:3/0/terrain_set = 0
 2:3/0/terrain = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
 3:3/0 = 0
 3:3/0/terrain_set = 0
 3:3/0/terrain = 0
+3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpouj"]
 texture = ExtResource("7_4cnkb")
 texture_region_size = Vector2i(60, 60)
-0:0/0 = 0
 1:0/0 = 0
 1:0/0/terrain_set = 1
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-14.625, -11.25, 15.875, -14.5, 10.625, 8, -8.625, 8)
+1:0/0/custom_data_0 = true
 2:0/0 = 0
 2:0/0/terrain_set = 1
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+2:0/0/custom_data_0 = true
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4qros"]
+texture = ExtResource("7_4cnkb")
+texture_region_size = Vector2i(60, 60)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/custom_data_1 = true
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_os0p6"]
 tile_size = Vector2i(60, 60)
+physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "ssand"
 terrain_set_0/terrain_0/color = Color(0.176471, 0.6, 0.101961, 1)
 terrain_set_1/mode = 0
 terrain_set_1/terrain_0/name = "above the sand"
 terrain_set_1/terrain_0/color = Color(0.941176, 0, 0.317647, 1)
+custom_data_layer_0/name = "placed_blocks"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "placed_by_player"
+custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_7i11l")
 sources/1 = SubResource("TileSetAtlasSource_vpouj")
+sources/2 = SubResource("TileSetAtlasSource_4qros")
 
 [node name="world desert" type="Node2D"]
 script = ExtResource("1_4ldhu")
+
+[node name="Bomba" parent="." instance=ExtResource("2_r0wii")]
 
 [node name="Black-bg" type="Sprite2D" parent="."]
 position = Vector2(960.5, 540.25)
