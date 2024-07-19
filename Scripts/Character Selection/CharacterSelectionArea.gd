@@ -49,8 +49,10 @@ func _process(delta):
 		print_debug('Player 2 Character: ', CharacterSelectionManager.player2)
 		print_debug('Player 3 Character: ', CharacterSelectionManager.player3)
 		print_debug('Player 4 Character: ', CharacterSelectionManager.player4)
+		print_debug('Players Ready: ', CharacterSelectionManager.players_ready)
+		print_debug('Players In Game: ', CharacterSelectionManager.players_in_game)
 		
-	
+		
 	if player1Activated == false:
 		if Input.is_joy_button_pressed(0, start_button):
 			player1Activated = true
@@ -58,6 +60,14 @@ func _process(delta):
 			cursor1.texture = player1_texture
 			CharacterSelectionManager.players_in_game += 1
 			print_debug('Player 1 Activated')
+	if CharacterSelectionManager.player1_ready:
+		if Input.is_joy_button_pressed(0, red):
+			cursor1.process_mode = 0
+			cursor2.process_mode = 0
+			cursor3.process_mode = 0
+			cursor4.process_mode = 0
+			CharacterSelectionManager.players_ready = 0
+		
 	if player2Activated == false:
 		if Input.is_joy_button_pressed(1, start_button):
 			player2Activated = true
@@ -65,6 +75,14 @@ func _process(delta):
 			cursor2.texture = player2_texture
 			CharacterSelectionManager.players_in_game += 1
 			print_debug('Player 2 Activated')
+	if CharacterSelectionManager.player2_ready:
+		if Input.is_joy_button_pressed(1, red):
+			cursor1.process_mode = 0
+			cursor2.process_mode = 0
+			cursor3.process_mode = 0
+			cursor4.process_mode = 0
+			CharacterSelectionManager.players_ready = 0
+		
 	if player3Activated == false:
 		if Input.is_joy_button_pressed(2, start_button):
 			player3Activated = true
@@ -72,6 +90,14 @@ func _process(delta):
 			cursor3.texture = player3_texture
 			CharacterSelectionManager.players_in_game += 1
 			print_debug('Player 3 Activated')
+	if CharacterSelectionManager.player3_ready:
+		if Input.is_joy_button_pressed(2, red):
+			cursor1.process_mode = 0
+			cursor2.process_mode = 0
+			cursor3.process_mode = 0
+			cursor4.process_mode = 0
+			CharacterSelectionManager.players_ready = 0
+			
 	if player4Activated == false:
 		if Input.is_joy_button_pressed(3, start_button):
 			player4Activated = true
@@ -79,12 +105,21 @@ func _process(delta):
 			cursor4.texture = player4_texture
 			CharacterSelectionManager.players_in_game += 1
 			print_debug('Player 4 Activated')
+	if CharacterSelectionManager.player4_ready:
+		if Input.is_joy_button_pressed(3, red):
+			cursor1.process_mode = 0
+			cursor2.process_mode = 0
+			cursor3.process_mode = 0
+			cursor4.process_mode = 0
+			CharacterSelectionManager.players_ready = 0
+		
 			
-	if CharacterSelectionManager.players_ready == CharacterSelectionManager.players_in_game:
+	if  CharacterSelectionManager.players_in_game != 0 and CharacterSelectionManager.players_ready == CharacterSelectionManager.players_in_game:
 		$ReadyLabel.show()
 		if Input.is_action_just_pressed("general_start_button"):
-			get_tree().change_scene_to_file("res://world.tscn")
+			get_tree().change_scene_to_file("res://maps/world.tscn")
 	else:
 		$ReadyLabel.hide()
 		
 	
+

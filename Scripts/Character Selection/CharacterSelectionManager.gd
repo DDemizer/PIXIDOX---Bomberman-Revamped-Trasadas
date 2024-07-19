@@ -3,6 +3,11 @@ extends Node
 var players_in_game = 0
 var players_ready = 0
 
+var player1_ready = false
+var player2_ready = false
+var player3_ready = false
+var player4_ready = false
+
 var player1
 var player2
 var player3
