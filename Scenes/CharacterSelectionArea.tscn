@@ -1,12 +1,15 @@
-[gd_scene load_steps=21 format=3 uid="uid://b2ucyxe0mx3hd"]
+[gd_scene load_steps=24 format=3 uid="uid://b2ucyxe0mx3hd"]
 
-[ext_resource type="Script" path="res://Scenes/CharacterSelectionArea.gd" id="1_7jv5l"]
-[ext_resource type="Script" path="res://Scenes/CharacterSelect.gd" id="2_ias01"]
+[ext_resource type="Script" path="res://Scripts/Character Selection/CharacterSelectionArea.gd" id="1_mq7v8"]
 [ext_resource type="Texture2D" uid="uid://cj6tmd2x4i0x8" path="res://assets/character_selection_assets/Player1.png" id="3_7271i"]
 [ext_resource type="Texture2D" uid="uid://bdlwtocwu8cii" path="res://assets/character_selection_assets/Player2.png" id="4_okd3c"]
 [ext_resource type="Texture2D" uid="uid://dax1i5mbnlux8" path="res://assets/character_selection_assets/Player3.png" id="5_ixj0v"]
 [ext_resource type="Texture2D" uid="uid://dapbijlsltedu" path="res://assets/character_selection_assets/Player4.png" id="6_qqc56"]
+[ext_resource type="Script" path="res://Scripts/Character Selection/Cursor1.gd" id="6_vefo5"]
+[ext_resource type="Script" path="res://Scripts/Character Selection/Cursor2.gd" id="7_0ylx1"]
 [ext_resource type="FontFile" uid="uid://bcgfc10ec43fu" path="res://04B_30__.TTF" id="7_85lni"]
+[ext_resource type="Script" path="res://Scripts/Character Selection/Cursor3.gd" id="8_q80e6"]
+[ext_resource type="Script" path="res://Scripts/Character Selection/Cursor4.gd" id="9_l8wgm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_084wy"]
 size = Vector2(82, 80)
@@ -61,20 +64,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7jv5l")
+script = ExtResource("1_mq7v8")
 player1_texture = ExtResource("3_7271i")
 player2_texture = ExtResource("4_okd3c")
 player3_texture = ExtResource("5_ixj0v")
 player4_texture = ExtResource("6_qqc56")
-player1Activated = null
-player2Activated = null
-player3Activated = null
-player4Activated = null
 
 [node name="Cursor1" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(242, 332)
-script = ExtResource("2_ias01")
+script = ExtResource("6_vefo5")
 
 [node name="Area2D" type="Area2D" parent="Cursor1"]
 
@@ -84,7 +83,8 @@ shape = SubResource("RectangleShape2D_084wy")
 [node name="Cursor2" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(727, 328)
-script = ExtResource("2_ias01")
+script = ExtResource("7_0ylx1")
+player = 1
 
 [node name="Area2D" type="Area2D" parent="Cursor2"]
 
@@ -94,7 +94,8 @@ shape = SubResource("RectangleShape2D_xp1y0")
 [node name="Cursor3" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(1198, 328)
-script = ExtResource("2_ias01")
+script = ExtResource("8_q80e6")
+player = 2
 
 [node name="Area2D" type="Area2D" parent="Cursor3"]
 
@@ -104,7 +105,8 @@ shape = SubResource("RectangleShape2D_cuhre")
 [node name="Cursor4" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(1682, 328)
-script = ExtResource("2_ias01")
+script = ExtResource("9_l8wgm")
+player = 3
 
 [node name="Area2D" type="Area2D" parent="Cursor4"]
 
@@ -176,7 +178,35 @@ offset_bottom = 518.0
 text = "PLAYERS READY"
 label_settings = SubResource("LabelSettings_u1v2i")
 
+[connection signal="area_entered" from="GridContainer/RaccoonCard/Raccoon" to="Cursor1" method="_on_raccoon_area_entered"]
+[connection signal="area_entered" from="GridContainer/RaccoonCard/Raccoon" to="Cursor2" method="_on_raccoon_area_entered"]
+[connection signal="area_entered" from="GridContainer/RaccoonCard/Raccoon" to="Cursor3" method="_on_raccoon_area_entered"]
 [connection signal="area_entered" from="GridContainer/RaccoonCard/Raccoon" to="Cursor4" method="_on_raccoon_area_entered"]
+[connection signal="area_exited" from="GridContainer/RaccoonCard/Raccoon" to="Cursor1" method="_on_raccoon_area_exited"]
+[connection signal="area_exited" from="GridContainer/RaccoonCard/Raccoon" to="Cursor2" method="_on_raccoon_area_exited"]
+[connection signal="area_exited" from="GridContainer/RaccoonCard/Raccoon" to="Cursor3" method="_on_raccoon_area_exited"]
+[connection signal="area_exited" from="GridContainer/RaccoonCard/Raccoon" to="Cursor4" method="_on_raccoon_area_exited"]
 [connection signal="area_entered" from="GridContainer/CatCard/Cat" to="Cursor1" method="_on_cat_area_entered"]
+[connection signal="area_entered" from="GridContainer/CatCard/Cat" to="Cursor2" method="_on_cat_area_entered"]
+[connection signal="area_entered" from="GridContainer/CatCard/Cat" to="Cursor3" method="_on_cat_area_entered"]
+[connection signal="area_entered" from="GridContainer/CatCard/Cat" to="Cursor4" method="_on_cat_area_entered"]
+[connection signal="area_exited" from="GridContainer/CatCard/Cat" to="Cursor1" method="_on_cat_area_exited"]
+[connection signal="area_exited" from="GridContainer/CatCard/Cat" to="Cursor2" method="_on_cat_area_exited"]
+[connection signal="area_exited" from="GridContainer/CatCard/Cat" to="Cursor3" method="_on_cat_area_exited"]
+[connection signal="area_exited" from="GridContainer/CatCard/Cat" to="Cursor4" method="_on_cat_area_exited"]
 [connection signal="area_entered" from="GridContainer/BeaverCard/Beaver" to="Cursor1" method="_on_beaver_area_entered"]
+[connection signal="area_entered" from="GridContainer/BeaverCard/Beaver" to="Cursor2" method="_on_beaver_area_entered"]
+[connection signal="area_entered" from="GridContainer/BeaverCard/Beaver" to="Cursor3" method="_on_beaver_area_entered"]
+[connection signal="area_entered" from="GridContainer/BeaverCard/Beaver" to="Cursor4" method="_on_beaver_area_entered"]
+[connection signal="area_exited" from="GridContainer/BeaverCard/Beaver" to="Cursor1" method="_on_beaver_area_exited"]
+[connection signal="area_exited" from="GridContainer/BeaverCard/Beaver" to="Cursor2" method="_on_beaver_area_exited"]
+[connection signal="area_exited" from="GridContainer/BeaverCard/Beaver" to="Cursor3" method="_on_beaver_area_exited"]
+[connection signal="area_exited" from="GridContainer/BeaverCard/Beaver" to="Cursor4" method="_on_beaver_area_exited"]
 [connection signal="area_entered" from="GridContainer/MonkeyCard/Monkey" to="Cursor1" method="_on_monkey_area_entered"]
+[connection signal="area_entered" from="GridContainer/MonkeyCard/Monkey" to="Cursor2" method="_on_monkey_area_entered"]
+[connection signal="area_entered" from="GridContainer/MonkeyCard/Monkey" to="Cursor3" method="_on_monkey_area_entered"]
+[connection signal="area_entered" from="GridContainer/MonkeyCard/Monkey" to="Cursor4" method="_on_monkey_area_entered"]
+[connection signal="area_exited" from="GridContainer/MonkeyCard/Monkey" to="Cursor1" method="_on_monkey_area_exited"]
+[connection signal="area_exited" from="GridContainer/MonkeyCard/Monkey" to="Cursor2" method="_on_monkey_area_exited"]
+[connection signal="area_exited" from="GridContainer/MonkeyCard/Monkey" to="Cursor3" method="_on_monkey_area_exited"]
+[connection signal="area_exited" from="GridContainer/MonkeyCard/Monkey" to="Cursor4" method="_on_monkey_area_exited"]

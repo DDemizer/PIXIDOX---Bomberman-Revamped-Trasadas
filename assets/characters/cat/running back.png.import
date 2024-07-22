@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbcwn6pqjk27l"
-path="res://.godot/imported/idle-Sheet.png-7ed55f51187e5706a5377cbfccf46a6f.ctex"
+uid="uid://bvjalbybdxyjd"
+path="res://.godot/imported/running back.png-5a79dca31e0ef5438c4fce36bd92a9e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/racoon/idle-Sheet.png"
-dest_files=["res://.godot/imported/idle-Sheet.png-7ed55f51187e5706a5377cbfccf46a6f.ctex"]
+source_file="res://assets/characters/cat/running back.png"
+dest_files=["res://.godot/imported/running back.png-5a79dca31e0ef5438c4fce36bd92a9e4.ctex"]
 
 [params]
 

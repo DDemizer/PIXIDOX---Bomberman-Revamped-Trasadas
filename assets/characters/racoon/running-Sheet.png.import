@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dujcbmxoa1raq"
-path="res://.godot/imported/running side-Sheet.png-282995bd9e6e845504e66f9dd73664eb.ctex"
+uid="uid://cjox6yde0wipm"
+path="res://.godot/imported/running-Sheet.png-12041da4cf08baa9178dfc5aa441012f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/racoon/running side-Sheet.png"
-dest_files=["res://.godot/imported/running side-Sheet.png-282995bd9e6e845504e66f9dd73664eb.ctex"]
+source_file="res://assets/characters/racoon/running-Sheet.png"
+dest_files=["res://.godot/imported/running-Sheet.png-12041da4cf08baa9178dfc5aa441012f.ctex"]
 
 [params]
 

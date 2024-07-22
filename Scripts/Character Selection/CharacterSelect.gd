@@ -32,22 +32,23 @@ var l1 = 9
 var r1 = 10
 
 func _ready():
-	print_debug(cursor_1 == cursor_4)
-	print_debug(self)
+	# Players for Cursor
+#	if self == cursor_1:
+#		player = 0
+#	if self == cursor_2:
+#		player = 1
+#	if self == cursor_3:
+#		player = 2
+#	if self == cursor_4:
+#		player = 3
+#
+#	print_debug(cursor_1 == cursor_4)
+#	print_debug(self)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# Players for Cursor
-	if self == cursor_1:
-		player = 0
-	if self == cursor_2:
-		player = 1
-	if self == cursor_3:
-		player = 2
-	if self == cursor_4:
-		player = 3
-		
+	
 	# Cursor Movement
 	if Input.is_joy_button_pressed(player, up):
 		position.y += -SPEED
