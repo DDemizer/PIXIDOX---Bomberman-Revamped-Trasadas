@@ -14,10 +14,10 @@ var player3
 var player4
 
 var characters = {
-	'raccoon' : preload("res://character-scenes/raccoon.tscn"),
-	'cat' : preload("res://character-scenes/raccoon.tscn"),
-	'beaver' : preload("res://character-scenes/raccoon.tscn"),
-	'monkey' : preload("res://character-scenes/raccoon.tscn")
+	'raccoon' : preload("res://Scenes/character-scenes/raccoon.tscn"),
+	'cat' : preload("res://Scenes/character-scenes/cat.tscn"),
+	'beaver' : preload("res://Scenes/character-scenes/beaver.tscn"),
+	'monkey' : preload("res://Scenes/character-scenes/monkey.tscn")
 }
 
 

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cdkcdqqalvng2" path="res://assets/world-assets/gray-bg.png" id="3_4c2nl"]
 [ext_resource type="Texture2D" uid="uid://cx3b5hgaadud4" path="res://assets/world-assets/desert 4.png" id="6_0whln"]
 [ext_resource type="Texture2D" uid="uid://celf4huwgcvyp" path="res://assets/world-assets/desert things.png" id="7_4cnkb"]
-[ext_resource type="PackedScene" uid="uid://cqkqkpsrh0gb4" path="res://character-scenes/raccoon.tscn" id="8_psump"]
+[ext_resource type="PackedScene" uid="uid://cqkqkpsrh0gb4" path="res://Scenes/character-scenes/raccoon.tscn" id="8_psump"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y414"]
 size = Vector2(1081, 103)

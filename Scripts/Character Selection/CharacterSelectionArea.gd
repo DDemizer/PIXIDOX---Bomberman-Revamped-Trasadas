@@ -123,3 +123,7 @@ func _process(delta):
 		
 	
 
+
+
+func _on_monkey_area_exited(area):
+	pass # Replace with function body.

@@ -68,3 +68,19 @@ func _on_beaver_area_entered(area):
 	
 func _on_monkey_area_entered(area):
 	cursor_on_monkey = true
+
+func _on_raccoon_area_exited(area):
+	cursor_on_raccoon = false
+	print_debug(cursor_on_raccoon)
+
+func _on_cat_area_exited(area):
+	cursor_on_cat = false
+	print_debug(cursor_on_cat)
+
+func _on_beaver_area_exited(area):
+	cursor_on_beaver = false
+	print_debug(cursor_on_beaver)
+
+func _on_monkey_area_exited(area):
+	cursor_on_monkey = false
+	print_debug(cursor_on_monkey)
