@@ -121,9 +121,3 @@ func _process(delta):
 	else:
 		$ReadyLabel.hide()
 		
-	
-
-
-
-func _on_monkey_area_exited(area):
-	pass # Replace with function body.

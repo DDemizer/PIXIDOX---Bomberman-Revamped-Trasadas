@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://cqkqkpsrh0gb4"]
 
-[ext_resource type="Script" path="res://Scripts/player_controls.gd" id="1_262h3"]
+[ext_resource type="Script" path="res://Scripts/Player Controls/raccoon.gd" id="1_2gqb3"]
 [ext_resource type="Texture2D" uid="uid://bbcwn6pqjk27l" path="res://assets/characters/racoon/idle-Sheet.png" id="2_u0ode"]
 [ext_resource type="Texture2D" uid="uid://b65ja5glv7oxq" path="res://assets/characters/racoon/running front-Sheet.png" id="3_y1wk0"]
 [ext_resource type="Texture2D" uid="uid://dujcbmxoa1raq" path="res://assets/characters/racoon/running side-Sheet.png" id="4_qmhwf"]
@@ -259,7 +259,7 @@ height = 58.0
 
 [node name="Raccoon" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_262h3")
+script = ExtResource("1_2gqb3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
