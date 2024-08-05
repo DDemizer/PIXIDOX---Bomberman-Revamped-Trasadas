@@ -2,8 +2,8 @@ extends Control
 #$notes: check whether if the pvp and pve are minimize, dsisable focus group and when not enable focus group
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	$Bomb/Play.grab_focus()
+#func _ready():
+#	$Bomb/Play.grab_focus()
 
 func _on_play_pressed():
 	get_tree().change_scene_to_file("res://Scenes/pvp_pveMenu.tscn")
@@ -45,8 +45,5 @@ func _on_out_timer_timeout():
 	$OutTimer.stop()
 
 func _on_pv_p_pressed():
-	get_tree().change_scene_to_file("res://Scenes/pvpGame.tscn")
+	get_tree().change_scene_to_file("res://Scenes/CharacterSelectionArea.tscn")
 
-
-
-	

@@ -65,6 +65,7 @@ Button/styles/pressed = SubResource("StyleBoxEmpty_f403p")
 
 [sub_resource type="Theme" id="Theme_0budq"]
 Button/colors/font_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
 Button/font_sizes/font_size = 22
 Button/fonts/font = ExtResource("8_kyalx")
 Button/styles/focus = SubResource("StyleBoxEmpty_5pws0")
@@ -406,6 +407,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1154.0
+offset_bottom = 647.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_po2li")
@@ -549,6 +552,7 @@ wait_time = 0.427
 wait_time = 0.496
 
 [connection signal="pressed" from="PvP'/PvP" to="." method="_on_pv_p_pressed"]
+[connection signal="mouse_entered" from="Bomb/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="Bomb/Play" to="." method="_on_button_pressed"]
 [connection signal="mouse_entered" from="Bomb/Area" to="." method="_on_area_mouse_entered"]
 [connection signal="mouse_exited" from="Bomb/Area" to="." method="_on_area_mouse_exited"]

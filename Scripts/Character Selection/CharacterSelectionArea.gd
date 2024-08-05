@@ -5,10 +5,25 @@ extends Control
 @export var player3_texture : Texture
 @export var player4_texture : Texture
 
+@export var raccoon_character_hovered_texture: Texture
+@export var cat_character_hovered_texture: Texture
+@export var beaver_character_hovered_texture: Texture
+@export var monkey_character_hovered_texture: Texture
+
+@export var raccoon_character_picked_texture: Texture
+@export var cat_character_picked_texture: Texture
+@export var beaver_character_picked_texture: Texture
+@export var monkey_character_picked_texture: Texture
+
 @onready var cursor1 = $Cursor1
 @onready var cursor2 = $Cursor2
 @onready var cursor3 = $Cursor3
 @onready var cursor4 = $Cursor4
+
+@onready var raccoon_anim = $GridContainer/RaccoonCard/RaccoonAnim
+@onready var cat_anim = $GridContainer/CatCard/CatAnim
+@onready var beaver_anim = $GridContainer/BeaverCard/BeaverAnim
+@onready var monkey_anim = $GridContainer/MonkeyCard/MonkeyAnim
 
 @export var player1Activated = false
 @export var player2Activated = false
@@ -37,6 +52,7 @@ func _ready():
 	cursor3.process_mode = 4
 	cursor4.process_mode = 4
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# debugging
@@ -53,7 +69,7 @@ func _process(delta):
 		print_debug('Players In Game: ', CharacterSelectionManager.players_in_game)
 		
 		
-	if player1Activated == false:
+	if player1Activated == false and CharacterSelectionManager.players_ready == CharacterSelectionManager.players_in_game:
 		if Input.is_joy_button_pressed(0, start_button):
 			player1Activated = true
 			cursor1.process_mode = 0
@@ -63,12 +79,9 @@ func _process(delta):
 	if CharacterSelectionManager.player1_ready:
 		if Input.is_joy_button_pressed(0, red):
 			cursor1.process_mode = 0
-			cursor2.process_mode = 0
-			cursor3.process_mode = 0
-			cursor4.process_mode = 0
 			CharacterSelectionManager.players_ready = 0
 		
-	if player2Activated == false:
+	if player2Activated == false and CharacterSelectionManager.players_ready == CharacterSelectionManager.players_in_game:
 		if Input.is_joy_button_pressed(1, start_button):
 			player2Activated = true
 			cursor2.process_mode = 0
@@ -77,13 +90,10 @@ func _process(delta):
 			print_debug('Player 2 Activated')
 	if CharacterSelectionManager.player2_ready:
 		if Input.is_joy_button_pressed(1, red):
-			cursor1.process_mode = 0
 			cursor2.process_mode = 0
-			cursor3.process_mode = 0
-			cursor4.process_mode = 0
 			CharacterSelectionManager.players_ready = 0
 		
-	if player3Activated == false:
+	if player3Activated == false and CharacterSelectionManager.players_ready == CharacterSelectionManager.players_in_game:
 		if Input.is_joy_button_pressed(2, start_button):
 			player3Activated = true
 			cursor3.process_mode = 0
@@ -92,13 +102,10 @@ func _process(delta):
 			print_debug('Player 3 Activated')
 	if CharacterSelectionManager.player3_ready:
 		if Input.is_joy_button_pressed(2, red):
-			cursor1.process_mode = 0
-			cursor2.process_mode = 0
-			cursor3.process_mode = 0
-			cursor4.process_mode = 0
+			cursor3.process_mode = 3
 			CharacterSelectionManager.players_ready = 0
 			
-	if player4Activated == false:
+	if player4Activated == false and CharacterSelectionManager.players_ready == CharacterSelectionManager.players_in_game:
 		if Input.is_joy_button_pressed(3, start_button):
 			player4Activated = true
 			cursor4.process_mode = 0
@@ -107,14 +114,12 @@ func _process(delta):
 			print_debug('Player 4 Activated')
 	if CharacterSelectionManager.player4_ready:
 		if Input.is_joy_button_pressed(3, red):
-			cursor1.process_mode = 0
-			cursor2.process_mode = 0
-			cursor3.process_mode = 0
 			cursor4.process_mode = 0
 			CharacterSelectionManager.players_ready = 0
 		
 			
 	if  CharacterSelectionManager.players_in_game != 0 and CharacterSelectionManager.players_ready == CharacterSelectionManager.players_in_game:
+		$ReadyLabel.text = str(CharacterSelectionManager.players_ready) + ' ' + 'PLAYER/S READY'
 		$ReadyLabel.show()
 		if Input.is_action_just_pressed("general_start_button"):
 			get_tree().change_scene_to_file("res://maps/world.tscn")

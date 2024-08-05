@@ -161,7 +161,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_q6unc"]
+[sub_resource type="Animation" id="Animation_urvxx"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -176,7 +176,7 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_j3xke"]
+[sub_resource type="Animation" id="Animation_wug5i"]
 resource_name = "down"
 length = 1.2
 loop_mode = 1
@@ -193,7 +193,7 @@ tracks/0/keys = {
 "values": [3, 4, 5, 6, 7, 8]
 }
 
-[sub_resource type="Animation" id="Animation_cch1k"]
+[sub_resource type="Animation" id="Animation_doejx"]
 resource_name = "idle"
 length = 2.0
 loop_mode = 1
@@ -210,7 +210,7 @@ tracks/0/keys = {
 "values": [0, 1, 2, 1]
 }
 
-[sub_resource type="Animation" id="Animation_xueek"]
+[sub_resource type="Animation" id="Animation_llh5o"]
 resource_name = "side"
 length = 1.2
 loop_mode = 1
@@ -227,7 +227,7 @@ tracks/0/keys = {
 "values": [9, 10, 11, 12, 13, 14]
 }
 
-[sub_resource type="Animation" id="Animation_tfkmo"]
+[sub_resource type="Animation" id="Animation_52lf3"]
 resource_name = "up"
 length = 1.2
 loop_mode = 1
@@ -244,13 +244,13 @@ tracks/0/keys = {
 "values": [15, 16, 17, 18, 19, 20]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_n74bn"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tk341"]
 _data = {
-"RESET": SubResource("Animation_q6unc"),
-"down": SubResource("Animation_j3xke"),
-"idle": SubResource("Animation_cch1k"),
-"side": SubResource("Animation_xueek"),
-"up": SubResource("Animation_tfkmo")
+"RESET": SubResource("Animation_urvxx"),
+"down": SubResource("Animation_wug5i"),
+"idle": SubResource("Animation_doejx"),
+"side": SubResource("Animation_llh5o"),
+"up": SubResource("Animation_52lf3")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1n3ck"]
@@ -270,7 +270,7 @@ animation = &"monkey"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatedSprite2D")
 libraries = {
-"": SubResource("AnimationLibrary_n74bn")
+"": SubResource("AnimationLibrary_tk341")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
