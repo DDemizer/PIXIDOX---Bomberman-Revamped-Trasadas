@@ -30,6 +30,9 @@ extends Control
 @export var player3Activated = false
 @export var player4Activated = false
 
+# Maps
+var maps = ['desert', 'grassland']
+
 # Buttons
 var general_start_button = Input.is_action_just_pressed("general_start_button")
 var up = 11
@@ -122,7 +125,11 @@ func _process(delta):
 		$ReadyLabel.text = str(CharacterSelectionManager.players_ready) + ' ' + 'PLAYER/S READY'
 		$ReadyLabel.show()
 		if Input.is_action_just_pressed("general_start_button"):
-			get_tree().change_scene_to_file("res://maps/world.tscn")
+			var map_randomizer = maps[randi() % maps.size()]
+			if map_randomizer == 'desert':
+				get_tree().change_scene_to_file("res://maps/world_desert.tscn")
+			elif map_randomizer == 'grassland':
+				get_tree().change_scene_to_file("res://maps/world.tscn")
 	else:
 		$ReadyLabel.hide()
 		

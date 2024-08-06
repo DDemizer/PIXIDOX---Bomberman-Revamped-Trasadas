@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://djhi2e8stfblr"]
+[gd_scene load_steps=13 format=3 uid="uid://djhi2e8stfblr"]
 
 [ext_resource type="Script" path="res://maps/world_desert.gd" id="1_4ldhu"]
 [ext_resource type="Texture2D" uid="uid://bju11m6kkfleb" path="res://assets/world-assets/black-bg.png" id="2_n1s8o"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cdkcdqqalvng2" path="res://assets/world-assets/gray-bg.png" id="3_4c2nl"]
 [ext_resource type="Texture2D" uid="uid://cx3b5hgaadud4" path="res://assets/world-assets/desert 4.png" id="6_0whln"]
 [ext_resource type="Texture2D" uid="uid://celf4huwgcvyp" path="res://assets/world-assets/desert things.png" id="7_4cnkb"]
-[ext_resource type="PackedScene" uid="uid://cqkqkpsrh0gb4" path="res://Scenes/character-scenes/raccoon.tscn" id="8_psump"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y414"]
 size = Vector2(1081, 103)
@@ -198,6 +197,3 @@ layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(65543, 1, 0, 131079, 1, 0, 196615, 1, 0, 262151, 1, 0, 327687, 1, 0, 393223, 1, 0, 458759, 1, 0, 524295, 1, 0, 589831, 1, 0, 655367, 1, 0, 720903, 1, 0, 786439, 1, 0, 851975, 1, 0, 917511, 1, 0, 983047, 1, 0, 1048583, 1, 0, 1114119, 1, 0, 1114120, 1, 0, 1114121, 1, 0, 1114122, 1, 0, 1114123, 1, 0, 1114124, 1, 0, 1114125, 1, 0, 1114126, 1, 0, 1114127, 1, 0, 1114128, 1, 0, 1114129, 1, 0, 1114130, 1, 0, 1114131, 1, 0, 1114132, 1, 0, 1114133, 1, 0, 1114134, 1, 0, 1114135, 1, 0, 1114136, 1, 0, 1048600, 1, 0, 983064, 1, 0, 917528, 1, 0, 851992, 1, 0, 786456, 1, 0, 720920, 1, 0, 655384, 1, 0, 589848, 1, 0, 524312, 1, 0, 458776, 1, 0, 393240, 1, 0, 327704, 1, 0, 262168, 1, 0, 196632, 1, 0, 131096, 1, 0, 65560, 1, 0, 24, 1, 0, 23, 1, 0, 22, 1, 0, 21, 1, 0, 20, 1, 0, 19, 1, 0, 18, 1, 0, 17, 1, 0, 16, 1, 0, 15, 1, 0, 14, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0)
-
-[node name="Raccoon" parent="." instance=ExtResource("8_psump")]
-position = Vector2(511, 933)
