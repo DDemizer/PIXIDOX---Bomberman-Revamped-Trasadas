@@ -54,6 +54,8 @@ func _process(delta):
 			CharacterSelectionManager.player3_ready = true
 			CharacterSelectionManager.player3 = CharacterSelectionManager.characters['raccoon']
 			player3_character.texture = parent.raccoon_character_picked_texture
+			CharacterSelectionManager.player3_texture = parent.raccoon_character_picked_texture
+			
 
 		
 	if cursor_on_cat:
@@ -64,6 +66,7 @@ func _process(delta):
 			CharacterSelectionManager.player3_ready = true
 			CharacterSelectionManager.player3 = CharacterSelectionManager.characters['cat']
 			player3_character.texture = parent.cat_character_picked_texture
+			CharacterSelectionManager.player3_texture = parent.cat_character_picked_texture
 
 		
 	if cursor_on_beaver:
@@ -74,6 +77,7 @@ func _process(delta):
 			CharacterSelectionManager.player3_ready = true
 			CharacterSelectionManager.player3 = CharacterSelectionManager.characters['beaver']
 			player3_character.texture = parent.beaver_character_picked_texture
+			CharacterSelectionManager.player3_texture = parent.beaver_character_picked_texture
 
 		
 	if cursor_on_monkey:
@@ -84,6 +88,8 @@ func _process(delta):
 			CharacterSelectionManager.player3_ready = true
 			CharacterSelectionManager.player3 = CharacterSelectionManager.characters['monkey']
 			player3_character.texture = parent.monkey_character_picked_texture
+			CharacterSelectionManager.player3_texture = parent.monkey_character_picked_texture
+			
 	
 	if cursor_on_raccoon == false and cursor_on_cat == false and cursor_on_beaver == false and cursor_on_monkey == false: 
 		player3_character.texture = null
