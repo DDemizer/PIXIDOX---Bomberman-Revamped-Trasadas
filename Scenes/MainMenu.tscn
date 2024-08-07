@@ -1347,6 +1347,7 @@ expand_mode = 1
 [connection signal="focus_entered" from="PvP'/PvP" to="." method="_on_pv_p_focus_entered"]
 [connection signal="focus_exited" from="PvP'/PvP" to="." method="_on_pv_p_focus_exited"]
 [connection signal="pressed" from="PvP'/PvP" to="." method="_on_pv_p_pressed"]
+[connection signal="mouse_entered" from="Bomb/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="Bomb/Play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Customize" to="." method="_on_customize_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
