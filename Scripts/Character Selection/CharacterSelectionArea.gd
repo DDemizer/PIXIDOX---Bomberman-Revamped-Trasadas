@@ -70,8 +70,7 @@ func _process(delta):
 		print_debug('Player 4 Character: ', CharacterSelectionManager.player4)
 		print_debug('Players Ready: ', CharacterSelectionManager.players_ready)
 		print_debug('Players In Game: ', CharacterSelectionManager.players_in_game)
-		
-		
+
 	if player1Activated == false and CharacterSelectionManager.players_ready == CharacterSelectionManager.players_in_game:
 		if Input.is_joy_button_pressed(0, start_button):
 			player1Activated = true

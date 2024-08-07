@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dmntloexb52bh"]
+[gd_scene load_steps=52 format=3 uid="uid://87avn0ba8j1t"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_as46o"]
 [ext_resource type="Texture2D" uid="uid://cbjvmcgn7fw4f" path="res://assets/MenuScreen/BomberBeast_Background.png" id="2_dm5tj"]
@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://da7rb6sqdpokd" path="res://assets/MenuScreen/Pow.png" id="6_ey6xa"]
 [ext_resource type="FontFile" uid="uid://bcgfc10ec43fu" path="res://04B_30__.TTF" id="8_kyalx"]
 [ext_resource type="Texture2D" uid="uid://dr5tmbifrmivr" path="res://assets/MenuScreen/BomberBeast_Play_Button1-export.png" id="9_01raj"]
+[ext_resource type="Texture2D" uid="uid://c158eodrt3jb" path="res://assets/MenuScreen/Block.png" id="9_ppye2"]
 [ext_resource type="StyleBox" uid="uid://bss7sqjrbowl2" path="res://Themebutton/Customize.tres" id="9_yw5sp"]
+[ext_resource type="Texture2D" uid="uid://byaslye1okftk" path="res://assets/MenuScreen/Nintendo.png" id="12_ficcy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qtbu7"]
 
@@ -26,7 +28,7 @@ Button/colors/font_hover_color = Color(0, 0.313726, 0, 1)
 Button/colors/font_hover_pressed_color = Color(0, 0.313726, 0, 1)
 Button/colors/font_outline_color = Color(0.0666667, 0.0313726, 0.00784314, 1)
 Button/colors/font_pressed_color = Color(0, 0, 0, 1)
-Button/font_sizes/font_size = 33
+Button/font_sizes/font_size = 43
 Button/fonts/font = ExtResource("8_kyalx")
 Button/styles/focus = SubResource("StyleBoxEmpty_qtbu7")
 Button/styles/hover = SubResource("StyleBoxEmpty_j7bf7")
@@ -48,12 +50,14 @@ Button/colors/font_hover_color = Color(0, 0.313726, 0, 1)
 Button/colors/font_hover_pressed_color = Color(0, 0.313726, 0, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/colors/font_pressed_color = Color(0, 0, 0, 1)
-Button/font_sizes/font_size = 43
+Button/font_sizes/font_size = 41
 Button/fonts/font = ExtResource("8_kyalx")
 Button/styles/focus = SubResource("StyleBoxEmpty_nhkcd")
 Button/styles/hover = SubResource("StyleBoxEmpty_kww8y")
 Button/styles/normal = SubResource("StyleBoxEmpty_lbn2i")
 Button/styles/pressed = SubResource("StyleBoxEmpty_f403p")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eqsix"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pws0"]
 
@@ -65,9 +69,11 @@ Button/styles/pressed = SubResource("StyleBoxEmpty_f403p")
 
 [sub_resource type="Theme" id="Theme_0budq"]
 Button/colors/font_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
-Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 1)
 Button/font_sizes/font_size = 22
 Button/fonts/font = ExtResource("8_kyalx")
+Button/styles/disabled = SubResource("StyleBoxEmpty_eqsix")
 Button/styles/focus = SubResource("StyleBoxEmpty_5pws0")
 Button/styles/hover = SubResource("StyleBoxEmpty_bva70")
 Button/styles/normal = SubResource("StyleBoxEmpty_twxjc")
@@ -139,6 +145,46 @@ Button/styles/focus = SubResource("StyleBoxEmpty_8mbjl")
 Button/styles/hover = SubResource("StyleBoxFlat_bs5ed")
 Button/styles/normal = ExtResource("9_yw5sp")
 Button/styles/pressed = SubResource("StyleBoxFlat_5ki4q")
+
+[sub_resource type="Animation" id="Animation_y42kn"]
+resource_name = "Blocked"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PvE\'/Blocked:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3.575, 3.575), Vector2(3.575, 3.575)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PvE\'/Blocked:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(115.8, 86.2961), Vector2(8.1543, 22.7358)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PvE\'/Blocked:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(29, 31), Vector2(89, 87)]
+}
 
 [sub_resource type="Animation" id="Animation_bgtvb"]
 resource_name = "Button_Battle_Click"
@@ -213,7 +259,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(250.15, 296.161), Vector2(250.15, 219.556)]
+"values": [Vector2(250.15, 296.161), Vector2(231.99, 228.401)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -225,7 +271,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+"values": [Vector2(1e-05, 1e-05), Vector2(1.01, 1.01)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -237,7 +283,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+"values": [Vector2(1e-05, 1e-05), Vector2(0.755, 0.755)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -249,11 +295,184 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1000, 188.945), Vector2(601, 167)]
+"values": [Vector2(1000, 188.945), Vector2(643.225, 167)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("PvE\':size")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(370, 344)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("PvE\'/Blocked:size")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(29, 31), Vector2(60, 81)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("PvE\'/Blocked:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(115.8, 86.2961), Vector2(57, 38)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("PvE\'/Blocked:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3.575, 3.575), Vector2(3.575, 3.575)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("PvE\'/Blocked:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.415686, 0.847059, 0, 0.117647)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("MenuTitle:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.25, 0.25)]
+}
+
+[sub_resource type="Animation" id="Animation_noqui"]
+resource_name = "Hover_PvE"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PvE\':scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.1, 0, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.885, 0.885), Vector2(0.755, 0.755), Vector2(0.875, 0.875)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PvE\':position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(643.225, 167), Vector2(627.24, 156.595)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PvE\'/Blocked:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3.575, 3.575), Vector2(3.575, 3.575)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PvE\'/Blocked:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(57, 38), Vector2(16.2882, 22.7358)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PvE\'/Blocked:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(60, 81), Vector2(89, 87)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PvE\'/Blocked:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.415686, 0.847059, 0, 0.117647), Color(1, 0.482353, 0.25098, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_wew53"]
-resource_name = "Hover"
+resource_name = "Hover_PvP"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PvP\':scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.01, 1.01), Vector2(1.275, 1.275)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PvP\':position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(231.99, 228.401), Vector2(200.87, 192.651)]
+}
 
 [sub_resource type="Animation" id="Animation_r00im"]
 length = 0.001
@@ -365,13 +584,460 @@ tracks/8/keys = {
 "update": 0,
 "values": [Vector2(601, 167)]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("PvE\'/Blocked:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.74, 4.74)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("PvE\'/Blocked:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(277.145, 114.577)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("PvE\'/Blocked:size")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(29, 31)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("PvE\':size")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(370, 344)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("PvE\'/Blocked:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.415686, 0.847059, 0, 0.756863)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("MenuTitle:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Bomb:size")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(352, 367.002)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Bomb:scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Bomb:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(370.726, 371.926)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("MenuTitle:size")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4624, 2588)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Monkey:size")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(794, 734)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Monkey:position")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-148.17, -179.364)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Monkey:scale")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Monkey:rotation")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Cat:rotation")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Ninentndo:rotation")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0855211]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Ninentndo:scale")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.115, 1.115)]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Ninentndo:position")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(236.953, 56.3887)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Cat:position")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(688.062, -222.555)]
+}
+
+[sub_resource type="Animation" id="Animation_to2r2"]
+resource_name = "Customize_On_Pressed"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bomb:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(352, 367.002), Vector2(352, 367.357)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bomb:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bomb:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(370.726, 371.926), Vector2(536.524, 576.617)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MenuTitle:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4624, 2588)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuTitle:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -176.03)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Monkey:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(794, 734)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Monkey:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-148.17, -179.364), Vector2(362.941, 154.371)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Monkey:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Monkey:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.490438]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Quit:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8, 536), Vector2(-190.85, 536)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Cat:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.490438]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Ninentndo:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.575959, 0.0855211]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Ninentndo:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.115, 1.115)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Ninentndo:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(236.953, 280.214), Vector2(329.334, 14.997)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Cat:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(688.062, -222.555)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kxg2y"]
 _data = {
+"Blocked": SubResource("Animation_y42kn"),
 "Button_Battle_Click": SubResource("Animation_bgtvb"),
-"Hover": SubResource("Animation_wew53"),
+"Customize_On_Pressed": SubResource("Animation_to2r2"),
+"Hover_PvE": SubResource("Animation_noqui"),
+"Hover_PvP": SubResource("Animation_wew53"),
 "RESET": SubResource("Animation_r00im")
 }
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yv7ll"]
+
+[sub_resource type="Theme" id="Theme_fggwt"]
+RichTextLabel/colors/default_color = Color(0.054902, 0.0431373, 0.0862745, 1)
+RichTextLabel/font_sizes/normal_font_size = 16
+RichTextLabel/fonts/normal_font = ExtResource("8_kyalx")
+RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_yv7ll")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tfb1t"]
+
+[sub_resource type="Theme" id="Theme_betlj"]
+RichTextLabel/colors/default_color = Color(0, 0.556863, 0.329412, 1)
+RichTextLabel/font_sizes/normal_font_size = 16
+RichTextLabel/fonts/normal_font = ExtResource("8_kyalx")
+RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_tfb1t")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qamvr"]
+
+[sub_resource type="Theme" id="Theme_bkjuu"]
+RichTextLabel/colors/default_color = Color(1, 1, 0.215686, 1)
+RichTextLabel/font_sizes/normal_font_size = 16
+RichTextLabel/fonts/normal_font = ExtResource("8_kyalx")
+RichTextLabel/styles/normal = SubResource("StyleBoxEmpty_qamvr")
+
+[sub_resource type="Theme" id="Theme_kgb33"]
+RichTextLabel/colors/default_color = Color(0.768627, 0.184314, 0, 1)
+RichTextLabel/fonts/normal_font = ExtResource("8_kyalx")
+
+[sub_resource type="Theme" id="Theme_4x4st"]
+RichTextLabel/colors/default_color = Color(0, 0.341176, 0.643137, 1)
+RichTextLabel/fonts/normal_font = ExtResource("8_kyalx")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -386,7 +1052,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.667, 1.667)
 script = ExtResource("1_as46o")
-metadata/_edit_lock_ = true
 
 [node name="MenuGround" type="TextureRect" parent="."]
 layout_mode = 1
@@ -407,22 +1072,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 3466.0
+offset_right = 3468.0
 offset_bottom = 1941.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_po2li")
 expand_mode = 2
-metadata/_edit_lock_ = true
-
-[node name="Cat" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 586.083
-offset_top = -179.364
-offset_right = 1236.08
-offset_bottom = 463.636
-texture = ExtResource("5_spijd")
-expand_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="Monkey" type="TextureRect" parent="."]
@@ -448,10 +1104,11 @@ expand_mode = 1
 [node name="PvE" type="Button" parent="PvE\'"]
 visible = false
 layout_mode = 2
-offset_left = 134.453
-offset_top = 107.145
-offset_right = 223.453
-offset_bottom = 214.145
+offset_left = 117.389
+offset_top = 125.229
+offset_right = 232.389
+offset_bottom = 232.229
+rotation = -0.0610865
 focus_neighbor_left = NodePath("../../PvP\'/PvP")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
@@ -459,23 +1116,35 @@ focus_neighbor_bottom = NodePath("../../Bomb/Play")
 theme = SubResource("Theme_mc1ha")
 text = "PvE"
 
+[node name="Blocked" type="TextureRect" parent="PvE\'"]
+modulate = Color(0.415686, 0.847059, 0, 0.756863)
+layout_mode = 0
+offset_left = 277.145
+offset_top = 114.577
+offset_right = 306.145
+offset_bottom = 145.577
+scale = Vector2(4.74, 4.74)
+texture = ExtResource("9_ppye2")
+expand_mode = 1
+
 [node name="PvP\'" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
 offset_left = 250.15
 offset_top = 219.556
 offset_right = 520.151
-offset_bottom = 467.556
+offset_bottom = 467.558
+rotation = -0.0715585
 texture = ExtResource("6_ey6xa")
 expand_mode = 1
 
 [node name="PvP" type="Button" parent="PvP\'"]
 visible = false
 layout_mode = 2
-offset_left = 49.79
-offset_top = 54.5891
-offset_right = 208.79
-offset_bottom = 193.589
+offset_left = 54.589
+offset_top = 59.3882
+offset_right = 213.589
+offset_bottom = 198.388
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../../PvE\'/PvE")
@@ -491,7 +1160,6 @@ offset_right = 722.726
 offset_bottom = 738.928
 texture = ExtResource("9_01raj")
 expand_mode = 1
-metadata/_edit_lock_ = true
 
 [node name="Play" type="Button" parent="Bomb"]
 layout_mode = 0
@@ -500,6 +1168,7 @@ offset_top = 154.169
 offset_right = 249.975
 offset_bottom = 223.169
 scale = Vector2(0.81, 0.81)
+focus_neighbor_top = NodePath("../../PvP\'/PvP")
 focus_neighbor_right = NodePath("../../PvE\'/PvE")
 focus_neighbor_bottom = NodePath(".")
 theme = SubResource("Theme_0budq")
@@ -546,17 +1215,146 @@ libraries = {
 }
 
 [node name="OutTimer" type="Timer" parent="."]
-wait_time = 0.427
+wait_time = 0.3
 
 [node name="InTimer" type="Timer" parent="."]
-wait_time = 0.496
+wait_time = 0.05
 
+[node name="Hover" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Pressed" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Transition" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="Customize_out" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="Customize_in" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="Ninentndo" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 236.953
+offset_top = 56.3887
+offset_right = 651.953
+offset_bottom = 463.389
+rotation = 0.0855211
+scale = Vector2(1.115, 1.115)
+texture = ExtResource("12_ficcy")
+expand_mode = 1
+
+[node name="Line2D5" type="Line2D" parent="Ninentndo"]
+position = Vector2(265.391, 223.48)
+rotation = -0.0855211
+scale = Vector2(0.896861, 0.896861)
+points = PackedVector2Array(-92.9814, -7.19861, -103.179, 58.7882, -166.767, 134.973)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Ninentndo/Line2D5"]
+offset_left = -308.938
+offset_top = 142.771
+offset_right = -97.9382
+offset_bottom = 196.771
+theme = SubResource("Theme_fggwt")
+text = "START GAME or ACTIVATE CONTROLLER"
+scroll_active = false
+text_direction = 2
+
+[node name="Line2D4" type="Line2D" parent="Ninentndo"]
+position = Vector2(265.391, 223.48)
+rotation = -0.0855211
+scale = Vector2(0.896861, 0.896861)
+points = PackedVector2Array(0, -1.79968, -28.1944, 88.1823, -46.1907, 183.563)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Ninentndo/Line2D4"]
+offset_left = -81.5837
+offset_top = 190.762
+offset_right = 45.4163
+offset_bottom = 235.762
+theme = SubResource("Theme_betlj")
+text = "PLACE BOMB"
+scroll_active = false
+
+[node name="Line2D3" type="Line2D" parent="Ninentndo"]
+position = Vector2(302.394, 245.687)
+rotation = -0.0855211
+scale = Vector2(0.896861, 0.896861)
+points = PackedVector2Array(-0.599915, -0.599915, 13.1974, 51.5897, 13.7972, 107.978)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Ninentndo/Line2D3"]
+offset_left = -26.0
+offset_top = 117.0
+offset_right = 99.0
+offset_bottom = 181.0
+theme = SubResource("Theme_bkjuu")
+theme_override_font_sizes/normal_font_size = 14
+text = "PICK A CHARACTER"
+fit_content = true
+scroll_active = false
+
+[node name="Line2D2" type="Line2D" parent="Ninentndo"]
+position = Vector2(343.822, 212.436)
+rotation = -0.0855211
+scale = Vector2(0.896861, 0.896861)
+points = PackedVector2Array(-2.3996, 4.19919, 33.5932, 41.3918, 52.7894, 106.179)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Ninentndo/Line2D2"]
+offset_left = 26.9946
+offset_top = 113.977
+offset_right = 90.9946
+offset_bottom = 153.977
+theme = SubResource("Theme_kgb33")
+text = "BACK"
+
+[node name="Line2D" type="Line2D" parent="Ninentndo"]
+position = Vector2(302.837, 187.871)
+points = PackedVector2Array(165.041, 73.3281, 101.603, 1.00926, 10.6749, -1.45511)
+width = 2.0
+default_color = Color(0.0666667, 0.0235294, 0.0117647, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Ninentndo/Line2D"]
+offset_left = 137.0
+offset_top = 82.0
+offset_right = 208.0
+offset_bottom = 106.0
+rotation = -0.0925025
+theme = SubResource("Theme_4x4st")
+text = "BUILD"
+fit_content = true
+scroll_active = false
+
+[node name="Cat" type="TextureRect" parent="."]
+offset_left = 688.062
+offset_top = -222.555
+offset_right = 1338.06
+offset_bottom = 420.445
+texture = ExtResource("5_spijd")
+expand_mode = 1
+
+[connection signal="focus_entered" from="PvE'/PvE" to="." method="_on_pv_e_focus_entered"]
+[connection signal="focus_exited" from="PvE'/PvE" to="." method="_on_pv_e_focus_exited"]
+[connection signal="focus_entered" from="PvP'/PvP" to="." method="_on_pv_p_focus_entered"]
+[connection signal="focus_exited" from="PvP'/PvP" to="." method="_on_pv_p_focus_exited"]
 [connection signal="pressed" from="PvP'/PvP" to="." method="_on_pv_p_pressed"]
 [connection signal="mouse_entered" from="Bomb/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="Bomb/Play" to="." method="_on_button_pressed"]
-[connection signal="mouse_entered" from="Bomb/Area" to="." method="_on_area_mouse_entered"]
-[connection signal="mouse_exited" from="Bomb/Area" to="." method="_on_area_mouse_exited"]
+[connection signal="pressed" from="Customize" to="." method="_on_customize_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="OutTimer" to="." method="_on_out_timer_timeout"]
 [connection signal="timeout" from="InTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Hover" to="." method="_on_hover_timeout"]
+[connection signal="timeout" from="Pressed" to="." method="_on_pressed_timeout"]
+[connection signal="timeout" from="Transition" to="." method="_on_transition_timeout"]
+[connection signal="timeout" from="Customize_out" to="." method="_on_customize_out_timeout"]
+[connection signal="timeout" from="Customize_in" to="." method="_on_customize_in_timeout"]
