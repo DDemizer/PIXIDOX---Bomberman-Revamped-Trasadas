@@ -2,8 +2,8 @@ extends Control
 
 
 # Called when the node enters the scene tree for the first time.
-#func _ready():
-#	$Bomb/Play.grab_focus()
+func _ready():
+	$Bomb/Play.grab_focus()
 
 #quit
 func _on_quit_pressed():
@@ -13,6 +13,7 @@ func _on_quit_pressed():
 @onready var animation = $AnimationPlayer
 var Toggle = true
 var Check = true
+
 func _on_button_pressed():
 	if Toggle:
 		$"PvP'".show()

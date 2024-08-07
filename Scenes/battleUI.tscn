@@ -245,3 +245,5 @@ texture = ExtResource("4_44ls0")
 
 [connection signal="timeout" from="Player1/Run/RunRegen" to="." method="_on_run1_regen_timeout"]
 [connection signal="timeout" from="Player2/Run/RunRegen" to="." method="_on_run2_regen_timeout"]
+[connection signal="timeout" from="Player3/Run/RunRegen" to="." method="_on_run3_regen_timeout"]
+[connection signal="timeout" from="Player4/Run/RunRegen" to="." method="_on_run4_regen_timeout"]

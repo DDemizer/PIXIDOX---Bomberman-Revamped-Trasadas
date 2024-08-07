@@ -146,7 +146,6 @@ func _process(delta):
 func _on_run1_regen_timeout():
 	if run1_gauge_percentage <= 100:
 		run1_gauge_percentage += 5
-		print_debug(run1_gauge_percentage)
 	
 func _on_run2_regen_timeout():
 	if run2_gauge_percentage <= 100:
