@@ -59,10 +59,10 @@ var run4_gauge_percentage = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	BattleManager.connect('build1_activated', build1_start_cooldown)
-	BattleManager.connect('build2_activated', build2_start_cooldown)
-	BattleManager.connect('build3_activated', build3_start_cooldown)
-	BattleManager.connect('build4_activated', build4_start_cooldown)
+	BattleManager.connect('build1_activated_to_BUI', build1_start_cooldown)
+	BattleManager.connect('build2_activated_to_BUI', build2_start_cooldown)
+	BattleManager.connect('build3_activated_to_BUI', build3_start_cooldown)
+	BattleManager.connect('build4_activated_to_BUI', build4_start_cooldown)
 	
 	
 	if CharacterSelectionManager.player1 != null:

@@ -8,6 +8,8 @@ const SPEED = 70
 @export var player = 0
 
 # Buttons
+var general_start_button = Input.is_action_just_pressed("general_start_button")
+var general_select_button = Input.is_action_just_pressed("general_select_button")
 var up = 11
 var down = 12
 var left = 13
@@ -62,12 +64,13 @@ signal build2_activated
 signal build3_activated
 signal build4_activated
 
-func _physics_process(delta):
+func _ready():
 	connect('build1_activated', BattleManager.on_build1_activated)
 	connect('build2_activated', BattleManager.on_build2_activated)
 	connect('build3_activated', BattleManager.on_build3_activated)
 	connect('build4_activated', BattleManager.on_build4_activated)
-	
+
+func _physics_process(delta):
 	# buttons
 	var up_button = Input.is_joy_button_pressed(player, up)
 	var down_button = Input.is_joy_button_pressed(player, down)
@@ -109,12 +112,13 @@ func _physics_process(delta):
 	if place_bomb:
 		pass
 	
-	if escape:
+	# SHOULD BE FOR PAUSING
+	if Input.is_joy_button_pressed(player, start_button):
 		get_tree().quit()
 	move_and_slide()
 
 func _process(delta):
-	if placed_block == true:	
+	if placed_block == true:
 		char_pos = self.global_position
 		character_Position = tile_map.local_to_map(char_pos)
 		if character_Position != charToTileMapPosition:
@@ -128,8 +132,6 @@ func _process(delta):
 			placed_bomb = false
 #			bomb_handler(charToTileMapPosition)
 
-	
-			
 
 func _input(event):
 	if Input.is_joy_button_pressed(player, blue):
@@ -250,8 +252,5 @@ func bomb_explosion(bomb_position):
 		
 	
 	
-	
-			
-
 func tile_data(tilemap : TileMap, ground_layer :int, character_position: Vector2i):
 	return tilemap.get_cell_tile_data(ground_layer, character_position)

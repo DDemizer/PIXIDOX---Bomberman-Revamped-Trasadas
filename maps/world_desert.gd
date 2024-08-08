@@ -5,33 +5,33 @@ var player2
 var player3
 var player4
 
-@onready var tile_map = $Map
-@onready var tile_map2 = $Desert_things
-var char_pos
-var character_Position : Vector2i
-var character
-var charToTileMapPosition : Vector2i
-var atlastCoords : Vector2i
-var tile_data : TileData
-var source_id_WOphysics = 2
-var source_id_Wphysics = 1
-
-var sand = 1
-var placed_by_player_custom_data = "placed_by_player"
-
-var general_start_button = Input.is_action_just_pressed("general_start_button")
-var up = 11
-var down = 12
-var left = 13
-var right = 14
-var start_button = 6
-var select_button = 4
-var green = 2
-var blue = 3
-var yellow = 0
-var red = 1
-var l1 = 9
-var r1 = 10
+#@onready var tile_map = $Map
+#@onready var tile_map2 = $Desert_things
+#var char_pos
+#var character_Position : Vector2i
+#var character
+#var charToTileMapPosition : Vector2i
+#var atlastCoords : Vector2i
+#var tile_data : TileData
+#var source_id_WOphysics = 2
+#var source_id_Wphysics = 1
+#
+#var sand = 1
+#var placed_by_player_custom_data = "placed_by_player"
+#
+#var general_start_button = Input.is_action_just_pressed("general_start_button")
+#var up = 11
+#var down = 12
+#var left = 13
+#var right = 14
+#var start_button = 6
+#var select_button = 4
+#var green = 2
+#var blue = 3
+#var yellow = 0
+#var red = 1
+#var l1 = 9
+#var r1 = 10
 
 
 		
