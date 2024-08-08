@@ -59,6 +59,12 @@ var run4_gauge_percentage = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	BattleManager.connect('build1_activated', build1_start_cooldown)
+	BattleManager.connect('build2_activated', build2_start_cooldown)
+	BattleManager.connect('build3_activated', build3_start_cooldown)
+	BattleManager.connect('build4_activated', build4_start_cooldown)
+	
+	
 	if CharacterSelectionManager.player1 != null:
 		player_1.show()
 		p1.texture = CharacterSelectionManager.player1_texture
@@ -162,15 +168,28 @@ func _on_build1_cooldown_timeout():
 	
 func build1_start_cooldown():
 	build1_cooldown.start()
+	build1_cooldown_percentage = 0
 
 func _on_build2_cooldown_timeout():
-	pass # Replace with function body.
+	BattleManager.build2_active = true
+	
+func build2_start_cooldown():
+	build2_cooldown.start()
+	build2_cooldown_percentage = 0
 
 func _on_build3_cooldown_timeout():
-	pass # Replace with function body.
-
+	BattleManager.build3_active = true
+	
+func build3_start_cooldown():
+	build3_cooldown.start()
+	build3_cooldown_percentage = 0
+	
 func _on_build4_cooldown_timeout():
-	pass # Replace with function body.
+	BattleManager.build4_active = true
+	
+func build4_start_cooldown():
+	build4_cooldown.start()
+	build4_cooldown_percentage = 0
 
 
 func _on_run1_regen_timeout():
