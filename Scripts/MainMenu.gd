@@ -13,6 +13,7 @@ func _on_quit_pressed():
 @onready var animation = $AnimationPlayer
 var Toggle = true
 var Check = true
+
 func _on_button_pressed():
 	if Toggle:
 		$"PvP'".show()
@@ -65,7 +66,6 @@ func _on_out_timer_timeout():
 
 func _on_pv_p_pressed():
 	get_tree().change_scene_to_file("res://Scenes/pvpGame.tscn")
-	
 	
 var recent_animation = ""
 #Pvp button

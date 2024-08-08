@@ -1,12 +1,15 @@
 extends Sprite2D
 
-const SPEED = 10
+const SPEED = 5
 
 var cursor_on_raccoon = false
 var cursor_on_cat = false
 var cursor_on_beaver = false
 var cursor_on_monkey = false
 
+@onready var player1_character = $"../Player 1"
+
+@onready var parent = get_parent()
 
 @export var player = 0
 
@@ -44,21 +47,51 @@ func _process(delta):
 #		process_mode = 0
 #		CharacterSelectionManager.players_ready -= 1
 
-	if Input.is_joy_button_pressed(player, yellow):
-		process_mode = 4
-		CharacterSelectionManager.players_ready += 1
-		CharacterSelectionManager.player1_ready = true
-		
-		if cursor_on_raccoon:
+	if cursor_on_raccoon:
+		player1_character.texture = parent.raccoon_character_hovered_texture
+		if Input.is_joy_button_pressed(player, yellow):
+			process_mode = 4
+			CharacterSelectionManager.players_ready += 1
+			CharacterSelectionManager.player1_ready = true
 			CharacterSelectionManager.player1 = CharacterSelectionManager.characters['raccoon']
-		if cursor_on_cat:
-			CharacterSelectionManager.player1 = CharacterSelectionManager.characters['cat']
-			print_debug('asdads')
-		if cursor_on_beaver:
-			CharacterSelectionManager.player1 = CharacterSelectionManager.characters['beaver']
-		if cursor_on_monkey:
-			CharacterSelectionManager.player1 = CharacterSelectionManager.characters['monkey']
+			player1_character.texture = parent.raccoon_character_picked_texture
+			CharacterSelectionManager.player1_texture = parent.raccoon_character_picked_texture
+			
 		
+	if cursor_on_cat:
+		player1_character.texture = parent.cat_character_hovered_texture
+		if Input.is_joy_button_pressed(player, yellow):
+			process_mode = 4
+			CharacterSelectionManager.players_ready += 1
+			CharacterSelectionManager.player1_ready = true
+			CharacterSelectionManager.player1 = CharacterSelectionManager.characters['cat']
+			player1_character.texture = parent.cat_character_picked_texture
+			CharacterSelectionManager.player1_texture = parent.cat_character_picked_texture
+			
+		
+	if cursor_on_beaver:
+		player1_character.texture = parent.beaver_character_hovered_texture
+		if Input.is_joy_button_pressed(player, yellow):
+			process_mode = 4
+			CharacterSelectionManager.players_ready += 1
+			CharacterSelectionManager.player1_ready = true
+			CharacterSelectionManager.player1 = CharacterSelectionManager.characters['beaver']
+			player1_character.texture = parent.beaver_character_picked_texture
+			CharacterSelectionManager.player1_texture = parent.beaver_character_picked_texture
+			
+		
+	if cursor_on_monkey:
+		player1_character.texture = parent.monkey_character_hovered_texture
+		if Input.is_joy_button_pressed(player, yellow):
+			process_mode = 4
+			CharacterSelectionManager.players_ready += 1
+			CharacterSelectionManager.player1_ready = true
+			CharacterSelectionManager.player1 = CharacterSelectionManager.characters['monkey']
+			player1_character.texture = parent.monkey_character_picked_texture
+			CharacterSelectionManager.player1_texture = parent.monkey_character_picked_texture
+			
+	if cursor_on_raccoon == false and cursor_on_cat == false and cursor_on_beaver == false and cursor_on_monkey == false: 
+		player1_character.texture = null
 
 func _on_raccoon_area_entered(area):
 	cursor_on_raccoon = true

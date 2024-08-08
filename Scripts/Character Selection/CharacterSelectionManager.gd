@@ -13,6 +13,12 @@ var player2
 var player3
 var player4
 
+var player1_texture
+var player2_texture
+var player3_texture
+var player4_texture
+
+
 var characters = {
 	'raccoon' : preload("res://Scenes/character-scenes/raccoon.tscn"),
 	'cat' : preload("res://Scenes/character-scenes/cat.tscn"),
