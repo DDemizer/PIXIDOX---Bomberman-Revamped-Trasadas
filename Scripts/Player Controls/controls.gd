@@ -127,9 +127,11 @@ func _process(delta):
 	if placed_bomb == true:
 		char_pos = self.global_position
 		character_Position = bomb.local_to_map(char_pos)
-		if character_Position != charToTileMapPosition:
-			bomb.set_cell(0,charToTileMapPosition, bombId_Wphysics, atlastCoordsBomb)
-			placed_bomb = false
+		placed_bomb = false
+		bomb_handler(charToTileMapPosition)
+#		if character_Position != charToTileMapPosition:
+#			bomb.set_cell(0,charToTileMapPosition, bombId_Wphysics, atlastCoordsBomb)
+#			placed_bomb = false
 #			bomb_handler(charToTileMapPosition)
 
 
@@ -203,7 +205,7 @@ func bomb_handler(bomb_position):
 		bomb.set_cell(0,bombs, bombId_Wphysics, current_anim)
 		await get_tree().create_timer(0.45).timeout
 		bomb_explosion(bomb_position)
-		bomb.erase_cell(1, bombs)
+		bomb.erase_cell(0, bombs)
 		
 		current_anim = atlastCoordsBomb
 		placed_bomb = false
