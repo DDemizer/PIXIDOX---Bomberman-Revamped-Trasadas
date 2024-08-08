@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://djhi2e8stfblr"]
+[gd_scene load_steps=19 format=3 uid="uid://djhi2e8stfblr"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_4qkrb"]
 [ext_resource type="PackedScene" uid="uid://bf6ug0hg4i48x" path="res://character-scenes/Bomba.tscn" id="2_27chv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://celf4huwgcvyp" path="res://assets/world-assets/desert things.png" id="6_0a6hd"]
 [ext_resource type="Texture2D" uid="uid://dmfgsrt4feias" path="res://bomb-sprite.png" id="7_ki0jt"]
 [ext_resource type="PackedScene" uid="uid://diu1ysasq12kx" path="res://Scenes/battleUI.tscn" id="7_pqh25"]
+[ext_resource type="PackedScene" uid="uid://be13jgfm7k3mv" path="res://Scenes/PauseMenu.tscn" id="8_71e33"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y414"]
 size = Vector2(1081, 103)
@@ -232,3 +233,6 @@ cell_quadrant_size = 60
 format = 2
 
 [node name="BattleUI" parent="." instance=ExtResource("7_pqh25")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("8_71e33")]
+visible = false

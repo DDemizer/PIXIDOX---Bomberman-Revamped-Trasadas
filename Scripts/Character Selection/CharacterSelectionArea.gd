@@ -124,12 +124,14 @@ func _process(delta):
 		$ReadyLabel.show()
 		if Input.is_action_just_pressed("general_start_button"):
 			var map_randomizer = maps[randi() % maps.size()]
-			await get_tree().create_timer(1).timeout
+			await get_tree().create_timer(0.5).timeout
 			if map_randomizer == 'desert':
 				get_tree().change_scene_to_file("res://maps/desert.tscn")
 			elif map_randomizer == 'grassland':
 				get_tree().change_scene_to_file("res://maps/grassland.tscn")
 #			get_tree().change_scene_to_file("res://maps/grassland.tscn")
+			CharacterSelectionManager.players_ready = 0
+			CharacterSelectionManager.players_in_game = 0
 	else:
 		$ReadyLabel.hide()
 		

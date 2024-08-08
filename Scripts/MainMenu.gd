@@ -1,5 +1,6 @@
 extends Control
 
+@onready var battle_sound = $Battle_Sound
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,7 +22,7 @@ func _on_button_pressed():
 		$"PvE'/PvE".show()
 		$"PvP'/PvP".show()
 		animation.play("Button_Battle_Click")
-		$Battle_Sound.play()
+		battle_sound.play()
 		$OutTimer.start()
 		if animation.is_playing():
 			$"PvP'/PvP".focus_mode = Control.FOCUS_NONE

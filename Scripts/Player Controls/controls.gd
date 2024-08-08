@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 70
+var speed_multiplier = 1
 #const JUMP_VELOCITY = -400.0
 # NODES
 @onready var animation = get_node("AnimationPlayer")
@@ -26,6 +27,7 @@ var r1 = 10
 #@onready var parent = get_parent()
 @onready var tile_map = $"../Map"
 @onready var bomb = $"../Bomb"
+@onready var pause_menu = $'../PauseMenu'
 #@onready var tile_map2 = $"../Desert_things"
 var placed_block = false
 var placed_bomb = false
@@ -63,12 +65,17 @@ signal build1_activated
 signal build2_activated
 signal build3_activated
 signal build4_activated
+signal pause
+#signal running
 
 func _ready():
 	connect('build1_activated', BattleManager.on_build1_activated)
 	connect('build2_activated', BattleManager.on_build2_activated)
 	connect('build3_activated', BattleManager.on_build3_activated)
 	connect('build4_activated', BattleManager.on_build4_activated)
+	connect('pause', BattleManager.on_pause)
+#	connect('running', BattleManager.on_run)
+	
 
 func _physics_process(delta):
 	# buttons
@@ -76,17 +83,16 @@ func _physics_process(delta):
 	var down_button = Input.is_joy_button_pressed(player, down)
 	var right_button = Input.is_joy_button_pressed(player, right)
 	var left_button = Input.is_joy_button_pressed(player, left)
-	var place_bomb = Input.is_joy_button_pressed(player, green)
 	var escape = Input.is_action_just_pressed('ui_cancel')
 	
 	# WALKING
 	if up_button or down_button:
 		if up_button:
-			velocity.y = -SPEED
+			velocity.y = -SPEED * speed_multiplier
 			if not right_button and not left_button:
 				animation.play('up')
 		if down_button:
-			velocity.y = SPEED
+			velocity.y = SPEED * speed_multiplier
 			if not right_button and not left_button:
 				animation.play('down')
 	else:
@@ -96,11 +102,11 @@ func _physics_process(delta):
 		if right_button or (right_button and up_button) or (right_button and down_button):
 			sprite.flip_h = false
 			animation.play('side')
-			velocity.x = SPEED
+			velocity.x = SPEED * speed_multiplier
 		if left_button or (left_button and up_button) or (left_button and down_button):
 			sprite.flip_h = true
 			animation.play('side')
-			velocity.x = -SPEED
+			velocity.x = -SPEED * speed_multiplier
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		sprite.flip_h = false
@@ -108,13 +114,51 @@ func _physics_process(delta):
 	if not (up_button or down_button or left_button or right_button):
 		animation.play('idle')
 		
+	if Input.is_joy_button_pressed(player,l1):
+		if player == 0:
+			if BattleManager.running1_avail:
+				$'../BattleUI'.running1_active = true
+				speed_multiplier = 2
+			else:
+				$'../BattleUI'.running1_active = false
+				speed_multiplier = 1
+		if player == 1:
+			if BattleManager.running2_avail:
+				$'../BattleUI'.running2_active = true
+				speed_multiplier = 2
+			else:
+				$'../BattleUI'.running2_active = false
+				speed_multiplier = 1
+		if player == 2:
+			if BattleManager.running3_avail:
+				$'../BattleUI'.running3_active = true
+				speed_multiplier = 2
+			else:
+				$'../BattleUI'.running3_active = false
+				speed_multiplier = 1
+		if player == 3:
+			if BattleManager.running4_avail:
+				$'../BattleUI'.running4_active = true
+				speed_multiplier = 2
+			else:
+				$'../BattleUI'.running4_active = false
+				speed_multiplier = 1
+	else:
+		speed_multiplier = 1
+		if player == 0:
+			$'../BattleUI'.running1_active = false
+		if player == 1:
+			$'../BattleUI'.running2_active = false
+		if player == 2:
+			$'../BattleUI'.running3_active = false
+		if player == 3:
+			$'../BattleUI'.running4_active = false
 		
-	if place_bomb:
-		pass
-	
+		
 	# SHOULD BE FOR PAUSING
 	if Input.is_joy_button_pressed(player, start_button):
-		get_tree().quit()
+		emit_signal('pause')
+		pause_menu.show()
 	move_and_slide()
 
 func _process(delta):
@@ -137,19 +181,19 @@ func _process(delta):
 
 func _input(event):
 	if Input.is_joy_button_pressed(player, blue):
-		if BattleManager.build1_active:
+		if player == 0 and BattleManager.build1_active:
 			place_block()
 			BattleManager.build1_active = false
 			emit_signal('build1_activated')
-		if BattleManager.build2_active:
+		if player == 1 and BattleManager.build2_active:
 			place_block()
 			BattleManager.build2_active = false
 			emit_signal('build2_activated')
-		if BattleManager.build3_active:
+		if player == 2 and BattleManager.build3_active:
 			place_block()
 			BattleManager.build3_active = false
 			emit_signal('build3_activated')
-		if BattleManager.build4_active:
+		if player == 3 and BattleManager.build4_active:
 			place_block()
 			BattleManager.build4_active = false
 			emit_signal('build4_activated')

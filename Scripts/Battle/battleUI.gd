@@ -25,6 +25,7 @@ var build1_cooldown_percentage
 @onready var run1 = $Player1/Run
 @onready var run1_regen = $Player1/Run/RunRegen
 var run1_gauge_percentage = 0
+@export var running1_active = false
 
 @onready var bomb2 = $Player2/Bomb
 @onready var bomb2_cooldown = $Player2/Bomb/BombCooldown
@@ -35,6 +36,7 @@ var build2_cooldown_percentage
 @onready var run2 = $Player2/Run
 @onready var run2_regen = $Player2/Run/RunRegen
 var run2_gauge_percentage = 0
+@export var running2_active = false
 
 @onready var bomb3 = $Player3/Bomb
 @onready var bomb3_cooldown = $Player3/Bomb/BombCooldown
@@ -45,6 +47,7 @@ var build3_cooldown_percentage
 @onready var run3 = $Player3/Run
 @onready var run3_regen = $Player3/Run/RunRegen
 var run3_gauge_percentage = 0
+@export var running3_active = false
 
 @onready var bomb4 = $Player4/Bomb
 @onready var bomb4_cooldown = $Player4/Bomb/BombCooldown
@@ -55,6 +58,7 @@ var build4_cooldown_percentage
 @onready var run4 = $Player4/Run
 @onready var run4_regen = $Player4/Run/RunRegen
 var run4_gauge_percentage = 0
+@export var running4_active = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -63,6 +67,8 @@ func _ready():
 	BattleManager.connect('build2_activated_to_BUI', build2_start_cooldown)
 	BattleManager.connect('build3_activated_to_BUI', build3_start_cooldown)
 	BattleManager.connect('build4_activated_to_BUI', build4_start_cooldown)
+#	BattleManager.connect('running', on_running)
+	
 	
 	
 	if CharacterSelectionManager.player1 != null:
@@ -98,6 +104,8 @@ func _process(delta):
 	build1.value = build1_cooldown_percentage
 		
 	run1.value = run1_gauge_percentage
+	if run1_gauge_percentage < 10:
+		BattleManager.running1_avail = false
 	
 	###############################################################################
 	
@@ -115,6 +123,8 @@ func _process(delta):
 	build2.value = build2_cooldown_percentage
 		
 	run2.value = run2_gauge_percentage
+	if run2_gauge_percentage < 10:
+		BattleManager.running2_avail = false
 	
 	###############################################################################
 	
@@ -132,6 +142,8 @@ func _process(delta):
 	build3.value = build3_cooldown_percentage
 		
 	run3.value = run3_gauge_percentage
+	if run3_gauge_percentage < 10:
+		BattleManager.running3_avail = false
 	
 	###############################################################################
 	
@@ -149,8 +161,11 @@ func _process(delta):
 	build4.value = build4_cooldown_percentage
 		
 	run4.value = run4_gauge_percentage
-	
+	if run4_gauge_percentage < 10:
+		BattleManager.running4_avail = false
+		
 
+# BOMB
 func _on_bomb1_cooldown_timeout():
 	pass # Replace with function body.
 
@@ -163,6 +178,8 @@ func _on_bomb3_cooldown_timeout():
 func _on_bomb4_cooldown_timeout():
 	pass # Replace with function body.
 
+
+# BUILD
 func _on_build1_cooldown_timeout():
 	BattleManager.build1_active = true
 	
@@ -192,21 +209,39 @@ func build4_start_cooldown():
 	build4_cooldown_percentage = 0
 
 
+# RUNNING
 func _on_run1_regen_timeout():
-	if run1_gauge_percentage <= 100:
+	if run1_gauge_percentage <= 100 and running1_active == false:
 		run1_gauge_percentage += 5
+	if run1_gauge_percentage > 10:
+		BattleManager.running1_avail = true
+	if run1_gauge_percentage >= 10 and running1_active == true:
+		run1_gauge_percentage -= 10
 	
+		
 func _on_run2_regen_timeout():
-	if run2_gauge_percentage <= 100:
+	if run2_gauge_percentage <= 100 and running2_active == false:
 		run2_gauge_percentage += 5
-#
+	if run2_gauge_percentage > 10:
+		BattleManager.running2_avail = true
+	if run2_gauge_percentage >= 10 and running2_active == true:
+		run2_gauge_percentage -= 10
+		
 func _on_run3_regen_timeout():
-	if run3_gauge_percentage <= 100:
+	if run3_gauge_percentage <= 100 and running3_active == false:
 		run3_gauge_percentage += 5
-#
+	if run3_gauge_percentage > 10:
+		BattleManager.running3_avail = true
+	if run3_gauge_percentage >= 10 and running3_active == true:
+		run3_gauge_percentage -= 10
+		
 func _on_run4_regen_timeout():
-	if run4_gauge_percentage <= 100:
+	if run4_gauge_percentage <= 100 and running4_active == false:
 		run4_gauge_percentage += 5
+	if run4_gauge_percentage > 10:
+		BattleManager.running4_avail = true
+	if run4_gauge_percentage >= 10 and running4_active == true:
+		run4_gauge_percentage -= 10
 
 
 

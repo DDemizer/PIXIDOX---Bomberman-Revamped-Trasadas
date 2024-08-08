@@ -2,28 +2,33 @@ extends Control
 
 @onready var animation = $AnimationPlayer
 @onready var animation1 = $Exit
+@export var paused = false
 var check = true
-var paused = true
+var swap = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	BattleManager.connect('paused', pausemenu)
+#	paused = true
+	
+
+
+#func _process(delta):
+func pausemenu():
 	animation1.play("Exit")
 	$Resume/R_Button.grab_focus()
 	if check:
 		animation.play("Resume")
 		check = false
-
-
-func _process(delta):
-	if Input.is_action_just_pressed("Pause"):
-		pausemenu()
-		
-func pausemenu():
+	print_debug(paused)
 	if paused == true:
 		paused = false
-		Engine.time_scale = 0
+		get_tree().paused = true
 	else:
-		Engine.time_scale = 1
+		get_tree().paused = false
 		paused = true
+#	paused = !paused
+	
 		
 	
 var anim = ""
@@ -88,9 +93,10 @@ func _on_transition_timeout():
 
 
 func _on_e_button_pressed():
-	get_tree().change_scene_to_file("res://MainMenu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+	get_tree().paused = false
 
-var swap = true
+
 func _on_c_button_pressed():
 	if swap:
 		$Resume.hide()
@@ -101,3 +107,9 @@ func _on_c_button_pressed():
 		$Exit.show()
 		$Ninentndo.hide()
 	swap = !swap
+
+
+func _on_r_button_pressed():
+#	paused = false
+	pausemenu()
+	self.hide()

@@ -393,6 +393,7 @@ RichTextLabel/colors/default_color = Color(0, 0.341176, 0.643137, 1)
 RichTextLabel/fonts/normal_font = ExtResource("6_qgw1k")
 
 [node name="PauseMenu" type="Control"]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -445,7 +446,7 @@ position = Vector2(767, 499)
 scale = Vector2(1.489, 1.495)
 sprite_frames = SubResource("SpriteFrames_7dreq")
 animation = &"Exit"
-frame_progress = 0.616455
+frame_progress = 0.398059
 
 [node name="E_Button" type="Button" parent="Exit"]
 anchors_preset = -1
@@ -569,6 +570,7 @@ scroll_active = false
 
 [connection signal="focus_entered" from="Resume/R_Button" to="." method="_on_r_button_focus_entered"]
 [connection signal="focus_exited" from="Resume/R_Button" to="." method="_on_r_button_focus_exited"]
+[connection signal="pressed" from="Resume/R_Button" to="." method="_on_r_button_pressed"]
 [connection signal="focus_entered" from="Customize/C_Button" to="." method="_on_c_button_focus_entered"]
 [connection signal="focus_exited" from="Customize/C_Button" to="." method="_on_c_button_focus_exited"]
 [connection signal="pressed" from="Customize/C_Button" to="." method="_on_c_button_pressed"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://duhvseumku5rs"]
+[gd_scene load_steps=17 format=3 uid="uid://duhvseumku5rs"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_3irjw"]
 [ext_resource type="Texture2D" uid="uid://bju11m6kkfleb" path="res://assets/world-assets/black-bg.png" id="2_887ip"]
 [ext_resource type="Texture2D" uid="uid://cdkcdqqalvng2" path="res://assets/world-assets/gray-bg.png" id="3_tuxun"]
 [ext_resource type="Texture2D" uid="uid://cuubw47eca3hj" path="res://assets/world-assets/Tiles For Game.png" id="4_tw71v"]
 [ext_resource type="Texture2D" uid="uid://dmfgsrt4feias" path="res://bomb-sprite.png" id="5_6sojf"]
+[ext_resource type="PackedScene" uid="uid://be13jgfm7k3mv" path="res://Scenes/PauseMenu.tscn" id="6_k71in"]
 [ext_resource type="PackedScene" uid="uid://diu1ysasq12kx" path="res://Scenes/battleUI.tscn" id="6_v1nfh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rlt4m"]
@@ -150,3 +151,6 @@ cell_quadrant_size = 60
 format = 2
 
 [node name="BattleUI" parent="." instance=ExtResource("6_v1nfh")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_k71in")]
+visible = false
