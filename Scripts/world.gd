@@ -18,11 +18,12 @@ func _ready():
 	SpawnCharacters()
 
 func SpawnCharacters():
+	print_debug(player1)
 	# Player 1 Position
 	if player1 != null:
 		player1.position.x = 514
 		player1.position.y = 96
-		player1.player = 0
+#		player1.player = 0
 		call_deferred("add_child", player1)
 		print_debug('Player 1 Controller: ', player1.player)
 		

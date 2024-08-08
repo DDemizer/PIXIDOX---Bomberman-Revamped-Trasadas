@@ -56,6 +56,7 @@ var build4_cooldown_percentage
 @onready var run4_regen = $Player4/Run/RunRegen
 var run4_gauge_percentage = 0
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if CharacterSelectionManager.player1 != null:
@@ -143,6 +144,35 @@ func _process(delta):
 		
 	run4.value = run4_gauge_percentage
 	
+
+func _on_bomb1_cooldown_timeout():
+	pass # Replace with function body.
+
+func _on_bomb2_cooldown_timeout():
+	pass # Replace with function body.
+
+func _on_bomb3_cooldown_timeout():
+	pass # Replace with function body.
+
+func _on_bomb4_cooldown_timeout():
+	pass # Replace with function body.
+
+func _on_build1_cooldown_timeout():
+	BattleManager.build1_active = true
+	
+func build1_start_cooldown():
+	build1_cooldown.start()
+
+func _on_build2_cooldown_timeout():
+	pass # Replace with function body.
+
+func _on_build3_cooldown_timeout():
+	pass # Replace with function body.
+
+func _on_build4_cooldown_timeout():
+	pass # Replace with function body.
+
+
 func _on_run1_regen_timeout():
 	if run1_gauge_percentage <= 100:
 		run1_gauge_percentage += 5
@@ -158,3 +188,7 @@ func _on_run3_regen_timeout():
 func _on_run4_regen_timeout():
 	if run4_gauge_percentage <= 100:
 		run4_gauge_percentage += 5
+
+
+
+

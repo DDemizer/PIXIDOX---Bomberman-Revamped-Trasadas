@@ -65,7 +65,7 @@ func _on_out_timer_timeout():
 	$OutTimer.stop()
 
 func _on_pv_p_pressed():
-	get_tree().change_scene_to_file("res://Scenes/pvpGame.tscn")
+	get_tree().change_scene_to_file("res://Scenes/CharacterSelectionArea.tscn")
 	
 var recent_animation = ""
 #Pvp button

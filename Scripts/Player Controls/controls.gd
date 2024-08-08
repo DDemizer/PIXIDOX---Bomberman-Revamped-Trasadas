@@ -123,17 +123,21 @@ func _process(delta):
 
 func _input(event):
 	if Input.is_joy_button_pressed(player, blue):
-		#position of the character
-		character = self.global_position
-		#position cords
-		charToTileMapPosition = tile_map.local_to_map(character)
-		#position of the certain tile
-		atlastCoords = Vector2i(1,0)
-		#place a block
-		tile_map.set_cell(sand, charToTileMapPosition, source_id_WOphysics, atlastCoords)
-		placed_block = true
+		if player == 0 and BattleManager.build1_active:
+			place_block()
+			BattleManager.build1_active = false
+		if player == 1 and BattleManager.build2_active:
+			place_block()
+			BattleManager.build2_active = false
+		if player == 2 and BattleManager.build3_active:
+			place_block()
+			BattleManager.build3_active = false
+		if player == 3 and BattleManager.build4_active:
+			place_block()
+			BattleManager.build4_active = false
 		
 	if Input.is_joy_button_pressed(player, green):
+		place_bomb()
 		
 		#position of the character
 		character = self.global_position
@@ -148,6 +152,29 @@ func _input(event):
 		placed_bomb = true 
 		bomb_handler(charToTileMapPosition)
 		
+		
+func place_block():
+	#position of the character
+	character = self.global_position
+	#position cords
+	charToTileMapPosition = tile_map.local_to_map(character)
+	#position of the certain tile
+	atlastCoords = Vector2i(1,0)
+	#place a block
+	tile_map.set_cell(sand, charToTileMapPosition, source_id_WOphysics, atlastCoords)
+	placed_block = true
+	
+func place_bomb():
+	#position of the character
+	character = self.global_position
+	#position coords
+	charToTileMapPosition = bomb.local_to_map(character)
+	#place the bomb
+#		if tile_data(tile_map, sand, charToTileMapPosition) == true:
+	var xx : TileData = tile_map.get_cell_tile_data(0, charToTileMapPosition)
+	print(xx)
+	bomb.set_cell(2 ,charToTileMapPosition, bombId_WOphysics, atlastCoordsBomb)
+	placed_bomb = true 
 		
 func bomb_handler(bomb_position):     
 	if placed_bomb:

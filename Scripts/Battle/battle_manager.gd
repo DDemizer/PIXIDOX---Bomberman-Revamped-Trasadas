@@ -1,5 +1,10 @@
 extends Node
 
+var build1_active = false
+var build2_active = false
+var build3_active = false
+var build4_active = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

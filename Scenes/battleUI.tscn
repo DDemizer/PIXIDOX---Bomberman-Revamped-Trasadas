@@ -243,7 +243,15 @@ texture = ExtResource("4_yr7md")
 [node name="P4" type="Sprite2D" parent="Player4/Frame4"]
 texture = ExtResource("4_44ls0")
 
+[connection signal="timeout" from="Player1/Bomb/BombCooldown" to="." method="_on_bomb1_cooldown_timeout"]
+[connection signal="timeout" from="Player1/Build/BuildCooldown" to="." method="_on_build1_cooldown_timeout"]
 [connection signal="timeout" from="Player1/Run/RunRegen" to="." method="_on_run1_regen_timeout"]
+[connection signal="timeout" from="Player2/Bomb/BombCooldown" to="." method="_on_bomb2_cooldown_timeout"]
+[connection signal="timeout" from="Player2/Build/BuildCooldown" to="." method="_on_build2_cooldown_timeout"]
 [connection signal="timeout" from="Player2/Run/RunRegen" to="." method="_on_run2_regen_timeout"]
+[connection signal="timeout" from="Player3/Bomb/BombCooldown" to="." method="_on_bomb3_cooldown_timeout"]
+[connection signal="timeout" from="Player3/Build/BuildCooldown" to="." method="_on_build3_cooldown_timeout"]
 [connection signal="timeout" from="Player3/Run/RunRegen" to="." method="_on_run3_regen_timeout"]
+[connection signal="timeout" from="Player4/Bomb/BombCooldown" to="." method="_on_bomb4_cooldown_timeout"]
+[connection signal="timeout" from="Player4/Build/BuildCooldown" to="." method="_on_build4_cooldown_timeout"]
 [connection signal="timeout" from="Player4/Run/RunRegen" to="." method="_on_run4_regen_timeout"]
