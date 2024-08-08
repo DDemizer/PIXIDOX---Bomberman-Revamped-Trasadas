@@ -47,6 +47,16 @@ var bomId_lvl2 = 3
 var bombId_lvl3 = 4
 var if_is_ground = 'is_ground'
 
+# bomb
+var current_anim : Vector2i
+var bomb_hit = false
+var is_breakable = 'breakable'
+var s1center : TileData
+var s2left : TileData
+var s3right : TileData
+var s4down : TileData
+var s5upper : TileData
+
 func _physics_process(delta):
 	# buttons
 	var up_button = Input.is_joy_button_pressed(player, up)
@@ -127,31 +137,90 @@ func _input(event):
 		
 		#position of the character
 		character = self.global_position
+		
 		#position coords
 		charToTileMapPosition = bomb.local_to_map(character)
 		#place the bomb
 #		if tile_data(tile_map, sand, charToTileMapPosition) == true:
 		var xx : TileData = tile_map.get_cell_tile_data(0, charToTileMapPosition)
-		print(xx)
-		bomb.set_cell(2 ,charToTileMapPosition, bombId_WOphysics, atlastCoordsBomb)
+		
+#		bomb.set_cell(2 ,charToTileMapPosition, bombId_WOphysics, atlastCoordsBomb)
 		placed_bomb = true 
+		bomb_handler(charToTileMapPosition)
+		
 		
 func bomb_handler(bomb_position):     
-	if placed_bomb == true:
-		bomb.set_cell(0,bomb_position, bombId_Wphysics, atlastCoordsBomb)
+	if placed_bomb:
+		var bombs = Vector2i(bomb_position.x, bomb_position.y)
+		current_anim = Vector2i(atlastCoordsBomb.x, atlastCoordsBomb.y)
+		bomb.set_cell(0,bombs, bombId_Wphysics, atlastCoordsBomb)
 		await get_tree().create_timer(0.45).timeout
-		bomb.set_cell(0,bomb_position, bombId_Wphysics, atlastCoordsBomb.x + 1)
+		current_anim = Vector2i(current_anim.x + 1, current_anim.y)
+		bomb.set_cell(0,bombs, bombId_Wphysics, current_anim)
 		await get_tree().create_timer(0.45).timeout
-		bomb.set_cell(0,bomb_position, bombId_Wphysics, atlastCoordsBomb.x + 2)
+		current_anim = Vector2i(current_anim.x + 1, current_anim.y)
+		bomb.set_cell(0,bombs, bombId_Wphysics, current_anim)
 		await get_tree().create_timer(0.45).timeout
-		bomb.set_cell(0,bomb_position, bombId_Wphysics, atlastCoordsBomb.x + 3)
+		current_anim = Vector2i(current_anim.x + 1, current_anim.y)
+		bomb.set_cell(0,bombs, bombId_Wphysics, current_anim)
 		await get_tree().create_timer(0.45).timeout
-		bomb.set_cell(0,bomb_position, bombId_Wphysics, atlastCoordsBomb.x + 4)
+		current_anim = Vector2i(current_anim.x + 1, current_anim.y)
+		bomb.set_cell(0,bombs, bombId_Wphysics, current_anim)
 		await get_tree().create_timer(0.45).timeout
-		bomb.set_cell(0,bomb_position, bombId_Wphysics, atlastCoordsBomb.x + 5)
+		current_anim = Vector2i(current_anim.x + 1, current_anim.y)
+		bomb.set_cell(0,bombs, bombId_Wphysics, current_anim)
 		await get_tree().create_timer(0.45).timeout
+		bomb_explosion(bomb_position)
+		bomb.erase_cell(1, bombs)
+		
+		current_anim = atlastCoordsBomb
 		placed_bomb = false
 		
+func bomb_explosion(bomb_position):
+	var center : Vector2i = bomb_position
+	var upper :Vector2i = Vector2i(center.x, center.y - 1)
+	var left : Vector2i = Vector2i(center.x - 1, center.y)
+	var right : Vector2i = Vector2i(center.x + 1, center.y)
+	var down : Vector2i = Vector2i(center.x, center.y + 1)
+	
+	
+	s1center = tile_map.get_cell_tile_data(1, center)
+	s2left = tile_map.get_cell_tile_data(1, left)
+	s3right = tile_map.get_cell_tile_data(1, right)
+	s4down = tile_map.get_cell_tile_data(1, down)
+	s5upper = tile_map.get_cell_tile_data(1, upper)
+	
+	if s1center:
+		var s1breakable = s1center.get_custom_data(is_breakable)
+		if s1breakable:
+			tile_map.erase_cell(1, center)
+		
+	if s2left:
+		var s2breakable = s2left.get_custom_data(is_breakable)
+		if s2breakable:
+			tile_map.erase_cell(1, left)
+		
+	if s3right:
+		var s3breakable = s3right.get_custom_data(is_breakable)
+		if s3breakable:
+			tile_map.erase_cell(1, right)
+		
+	if s4down:
+		var s4breakable = s4down.get_custom_data(is_breakable)
+		if s4breakable:
+			tile_map.erase_cell(1, down)
+		
+	if s5upper:
+		var s5breakable = s5upper.get_custom_data(is_breakable)
+		if s5breakable:
+			tile_map.erase_cell(1, upper)
+	
+	
+	bomb_hit = true
+		
+	
+	
+	
 			
 
 func tile_data(tilemap : TileMap, ground_layer :int, character_position: Vector2i):
