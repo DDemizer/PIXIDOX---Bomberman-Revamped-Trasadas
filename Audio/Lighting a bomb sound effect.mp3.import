@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://q8pl1k05i8dx"
+path="res://.godot/imported/Lighting a bomb sound effect.mp3-a916a4fda4e4a719c4ac0e2e21915c1b.mp3str"
+
+[deps]
+
+source_file="res://Audio/Lighting a bomb sound effect.mp3"
+dest_files=["res://.godot/imported/Lighting a bomb sound effect.mp3-a916a4fda4e4a719c4ac0e2e21915c1b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

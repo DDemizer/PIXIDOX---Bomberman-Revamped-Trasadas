@@ -21,6 +21,7 @@ func _on_button_pressed():
 		$"PvE'/PvE".show()
 		$"PvP'/PvP".show()
 		animation.play("Button_Battle_Click")
+		$Battle_Sound.play()
 		$OutTimer.start()
 		if animation.is_playing():
 			$"PvP'/PvP".focus_mode = Control.FOCUS_NONE
@@ -35,6 +36,7 @@ func _on_button_pressed():
 			$"PvE'/PvE".focus_mode = Control.FOCUS_NONE
 			$Customize.focus_mode = Control.FOCUS_NONE
 			$Quit.focus_mode = Control.FOCUS_NONE
+			$Battle_Sound/Battle_Sound_Inverse.play()
 			$Transition.start()
 		if Check:
 			$"PvE'/PvE".hide()
@@ -63,15 +65,14 @@ func _on_out_timer_timeout():
 	$OutTimer.stop()
 
 func _on_pv_p_pressed():
-	get_tree().change_scene_to_file("res://Scenes/CharacterSelectionArea.tscn")
-
+	get_tree().change_scene_to_file("res://Scenes/pvpGame.tscn")
+	
 var recent_animation = ""
 #Pvp button
 func _on_pv_p_focus_entered():
 	animation.play("Hover_PvP")
 	recent_animation = "Hover_PvP"
 func _on_pv_p_focus_exited():
-	$Bomb/Play.disabled = true
 	$Hover.start()
 	
 #Pve button
@@ -79,7 +80,6 @@ func _on_pv_e_focus_entered():
 	recent_animation = "Hover_PvE"
 	animation.play("Hover_PvE")
 func _on_pv_e_focus_exited():
-	$Bomb/Play.disabled = true
 	$Hover.start()
 
 func _on_hover_timeout():
@@ -87,12 +87,14 @@ func _on_hover_timeout():
 		$Bomb/Play.disabled = true
 		if recent_animation == "Hover_PvE":
 			animation.play_backwards("Hover_PvE")
+			recent_animation == "Bomb_play"
 			if animation.is_playing():
 				$"PvP'/PvP".focus_mode = Control.FOCUS_NONE
 				$"PvE'/PvE".focus_mode = Control.FOCUS_NONE
 				$Transition.start()
 		elif recent_animation == "Hover_PvP":
 			animation.play_backwards("Hover_PvP")
+			recent_animation == "Bomb_play"
 			if animation.is_playing():
 				$"PvP'/PvP".focus_mode = Control.FOCUS_NONE
 				$"PvE'/PvE".focus_mode = Control.FOCUS_NONE
@@ -126,30 +128,39 @@ func _on_pressed_timeout():
 func _on_customize_pressed():
 	if Toggle:
 		$Ninentndo.show()
-		$Customize.focus_mode = Control.FOCUS_ALL
-		$Bomb/Play.focus_mode = Control.FOCUS_NONE
-		$Quit.focus_mode = Control.FOCUS_NONE
 		animation.play("Customize_On_Pressed")
-		$Customize_in.start()
-		
+		if animation.is_playing():
+			$Bomb/Play.focus_mode = Control.FOCUS_NONE
+			$Quit.focus_mode = Control.FOCUS_NONE
+			$Customize_out/Customize_In.start()
+		$Customize_out/Out.start()
 	else:
-		$Bomb/Play.focus_mode = Control.FOCUS_NONE
-		$Quit.focus_mode = Control.FOCUS_NONE
 		animation.play_backwards("Customize_On_Pressed")
-		$Bomb/Play.show()
-		$Quit.show()
-		$Customize_out.start()
+		if animation.is_playing():
+			$Bomb/Play.focus_mode = Control.FOCUS_NONE
+			$Quit.focus_mode = Control.FOCUS_NONE
+			$Customize_out.start()
+		$Customize_out/In.start()
 	Toggle = !Toggle
 
 
 func _on_customize_out_timeout():
-	$Ninentndo.hide()
 	$Bomb/Play.focus_mode = Control.FOCUS_ALL
 	$Quit.focus_mode = Control.FOCUS_ALL
 	$Customize_out.stop()
-
-func _on_customize_in_timeout():
+	
+func _on_in_timeout():
 	$Bomb/Play.hide()
 	$Quit.hide()
-	$Customize_in.stop()
+	$Customize_out/In.stop()
+	
+func _on_out_timeout():
+	$Bomb/Play.show()
+	$Quit.show()
+	$Customize_out/In.stop()
 
+
+func _on_customize_in_timeout():
+	$Bomb/Play.focus_mode = Control.FOCUS_NONE
+	$Quit.focus_mode = Control.FOCUS_NONE
+	$Customize_out/Customize_In.stop()

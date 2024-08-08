@@ -1,9 +1,16 @@
 extends Control
 
+@onready var animation = $AnimationPlayer
+@onready var animation1 = $Exit
+var check = true
 var paused = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	animation1.play("Exit")
+	$Resume/R_Button.grab_focus()
+	if check:
+		animation.play("Resume")
+		check = false
 
 
 func _process(delta):
@@ -12,14 +19,85 @@ func _process(delta):
 		
 func pausemenu():
 	if paused == true:
-		$AnimationPlayer.play("Pause_Menu")
 		paused = false
-		Engine.time_scale = 1
+		Engine.time_scale = 0
 	else:
-		$AnimationPlayer.play_backwards("Pause_Menu")
 		Engine.time_scale = 1
 		paused = true
 		
 	
+var anim = ""
+
+func _on_e_button_focus_entered():
+	anim = "Exit"
+	animation.play("Exit")
+
+func _on_e_button_focus_exited():
+	$Hover.start()
 		
-	
+		
+func _on_r_button_focus_entered():
+	animation.play("Resume")
+
+func _on_r_button_focus_exited():
+	$Hover.start()
+
+
+func _on_c_button_focus_entered():
+	anim = "Custom"
+	animation.play("Customize")
+
+func _on_c_button_focus_exited():
+	$Hover.start()
+
+func _on_hover_timeout():
+	if $Customize/C_Button.has_focus():
+		animation.play_backwards("Resume")
+		if animation.is_playing():
+			$Resume/R_Button.focus_mode = Control.FOCUS_NONE
+			$Exit/E_Button.focus_mode = Control.FOCUS_NONE
+			$Transition.start()
+	if $Resume/R_Button.has_focus():
+		if anim == "Custom":
+			animation.play_backwards("Customize")
+			if animation.is_playing():
+				$Exit/E_Button.focus_mode = Control.FOCUS_NONE
+				$Customize/C_Button.focus_mode = Control.FOCUS_NONE
+				$Transition.start()
+		if anim == "Exit":
+			animation.play_backwards("Exit")
+			if animation.is_playing():
+				$Exit/E_Button.focus_mode = Control.FOCUS_NONE
+				$Customize/C_Button.focus_mode = Control.FOCUS_NONE
+				$Transition.start()
+	if $Exit/E_Button.has_focus():
+		animation.play_backwards("Resume")
+		if animation.is_playing():
+			$Resume/R_Button.focus_mode = Control.FOCUS_NONE
+			$Customize/C_Button.focus_mode = Control.FOCUS_NONE
+			$Transition.start()
+	$Hover.stop()
+
+
+
+func _on_transition_timeout():
+	$Exit/E_Button.focus_mode = Control.FOCUS_ALL
+	$Customize/C_Button.focus_mode = Control.FOCUS_ALL
+	$Resume/R_Button.focus_mode = Control.FOCUS_ALL
+	$Transition.stop()
+
+
+func _on_e_button_pressed():
+	get_tree().change_scene_to_file("res://MainMenu.tscn")
+
+var swap = true
+func _on_c_button_pressed():
+	if swap:
+		$Resume.hide()
+		$Exit.hide()
+		$Ninentndo.show()
+	else:
+		$Resume.show()
+		$Exit.show()
+		$Ninentndo.hide()
+	swap = !swap
