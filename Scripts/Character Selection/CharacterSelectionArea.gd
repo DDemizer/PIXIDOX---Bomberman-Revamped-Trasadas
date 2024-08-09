@@ -31,9 +31,10 @@ extends Control
 @export var player4Activated = false
 
 # Maps
-var maps = [ 'desert']
+var maps = [ 'beach']
 # Buttons
 var general_start_button = Input.is_action_just_pressed("general_start_button")
+var general_select_button = Input.is_action_just_pressed("general_select_button")
 var up = 11
 var down = 12
 var left = 13
@@ -122,6 +123,10 @@ func _process(delta):
 			CharacterSelectionManager.players_ready -= 1
 			CharacterSelectionManager.player4_ready = false
 		
+	if Input.is_action_just_pressed("general_select_button"):
+		get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+		CharacterSelectionManager.players_ready = 0
+		CharacterSelectionManager.players_in_game = 0
 			
 	if  CharacterSelectionManager.players_in_game != 0 and CharacterSelectionManager.players_ready == CharacterSelectionManager.players_in_game:
 		$ReadyLabel.text = str(CharacterSelectionManager.players_ready) + ' ' + 'PLAYER/S READY'
@@ -133,9 +138,13 @@ func _process(delta):
 				get_tree().change_scene_to_file("res://maps/desert.tscn")
 			elif map_randomizer == 'grassland':
 				get_tree().change_scene_to_file("res://maps/grassland.tscn")
+			elif map_randomizer == 'beach':
+				get_tree().change_scene_to_file("res://maps/beach.tscn")
 #			get_tree().change_scene_to_file("res://maps/grassland.tscn")
 			CharacterSelectionManager.players_ready = 0
 			CharacterSelectionManager.players_in_game = 0
 	else:
 		$ReadyLabel.hide()
+		
+	
 		

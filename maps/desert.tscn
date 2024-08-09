@@ -128,7 +128,7 @@ texture_region_size = Vector2i(60, 60)
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
 
-[sub_resource type="TileSet" id="TileSet_os0p6"]
+[sub_resource type="TileSet" id="TileSet_g5h3g"]
 tile_size = Vector2i(60, 60)
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
@@ -207,7 +207,7 @@ position = Vector2(340, 540)
 shape = SubResource("RectangleShape2D_lfyr4")
 
 [node name="Map" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_os0p6")
+tile_set = SubResource("TileSet_g5h3g")
 cell_quadrant_size = 60
 format = 2
 layer_0/name = "ground"

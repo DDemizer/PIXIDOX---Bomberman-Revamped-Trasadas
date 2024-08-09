@@ -28,6 +28,7 @@ grow_vertical = 2
 script = ExtResource("1_a7r6k")
 
 [node name="Player1" type="Control" parent="."]
+visible = false
 layout_mode = 2
 anchors_preset = 0
 offset_right = 40.0
@@ -110,6 +111,7 @@ texture = ExtResource("2_notfm")
 texture = ExtResource("10_nmkgn")
 
 [node name="Player2" type="Control" parent="."]
+visible = false
 layout_mode = 2
 anchors_preset = 0
 offset_left = 1920.0
@@ -195,6 +197,7 @@ texture = ExtResource("4_yr7md")
 texture = ExtResource("4_44ls0")
 
 [node name="Player3" type="Control" parent="."]
+visible = false
 layout_mode = 2
 anchors_preset = 0
 offset_top = 800.0
@@ -277,6 +280,7 @@ texture = ExtResource("12_jbs8i")
 texture = ExtResource("3_66qdw")
 
 [node name="Player4" type="Control" parent="."]
+visible = false
 layout_mode = 2
 anchors_preset = 0
 offset_left = 1920.0
