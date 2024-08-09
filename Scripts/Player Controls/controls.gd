@@ -9,7 +9,17 @@ var character_bomb_addition = 0
 # NODES
 @onready var animation = get_node("AnimationPlayer")
 @onready var sprite = $AnimatedSprite2D
+@onready var down_punch = $Down/DownPunch
+@onready var down_punch_sprite = $Down/DownPunchSprite
+@onready var up_punch = $Up/UpPunch
+@onready var up_punch_sprite = $Up/UpPunchSprite
+@onready var left_punch = $Left/LeftPunch
+@onready var left_punch_sprite = $Left/LeftPunchSprite
+@onready var right_punch = $Right/RightPunch
+@onready var right_punch_sprite = $Right/RightPunchSprite
+
 @export var player = 0
+
 
 # Buttons
 var general_start_button = Input.is_action_just_pressed("general_start_button")
@@ -26,6 +36,9 @@ var yellow = 0
 var red = 1
 var l1 = 9
 var r1 = 10
+
+# Direction Facing
+var facing = 'down'
 
 #@onready var parent = get_parent()
 @onready var tile_map = $"../Map"
@@ -64,10 +77,20 @@ var s3right : TileData
 var s4down : TileData
 var s5upper : TileData
 
+# punching
+var player_inside
+var stunned = false
+var monkey_bonus
+var stun_added = 0
+
 signal build1_activated
 signal build2_activated
 signal build3_activated
 signal build4_activated
+signal punch1_activated
+signal punch2_activated
+signal punch3_activated
+signal punch4_activated
 signal pause
 #signal running
 
@@ -76,6 +99,10 @@ func _ready():
 	connect('build2_activated', BattleManager.on_build2_activated)
 	connect('build3_activated', BattleManager.on_build3_activated)
 	connect('build4_activated', BattleManager.on_build4_activated)
+	connect('punch1_activated', BattleManager.on_punch1_activated)
+	connect('punch2_activated', BattleManager.on_punch2_activated)
+	connect('punch3_activated', BattleManager.on_punch3_activated)
+	connect('punch4_activated', BattleManager.on_punch4_activated)
 	connect('pause', BattleManager.on_pause)
 #	connect('running', BattleManager.on_run)
 
@@ -84,25 +111,40 @@ func _ready():
 		character_bomb_addition = 1
 	if self.name == "Cat":
 		character_speed_addition = 0.2
+	if self.name == 'Monkey':
+		monkey_bonus = true
 
 func _physics_process(delta):
+	# Debug
+	if Input.is_action_just_pressed("debug"):
+		print_debug(BattleManager.player1_stunnable)
+		print_debug(BattleManager.player2_stunnable)
+		print_debug(BattleManager.player3_stunnable)
+		print_debug(BattleManager.player4_stunnable)
+		print_debug(BattleManager.player1_stunned)
+		print_debug(BattleManager.player2_stunned)
+		print_debug(BattleManager.player3_stunned)
+		print_debug(BattleManager.player4_stunned)
+		print_debug(player_inside)
+	
 	# buttons
 	var up_button = Input.is_joy_button_pressed(player, up)
 	var down_button = Input.is_joy_button_pressed(player, down)
 	var right_button = Input.is_joy_button_pressed(player, right)
 	var left_button = Input.is_joy_button_pressed(player, left)
 	var escape = Input.is_action_just_pressed('ui_cancel')
-	
 	# WALKING
 	if up_button or down_button:
 		if up_button:
 			velocity.y = -SPEED * speed_multiplier
 			if not right_button and not left_button:
 				animation.play('up')
+				facing = 'up'
 		if down_button:
 			velocity.y = SPEED * speed_multiplier
 			if not right_button and not left_button:
 				animation.play('down')
+				facing = 'down'
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 		
@@ -110,10 +152,12 @@ func _physics_process(delta):
 		if right_button or (right_button and up_button) or (right_button and down_button):
 			sprite.flip_h = false
 			animation.play('side')
+			facing = 'right'
 			velocity.x = SPEED * speed_multiplier
 		if left_button or (left_button and up_button) or (left_button and down_button):
 			sprite.flip_h = true
 			animation.play('side')
+			facing = 'left'
 			velocity.x = -SPEED * speed_multiplier
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -121,7 +165,76 @@ func _physics_process(delta):
 #	
 	if not (up_button or down_button or left_button or right_button):
 		animation.play('idle')
+		facing = 'down'
 		
+	# PUNCHING
+	if Input.is_joy_button_pressed(player, red):
+		if player == 0 and BattleManager.punch1_active:
+			emit_signal('punch1_activated')
+			BattleManager.punch1_active = false
+			punch()
+			
+		if player == 1 and BattleManager.punch2_active:
+			emit_signal('punch2_activated')
+			BattleManager.punch2_active = false
+			punch()
+			
+		if player == 2 and BattleManager.punch3_active:
+			emit_signal('punch_activated')
+			BattleManager.punch3_active = false
+			punch()
+			
+		if player == 3 and BattleManager.punch4_active:
+			emit_signal('punch4_activated')
+			BattleManager.punch4_active = false
+			punch()
+			
+			
+		if player_inside == 0:
+			BattleManager.player1_stunned = true
+			if monkey_bonus:
+				BattleManager.player1_stun_bonus = 2
+				
+		if player_inside == 1:
+			BattleManager.player2_stunned = true
+			if monkey_bonus:
+				BattleManager.player2_stun_bonus = 2
+		if player_inside == 2:
+			BattleManager.player3_stunned = true
+			if monkey_bonus:
+				BattleManager.player3_stun_bonus = 2
+		if player_inside == 3:
+			BattleManager.player4_stunned = true
+			if monkey_bonus:
+				BattleManager.player4_stun_bonus = 2
+			
+	if player == 0 and BattleManager.player1_stunned:
+		self.process_mode = 4
+		await get_tree().create_timer(2 + BattleManager.player1_stun_bonus).timeout
+		self.process_mode = 0
+		BattleManager.player1_stunned = false
+		BattleManager.player1_stun_bonus = 0
+	if player == 1 and BattleManager.player2_stunned:
+		self.process_mode = 4
+		await get_tree().create_timer(2 + BattleManager.player2_stun_bonus).timeout
+		self.process_mode = 0
+		BattleManager.player2_stunned = false
+		BattleManager.player2_stun_bonus = 0
+	if player == 2 and BattleManager.player3_stunned:
+		self.process_mode = 4
+		await get_tree().create_timer(2 + BattleManager.player3_stun_bonus).timeout
+		self.process_mode = 0
+		BattleManager.player3_stunned = false
+		BattleManager.player3_stun_bonus = 0
+	if player == 3 and BattleManager.player4_stunned:
+		self.process_mode = 4
+		await get_tree().create_timer(2 + BattleManager.player4_stun_bonus).timeout
+		self.process_mode = 0
+		BattleManager.player4_stunned = false
+		BattleManager.player4_stun_bonus = 0
+		
+		
+	# BUILDING
 	if Input.is_joy_button_pressed(player,l1):
 		if player == 0:
 			if BattleManager.running1_avail:
@@ -234,6 +347,31 @@ func place_block():
 	tile_map.set_cell(sand, charToTileMapPosition, source_id_WOphysics, atlastCoords)
 	placed_block = true
 	
+func punch():
+	if facing == 'down':
+		down_punch_sprite.show()
+		down_punch.play("down")
+		await get_tree().create_timer(0.5).timeout
+		down_punch_sprite.hide()
+		
+	elif facing == 'up':
+		up_punch_sprite.show()
+		up_punch.play("up")
+		await get_tree().create_timer(0.5).timeout
+		up_punch_sprite.hide()
+		
+	elif facing == 'right':
+		right_punch_sprite.show()
+		right_punch.play("right")
+		await get_tree().create_timer(0.5).timeout
+		right_punch_sprite.hide()
+		
+	elif facing == 'left':
+		left_punch_sprite.show()
+		left_punch.play("left")
+		await get_tree().create_timer(0.5).timeout
+		left_punch_sprite.hide()
+
 
 func bomb_handler(bomb_position):     
 	if placed_bomb:
@@ -308,3 +446,60 @@ func bomb_explosion(bomb_position):
 	
 func tile_data(tilemap : TileMap, ground_layer :int, character_position: Vector2i):
 	return tilemap.get_cell_tile_data(ground_layer, character_position)
+
+#func stun():
+#	if player_inside == 0:
+#
+
+# PUNCH DETECTING
+func player_stunnable():
+	if player_inside == 0:
+		BattleManager.player1_stunnable = true
+	if player_inside == 1:
+		BattleManager.player2_stunnable = true
+	if player_inside == 2:
+		BattleManager.player3_stunnable = true
+	if player_inside == 3:
+		BattleManager.player4_stunnable = true
+
+func player_unstunnable():
+	if player_inside == 0:
+		BattleManager.player1_stunnable = false
+	if player_inside == 1:
+		BattleManager.player2_stunnable = false
+	if player_inside == 2:
+		BattleManager.player3_stunnable = false
+	if player_inside == 3:
+		BattleManager.player4_stunnable = false
+
+func _on_down_area_entered(area):
+	player_inside = area.get_parent().player
+	player_stunnable()
+	
+func _on_down_area_exited(area):
+	player_inside = area.get_parent().player
+	player_unstunnable()
+
+func _on_up_area_entered(area):
+	player_inside = area.get_parent().player
+	player_stunnable()
+
+func _on_up_area_exited(area):
+	player_inside = area.get_parent().player
+	player_unstunnable()
+
+func _on_left_area_entered(area):
+	player_inside = area.get_parent().player
+	player_stunnable()
+
+func _on_left_area_exited(area):
+	player_inside = area.get_parent().player
+	player_unstunnable()
+
+func _on_right_area_entered(area):
+	player_inside = area.get_parent().player
+	player_stunnable()
+
+func _on_right_area_exited(area):
+	player_inside = area.get_parent().player
+	player_unstunnable()

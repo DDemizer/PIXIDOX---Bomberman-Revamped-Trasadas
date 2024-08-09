@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://diu1ysasq12kx"]
+[gd_scene load_steps=18 format=3 uid="uid://diu1ysasq12kx"]
 
 [ext_resource type="Script" path="res://Scripts/Battle/battleUI.gd" id="1_a7r6k"]
 [ext_resource type="Texture2D" uid="uid://cql7qwp47gn1y" path="res://assets/battle_ui/button_on_cooldown.png" id="2_0wo6v"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cxgh3nkwn8xrj" path="res://assets/battle_ui/PLAYER 2.png" id="4_yr7md"]
 [ext_resource type="Texture2D" uid="uid://dogmaonqmo25x" path="res://assets/battle_ui/features/hammer.png" id="5_5ebov"]
 [ext_resource type="Texture2D" uid="uid://2pit0m1t04k4" path="res://assets/battle_ui/gauge.png" id="5_wtegq"]
+[ext_resource type="Texture2D" uid="uid://csfkxwsumeccy" path="res://assets/battle_ui/features/punch.png" id="6_t5vrs"]
 [ext_resource type="Texture2D" uid="uid://dwjkjwpsnjyqv" path="res://assets/battle_ui/features/sprint.png" id="8_pskoy"]
 [ext_resource type="Texture2D" uid="uid://dltthk8q2myk2" path="res://assets/character_selection_assets/charandstickers/racoon normal.png" id="10_nmkgn"]
 [ext_resource type="Texture2D" uid="uid://b6lll8cgig2i1" path="res://assets/battle_ui/PLAYER 3.png" id="12_jbs8i"]
@@ -66,6 +67,24 @@ one_shot = true
 [node name="Hammer" type="Sprite2D" parent="Player1/Build"]
 position = Vector2(40, 40)
 texture = ExtResource("5_5ebov")
+
+[node name="Punch" type="TextureProgressBar" parent="Player1"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 80.0
+offset_right = 440.0
+offset_bottom = 160.0
+texture_under = ExtResource("2_0wo6v")
+texture_progress = ExtResource("3_b43q0")
+
+[node name="PunchCooldown" type="Timer" parent="Player1/Punch"]
+wait_time = 7.0
+one_shot = true
+autostart = true
+
+[node name="Punch" type="Sprite2D" parent="Player1/Punch"]
+position = Vector2(40, 40)
+texture = ExtResource("6_t5vrs")
 
 [node name="Run" type="TextureProgressBar" parent="Player1"]
 layout_mode = 2
@@ -132,6 +151,23 @@ one_shot = true
 [node name="Hammer" type="Sprite2D" parent="Player2/Build"]
 position = Vector2(40, 40)
 texture = ExtResource("5_5ebov")
+
+[node name="Punch" type="TextureProgressBar" parent="Player2"]
+offset_left = -440.0
+offset_top = 80.0
+offset_right = -360.0
+offset_bottom = 160.0
+texture_under = ExtResource("2_0wo6v")
+texture_progress = ExtResource("3_b43q0")
+
+[node name="PunchCooldown" type="Timer" parent="Player2/Punch"]
+wait_time = 7.0
+one_shot = true
+autostart = true
+
+[node name="Punch" type="Sprite2D" parent="Player2/Punch"]
+position = Vector2(40, 40)
+texture = ExtResource("6_t5vrs")
 
 [node name="Run" type="TextureProgressBar" parent="Player2"]
 layout_mode = 2
@@ -200,6 +236,23 @@ one_shot = true
 position = Vector2(40, 40)
 texture = ExtResource("5_5ebov")
 
+[node name="Punch" type="TextureProgressBar" parent="Player3"]
+offset_left = 360.0
+offset_top = 80.0
+offset_right = 440.0
+offset_bottom = 160.0
+texture_under = ExtResource("2_0wo6v")
+texture_progress = ExtResource("3_b43q0")
+
+[node name="PunchCooldown" type="Timer" parent="Player3/Punch"]
+wait_time = 7.0
+one_shot = true
+autostart = true
+
+[node name="Punch" type="Sprite2D" parent="Player3/Punch"]
+position = Vector2(40, 40)
+texture = ExtResource("6_t5vrs")
+
 [node name="Run" type="TextureProgressBar" parent="Player3"]
 layout_mode = 2
 offset_left = 20.0
@@ -267,6 +320,23 @@ one_shot = true
 position = Vector2(40, 40)
 texture = ExtResource("5_5ebov")
 
+[node name="Punch" type="TextureProgressBar" parent="Player4"]
+offset_left = -440.0
+offset_top = -200.0
+offset_right = -360.0
+offset_bottom = -120.0
+texture_under = ExtResource("2_0wo6v")
+texture_progress = ExtResource("3_b43q0")
+
+[node name="PunchCooldown" type="Timer" parent="Player4/Punch"]
+wait_time = 7.0
+one_shot = true
+autostart = true
+
+[node name="Punch" type="Sprite2D" parent="Player4/Punch"]
+position = Vector2(40, 40)
+texture = ExtResource("6_t5vrs")
+
 [node name="Run" type="TextureProgressBar" parent="Player4"]
 layout_mode = 2
 offset_left = -340.0
@@ -294,13 +364,17 @@ texture = ExtResource("16_bp4np")
 
 [connection signal="timeout" from="Player1/Bomb/BombCooldown" to="." method="_on_bomb1_cooldown_timeout"]
 [connection signal="timeout" from="Player1/Build/BuildCooldown" to="." method="_on_build1_cooldown_timeout"]
+[connection signal="timeout" from="Player1/Punch/PunchCooldown" to="." method="_on_punch1_cooldown_timeout"]
 [connection signal="timeout" from="Player1/Run/RunRegen" to="." method="_on_run1_regen_timeout"]
 [connection signal="timeout" from="Player2/Bomb/BombCooldown" to="." method="_on_bomb2_cooldown_timeout"]
 [connection signal="timeout" from="Player2/Build/BuildCooldown" to="." method="_on_build2_cooldown_timeout"]
+[connection signal="timeout" from="Player2/Punch/PunchCooldown" to="." method="_on_punch2_cooldown_timeout"]
 [connection signal="timeout" from="Player2/Run/RunRegen" to="." method="_on_run2_regen_timeout"]
 [connection signal="timeout" from="Player3/Bomb/BombCooldown" to="." method="_on_bomb4_cooldown_timeout"]
 [connection signal="timeout" from="Player3/Build/BuildCooldown" to="." method="_on_build4_cooldown_timeout"]
+[connection signal="timeout" from="Player3/Punch/PunchCooldown" to="." method="_on_punch3_cooldown_timeout"]
 [connection signal="timeout" from="Player3/Run/RunRegen" to="." method="_on_run4_regen_timeout"]
 [connection signal="timeout" from="Player4/Bomb/BombCooldown" to="." method="_on_bomb3_cooldown_timeout"]
 [connection signal="timeout" from="Player4/Build/BuildCooldown" to="." method="_on_build3_cooldown_timeout"]
+[connection signal="timeout" from="Player4/Punch/PunchCooldown" to="." method="_on_punch4_cooldown_timeout"]
 [connection signal="timeout" from="Player4/Run/RunRegen" to="." method="_on_run3_regen_timeout"]

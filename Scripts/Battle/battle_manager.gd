@@ -10,11 +10,36 @@ var running2_avail = true
 var running3_avail = true
 var running4_avail = true
 
+var player1_stunnable = false
+var player2_stunnable = false
+var player3_stunnable = false
+var player4_stunnable = false
+
+var player1_stunned = false
+var player2_stunned = false
+var player3_stunned = false
+var player4_stunned = false
+
+var player1_stun_bonus = 0
+var player2_stun_bonus = 0
+var player3_stun_bonus = 0
+var player4_stun_bonus = 0
+
+var punch1_active
+var punch2_active
+var punch3_active
+var punch4_active
+
+
 
 signal build1_activated_to_BUI
 signal build2_activated_to_BUI
 signal build3_activated_to_BUI
 signal build4_activated_to_BUI
+signal punch1_activated_to_BUI
+signal punch2_activated_to_BUI
+signal punch3_activated_to_BUI
+signal punch4_activated_to_BUI
 signal paused
 #signal running
 
@@ -39,6 +64,18 @@ func on_build3_activated():
 	
 func on_build4_activated():
 	emit_signal('build4_activated_to_BUI')
+	
+func on_punch1_activated():
+	emit_signal('punch1_activated_to_BUI')
+	
+func on_punch2_activated():
+	emit_signal('punch2_activated_to_BUI')
+	
+func on_punch3_activated():
+	emit_signal('punch3_activated_to_BUI')
+	
+func on_punch4_activated():
+	emit_signal('punch4_activated_to_BUI')
 	
 func on_pause():
 	emit_signal('paused')

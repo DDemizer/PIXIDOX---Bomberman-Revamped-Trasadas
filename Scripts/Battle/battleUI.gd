@@ -21,10 +21,14 @@ var bomb1_cooldown_percentage = 100
 @onready var build1 = $Player1/Build
 @onready var build1_cooldown = $Player1/Build/BuildCooldown
 var build1_cooldown_percentage
+@onready var punch1 = $Player1/Punch
+@onready var punch1_cooldown = $Player1/Punch/PunchCooldown
+var punch1_cooldown_percentage
 @onready var run1 = $Player1/Run
 @onready var run1_regen = $Player1/Run/RunRegen
 var run1_gauge_percentage = 0
 @export var running1_active = false
+
 
 @onready var bomb2 = $Player2/Bomb
 @onready var bomb2_cooldown = $Player2/Bomb/BombCooldown
@@ -32,6 +36,9 @@ var bomb2_cooldown_percentage = 100
 @onready var build2 = $Player2/Build
 @onready var build2_cooldown = $Player2/Build/BuildCooldown
 var build2_cooldown_percentage
+@onready var punch2 = $Player2/Punch
+@onready var punch2_cooldown = $Player2/Punch/PunchCooldown
+var punch2_cooldown_percentage
 @onready var run2 = $Player2/Run
 @onready var run2_regen = $Player2/Run/RunRegen
 var run2_gauge_percentage = 0
@@ -43,6 +50,9 @@ var bomb3_cooldown_percentage = 100
 @onready var build3 = $Player3/Build
 @onready var build3_cooldown = $Player3/Build/BuildCooldown
 var build3_cooldown_percentage
+@onready var punch3 = $Player3/Punch
+@onready var punch3_cooldown = $Player3/Punch/PunchCooldown
+var punch3_cooldown_percentage
 @onready var run3 = $Player3/Run
 @onready var run3_regen = $Player3/Run/RunRegen
 var run3_gauge_percentage = 0
@@ -54,6 +64,9 @@ var bomb4_cooldown_percentage = 100
 @onready var build4 = $Player4/Build
 @onready var build4_cooldown = $Player4/Build/BuildCooldown
 var build4_cooldown_percentage
+@onready var punch4 = $Player4/Punch
+@onready var punch4_cooldown = $Player4/Punch/PunchCooldown
+var punch4_cooldown_percentage
 @onready var run4 = $Player4/Run
 @onready var run4_regen = $Player4/Run/RunRegen
 var run4_gauge_percentage = 0
@@ -67,6 +80,10 @@ func _ready():
 	BattleManager.connect('build2_activated_to_BUI', build2_start_cooldown)
 	BattleManager.connect('build3_activated_to_BUI', build3_start_cooldown)
 	BattleManager.connect('build4_activated_to_BUI', build4_start_cooldown)
+	BattleManager.connect('punch1_activated_to_BUI', punch1_start_cooldown)
+	BattleManager.connect('punch2_activated_to_BUI', punch2_start_cooldown)
+	BattleManager.connect('punch3_activated_to_BUI', punch3_start_cooldown)
+	BattleManager.connect('punch4_activated_to_BUI', punch4_start_cooldown)
 #	BattleManager.connect('running', on_running)
 	build1_cooldown.wait_time = CharacterSelectionManager.character1_build_cooldown
 	build2_cooldown.wait_time = CharacterSelectionManager.character2_build_cooldown
@@ -109,6 +126,12 @@ func _process(delta):
 			(1 - build1_cooldown.time_left / build1_cooldown.wait_time) * 100
 			)
 	build1.value = build1_cooldown_percentage
+	
+	if punch1_cooldown.time_left > 0:
+		punch1_cooldown_percentage = (
+			(1 - punch1_cooldown.time_left / punch1_cooldown.wait_time) * 100
+			)
+	punch1.value = punch1_cooldown_percentage
 		
 	run1.value = run1_gauge_percentage
 	if run1_gauge_percentage < 10:
@@ -128,6 +151,12 @@ func _process(delta):
 			(1 - build2_cooldown.time_left / build2_cooldown.wait_time) * 100
 			)
 	build2.value = build2_cooldown_percentage
+	
+	if punch2_cooldown.time_left > 0:
+		punch2_cooldown_percentage = (
+			(1 - punch2_cooldown.time_left / punch2_cooldown.wait_time) * 100
+			)
+	punch2.value = punch2_cooldown_percentage
 		
 	run2.value = run2_gauge_percentage
 	if run2_gauge_percentage < 10:
@@ -148,6 +177,12 @@ func _process(delta):
 			)
 	build3.value = build3_cooldown_percentage
 		
+	if punch3_cooldown.time_left > 0:
+		punch3_cooldown_percentage = (
+			(1 - punch3_cooldown.time_left / punch3_cooldown.wait_time) * 100
+			)
+	punch3.value = punch3_cooldown_percentage
+	
 	run3.value = run3_gauge_percentage
 	if run3_gauge_percentage < 10:
 		BattleManager.running3_avail = false
@@ -166,6 +201,12 @@ func _process(delta):
 			(1 - build4_cooldown.time_left / build4_cooldown.wait_time) * 100
 			)
 	build4.value = build4_cooldown_percentage
+	
+	if punch4_cooldown.time_left > 0:
+		punch4_cooldown_percentage = (
+			(1 - punch4_cooldown.time_left / punch4_cooldown.wait_time) * 100
+			)
+	punch4.value = punch4_cooldown_percentage
 		
 	run4.value = run4_gauge_percentage
 	if run4_gauge_percentage < 10:
@@ -214,6 +255,34 @@ func _on_build4_cooldown_timeout():
 func build4_start_cooldown():
 	build4_cooldown.start()
 	build4_cooldown_percentage = 0
+	
+func _on_punch1_cooldown_timeout():
+	BattleManager.punch1_active = true
+	
+func punch1_start_cooldown():
+	punch1_cooldown.start()
+	punch1_cooldown_percentage = 0
+
+func _on_punch2_cooldown_timeout():
+	BattleManager.punch2_active = true
+	
+func punch2_start_cooldown():
+	punch2_cooldown.start()
+	punch2_cooldown_percentage = 0
+
+func _on_punch3_cooldown_timeout():
+	BattleManager.punch3_active = true
+	
+func punch3_start_cooldown():
+	punch3_cooldown.start()
+	punch3_cooldown_percentage = 0
+	
+func _on_punch4_cooldown_timeout():
+	BattleManager.punch4_active = true
+	
+func punch4_start_cooldown():
+	punch4_cooldown.start()
+	punch4_cooldown_percentage = 0
 
 
 # RUNNING

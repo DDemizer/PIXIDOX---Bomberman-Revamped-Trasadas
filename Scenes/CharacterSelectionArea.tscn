@@ -1314,6 +1314,7 @@ scale = Vector2(1.5, 1.5)
 texture = SubResource("CompressedTexture2D_2r52p")
 
 [node name="ReadyLabel" type="Label" parent="."]
+z_index = 4096
 layout_mode = 0
 offset_left = 261.0
 offset_top = 378.0
