@@ -40,6 +40,7 @@ signal punch1_activated_to_BUI
 signal punch2_activated_to_BUI
 signal punch3_activated_to_BUI
 signal punch4_activated_to_BUI
+
 signal paused
 #signal running
 
@@ -76,6 +77,18 @@ func on_punch3_activated():
 	
 func on_punch4_activated():
 	emit_signal('punch4_activated_to_BUI')
+	
+func on_bomb1_activated():
+	emit_signal('bomb1_activated_to_BUI')
+
+func on_bomb2_activated():
+	emit_signal('bomb2_activated_to_BUI')
+
+func on_bomb3_activated():
+	emit_signal('bomb3_activated_to_BUI')
+	
+func on_bomb4_activated():
+	emit_signal('bomb4_activated_to_BUI')
 	
 func on_pause():
 	emit_signal('paused')
