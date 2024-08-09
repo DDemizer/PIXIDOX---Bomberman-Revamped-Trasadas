@@ -1,21 +1,102 @@
-[gd_scene load_steps=5 format=3 uid="uid://bf6ug0hg4i48x"]
+[gd_scene load_steps=13 format=3 uid="uid://bf6ug0hg4i48x"]
 
 [ext_resource type="Script" path="res://character-scenes/Bomba.gd" id="1_rx25j"]
-[ext_resource type="Texture2D" uid="uid://cqyujqhluuxby" path="res://bombaa.png" id="2_f13kk"]
+[ext_resource type="Texture2D" uid="uid://dmfgsrt4feias" path="res://bomb-sprite.png" id="2_daita"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fh1g6"]
-texture = ExtResource("2_f13kk")
-texture_region_size = Vector2i(60, 60)
-0:0/0 = 0
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7u52"]
+atlas = ExtResource("2_daita")
+region = Rect2(0, 0, 60, 60)
 
-[sub_resource type="TileSet" id="TileSet_ds53h"]
-tile_size = Vector2i(60, 60)
-sources/0 = SubResource("TileSetAtlasSource_fh1g6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8a0u"]
+atlas = ExtResource("2_daita")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1x00"]
+atlas = ExtResource("2_daita")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2njcu"]
+atlas = ExtResource("2_daita")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16ttw"]
+atlas = ExtResource("2_daita")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te4r2"]
+atlas = ExtResource("2_daita")
+region = Rect2(300, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ngit"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7u52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8a0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1x00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2njcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16ttw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te4r2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ems5g"]
+resource_name = "Bomb"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.7, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_hi64o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nwdqc"]
+_data = {
+"Bomb": SubResource("Animation_ems5g"),
+"RESET": SubResource("Animation_hi64o")
+}
 
 [node name="Bomba" type="Node2D"]
 script = ExtResource("1_rx25j")
 
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_ds53h")
-cell_quadrant_size = 60
-format = 2
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7ngit")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nwdqc")
+}

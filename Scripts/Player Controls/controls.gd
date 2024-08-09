@@ -67,15 +67,32 @@ var bomId_lvl2 = 3
 var bombId_lvl3 = 4
 var if_is_ground = 'is_ground'
 
+# game mode
+var gamemode
+
 # bomb
+var bomb_level : int = 1
 var current_anim : Vector2i
-var bomb_hit = false
+var bomb_explode = false
 var is_breakable = 'breakable'
+var is_unbreakable = 'unbreakable'
 var s1center : TileData
 var s2left : TileData
 var s3right : TileData
 var s4down : TileData
 var s5upper : TileData
+var s1breakable
+var s2breakable
+var s3breakable
+var s4breakable
+var s5breakable
+var left_collision = true
+var right_collision = true
+var upper_collision = true
+var down_collision = true
+signal bomba_placed 
+var bomb_range = []
+
 
 # punching
 var player_inside
@@ -289,11 +306,11 @@ func _process(delta):
 		if character_Position != charToTileMapPosition:
 			tile_map.set_cell(sand, charToTileMapPosition, source_id_Wphysics, atlastCoords)
 			placed_block = false
-	if placed_bomb == true:
-		char_pos = self.global_position
-		character_Position = bomb.local_to_map(char_pos)
-		placed_bomb = false
-		bomb_handler(charToTileMapPosition)
+#	if placed_bomb == true:
+#		char_pos = self.global_position
+#		character_Position = bomb.local_to_map(char_pos)
+#		placed_bomb = false
+#		bomb_handler(charToTileMapPosition)
 #		if character_Position != charToTileMapPosition:
 #			bomb.set_cell(0,charToTileMapPosition, bombId_Wphysics, atlastCoordsBomb)
 #			placed_bomb = false
@@ -331,9 +348,7 @@ func place_bomb():
 	#place the bomb
 #		if tile_data(tile_map, sand, charToTileMapPosition) == true:
 	var xx : TileData = tile_map.get_cell_tile_data(0, charToTileMapPosition)
-	
-#		bomb.set_cell(2 ,charToTileMapPosition, bombId_WOphysics, atlastCoordsBomb)
-	placed_bomb = true 
+#	bomb.set_cell(2 ,charToTileMapPosition, bombId_WOphysics, atlastCoordsBomb)
 	bomb_handler(charToTileMapPosition)
 	
 func place_block():
@@ -374,33 +389,17 @@ func punch():
 
 
 func bomb_handler(bomb_position):     
-	if placed_bomb:
-		var bombs = Vector2i(bomb_position.x, bomb_position.y)
-		current_anim = Vector2i(atlastCoordsBomb.x, atlastCoordsBomb.y)
-		bomb.set_cell(0,bombs, bombId_Wphysics, atlastCoordsBomb)
-		await get_tree().create_timer(0.45).timeout
-		current_anim = Vector2i(current_anim.x + 1, current_anim.y)
-		bomb.set_cell(0,bombs, bombId_Wphysics, current_anim)
-		await get_tree().create_timer(0.45).timeout
-		current_anim = Vector2i(current_anim.x + 1, current_anim.y)
-		bomb.set_cell(0,bombs, bombId_Wphysics, current_anim)
-		await get_tree().create_timer(0.45).timeout
-		current_anim = Vector2i(current_anim.x + 1, current_anim.y)
-		bomb.set_cell(0,bombs, bombId_Wphysics, current_anim)
-		await get_tree().create_timer(0.45).timeout
-		current_anim = Vector2i(current_anim.x + 1, current_anim.y)
-		bomb.set_cell(0,bombs, bombId_Wphysics, current_anim)
-		await get_tree().create_timer(0.45).timeout
-		current_anim = Vector2i(current_anim.x + 1, current_anim.y)
-		bomb.set_cell(0,bombs, bombId_Wphysics, current_anim)
-		await get_tree().create_timer(0.45).timeout
-		bomb_explosion(bomb_position)
-		bomb.erase_cell(0, bombs)
+	
+	var bombs = Vector2i(bomb_position.x, bomb_position.y)
+	emit_signal('bomba_placed')
+	await get_tree().create_timer(1.5).timeout
+	bomb_explosion(bomb_position, bomb_level)
+	bomb.erase_cell(0, bombs)
+	
+	current_anim = atlastCoordsBomb
+	
 		
-		current_anim = atlastCoordsBomb
-		placed_bomb = false
-		
-func bomb_explosion(bomb_position):
+func bomb_explosion(bomb_position, bomb_level: int):
 	var center : Vector2i = bomb_position
 	var upper :Vector2i = Vector2i(center.x, center.y - 1)
 	var left : Vector2i = Vector2i(center.x - 1, center.y)
@@ -414,34 +413,145 @@ func bomb_explosion(bomb_position):
 	s4down = tile_map.get_cell_tile_data(1, down)
 	s5upper = tile_map.get_cell_tile_data(1, upper)
 	
-	if s1center:
-		var s1breakable = s1center.get_custom_data(is_breakable)
-		if s1breakable:
-			tile_map.erase_cell(1, center)
-		
-	if s2left:
-		var s2breakable = s2left.get_custom_data(is_breakable)
-		if s2breakable:
-			tile_map.erase_cell(1, left)
-		
-	if s3right:
-		var s3breakable = s3right.get_custom_data(is_breakable)
-		if s3breakable:
-			tile_map.erase_cell(1, right)
-		
-	if s4down:
-		var s4breakable = s4down.get_custom_data(is_breakable)
-		if s4breakable:
-			tile_map.erase_cell(1, down)
-		
-	if s5upper:
-		var s5breakable = s5upper.get_custom_data(is_breakable)
-		if s5breakable:
-			tile_map.erase_cell(1, upper)
+	
+	gamemode = 0
 	
 	
-	bomb_hit = true
+	if gamemode == 0:
+		if s1center:
+			s1breakable = s1center.get_custom_data(is_breakable)
+			if s1breakable:
+				tile_map.erase_cell(1, center)
+				
+		for i in bomb_level:
+			
+			left = Vector2i(center.x - (1 + i), center.y)
+			s2left = tile_map.get_cell_tile_data(1, left)
+			if s2left:
+				s2breakable = s2left.get_custom_data(is_breakable)
+				if s2breakable:
+					tile_map.erase_cell(1, left)
+					break
+
+				else:
+					s2breakable = s2left.get_custom_data(is_unbreakable)
+					if s2breakable:
+						break
+			
+		for i in bomb_level:
+			
+			right = Vector2i(center.x + (1 + i), center.y)
+			s3right = tile_map.get_cell_tile_data(1, right)
+			if s3right:
+				s3breakable = s3right.get_custom_data(is_breakable)
+				if s3breakable:
+					tile_map.erase_cell(1, right)
+					break
+				
+				else:
+					s3breakable = s3right.get_custom_data(is_unbreakable)
+					if s3breakable:
+						break
+				
+		for i in bomb_level:
+			
+			down = Vector2i(center.x , center.y + (1 + i))
+			s4down = tile_map.get_cell_tile_data(1, down)
+			if s4down:
+				s4breakable = s4down.get_custom_data(is_breakable)
+				if s4breakable:
+					tile_map.erase_cell(1, down)
+					break
+					
+				else:
+					s4breakable = s4down.get_custom_data(is_unbreakable)
+					if s4breakable:
+						break
 		
+		for i in bomb_level:
+			
+			upper = Vector2i(center.x , center.y - (1 + i))
+			s5upper = tile_map.get_cell_tile_data(1, upper)
+			if s5upper:
+				s5breakable = s5upper.get_custom_data(is_breakable)
+				if s5breakable:
+					tile_map.erase_cell(1, upper)
+					break
+					
+				else:
+					s5breakable = s5upper.get_custom_data(is_unbreakable)
+					if s5breakable:
+						break
+		
+			
+			
+	
+	
+	if gamemode == 1:
+		if s1center:
+			s1breakable = s1center.get_custom_data(is_breakable)
+			if s1breakable:
+				tile_map.erase_cell(1, center)
+					
+			
+		for i in bomb_level:
+		
+			left = Vector2i(center.x - (1 + i), center.y)
+			s2left = tile_map.get_cell_tile_data(1, left)
+			if s2left:
+				s2breakable = s2left.get_custom_data(is_breakable)
+				if s2breakable:
+					tile_map.erase_cell(1, left)
+
+				else:
+					s2breakable = s2left.get_custom_data(is_unbreakable)
+					if s2breakable:
+						break
+		
+		for i in bomb_level:
+			
+			right = Vector2i(center.x + (1 + i), center.y)
+			s3right = tile_map.get_cell_tile_data(1, right)
+			if s3right:
+				s3breakable = s3right.get_custom_data(is_breakable)
+				if s3breakable:
+					tile_map.erase_cell(1, right)
+				
+				else:
+					s3breakable = s3right.get_custom_data(is_unbreakable)
+					if s3breakable:
+						break
+				
+		for i in bomb_level:
+			
+			down = Vector2i(center.x , center.y + 1)
+			s4down = tile_map.get_cell_tile_data(1, down)
+			if s4down:
+				s4breakable = s4down.get_custom_data(is_breakable)
+				if s4breakable:
+					tile_map.erase_cell(1, down)
+					
+				else:
+					s4breakable = s4down.get_custom_data(is_unbreakable)
+					if s4breakable:
+						break
+		
+		for i in bomb_level:
+			
+			upper = Vector2i(center.x , center.y - 1)
+			s5upper = tile_map.get_cell_tile_data(1, upper)
+			if s5upper:
+				s5breakable = s5upper.get_custom_data(is_breakable)
+				if s5breakable:
+					tile_map.erase_cell(1, upper)
+					
+				else:
+					s5breakable = s5upper.get_custom_data(is_unbreakable)
+					if s5breakable:
+						break
+		
+	bomb_explode = true
+	
 	
 	
 func tile_data(tilemap : TileMap, ground_layer :int, character_position: Vector2i):
