@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://87avn0ba8j1t"]
+[gd_scene load_steps=60 format=3 uid="uid://87avn0ba8j1t"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_as46o"]
 [ext_resource type="Texture2D" uid="uid://cbjvmcgn7fw4f" path="res://assets/MenuScreen/BomberBeast_Background.png" id="2_dm5tj"]
@@ -14,6 +14,12 @@
 [ext_resource type="Texture2D" uid="uid://byaslye1okftk" path="res://assets/MenuScreen/Nintendo.png" id="12_ficcy"]
 [ext_resource type="AudioStream" uid="uid://blj03wjbwdxjr" path="res://Audio/Lighting a bomb sound effect_inverse.mp3" id="12_hbl3h"]
 [ext_resource type="AudioStream" uid="uid://q8pl1k05i8dx" path="res://Audio/Lighting a bomb sound effect.mp3" id="12_ld253"]
+[ext_resource type="AudioStream" uid="uid://cdouqjt7qssh6" path="res://Audio/Focus_Mode.mp3" id="13_lqfec"]
+[ext_resource type="AudioStream" uid="uid://bykeics37kg3s" path="res://Audio/Blow.mp3" id="14_3rwbk"]
+[ext_resource type="AudioStream" uid="uid://do3c6xck33aji" path="res://Audio/Exit.mp3" id="14_4m1rl"]
+[ext_resource type="AudioStream" uid="uid://c5dpoyd701cn4" path="res://Audio/Select2.mp3" id="15_bd2tl"]
+[ext_resource type="AudioStream" uid="uid://b116c70p0jt2d" path="res://Audio/BomberBeast-Beats.mp3" id="18_i4tai"]
+[ext_resource type="AudioStream" uid="uid://jvmcvloykwkp" path="res://Audio/Select.mp3" id="18_lu4dn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qtbu7"]
 
@@ -1074,8 +1080,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 4624.0
-offset_bottom = 2588.0
+offset_right = 3468.0
+offset_bottom = 1941.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.25, 0.25)
@@ -1250,6 +1256,21 @@ pitch_scale = 1.46
 [node name="Battle_Sound_Inverse" type="AudioStreamPlayer" parent="Battle_Sound"]
 stream = ExtResource("12_hbl3h")
 
+[node name="Hover" type="AudioStreamPlayer2D" parent="Battle_Sound/Battle_Sound_Inverse"]
+stream = ExtResource("13_lqfec")
+volume_db = 0.825
+pitch_scale = 0.89
+
+[node name="Blow" type="AudioStreamPlayer2D" parent="Battle_Sound/Battle_Sound_Inverse/Hover"]
+stream = ExtResource("14_3rwbk")
+volume_db = -11.345
+pitch_scale = 0.75
+
+[node name="Select" type="AudioStreamPlayer2D" parent="Battle_Sound/Battle_Sound_Inverse/Hover/Blow"]
+stream = ExtResource("15_bd2tl")
+volume_db = -7.564
+pitch_scale = 0.78
+
 [node name="Ninentndo" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
@@ -1358,14 +1379,37 @@ offset_bottom = 420.445
 texture = ExtResource("5_spijd")
 expand_mode = 1
 
+[node name="Background Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_i4tai")
+volume_db = -26.473
+pitch_scale = 1.06
+autoplay = true
+mix_target = 1
+
+[node name="Exit2" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-0.59988, -0.59988)
+scale = Vector2(0.59988, 0.59988)
+stream = ExtResource("14_4m1rl")
+volume_db = -9.455
+pitch_scale = 0.71
+
+[node name="Customize2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_lu4dn")
+volume_db = -14.182
+pitch_scale = 0.85
+
 [connection signal="focus_entered" from="PvE'/PvE" to="." method="_on_pv_e_focus_entered"]
 [connection signal="focus_exited" from="PvE'/PvE" to="." method="_on_pv_e_focus_exited"]
+[connection signal="pressed" from="PvE'/PvE" to="." method="_on_pv_e_pressed"]
 [connection signal="focus_entered" from="PvP'/PvP" to="." method="_on_pv_p_focus_entered"]
 [connection signal="focus_exited" from="PvP'/PvP" to="." method="_on_pv_p_focus_exited"]
 [connection signal="pressed" from="PvP'/PvP" to="." method="_on_pv_p_pressed"]
+[connection signal="focus_entered" from="Bomb/Play" to="." method="_on_play_focus_entered"]
 [connection signal="mouse_entered" from="Bomb/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="Bomb/Play" to="." method="_on_button_pressed"]
+[connection signal="focus_entered" from="Customize" to="." method="_on_customize_focus_entered"]
 [connection signal="pressed" from="Customize" to="." method="_on_customize_pressed"]
+[connection signal="focus_entered" from="Quit" to="." method="_on_quit_focus_entered"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="OutTimer" to="." method="_on_out_timer_timeout"]
 [connection signal="timeout" from="InTimer" to="." method="_on_timer_timeout"]
@@ -1376,3 +1420,5 @@ expand_mode = 1
 [connection signal="timeout" from="Customize_out/Out" to="." method="_on_out_timeout"]
 [connection signal="timeout" from="Customize_out/In" to="." method="_on_in_timeout"]
 [connection signal="timeout" from="Customize_out/Customize_In" to="." method="_on_customize_in_timeout"]
+[connection signal="finished" from="Battle_Sound/Battle_Sound_Inverse/Hover/Blow/Select" to="." method="_on_select_finished"]
+[connection signal="finished" from="Exit2" to="." method="_on_exit_2_finished"]

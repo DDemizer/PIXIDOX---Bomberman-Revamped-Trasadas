@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://be13jgfm7k3mv"]
+[gd_scene load_steps=44 format=3 uid="uid://be13jgfm7k3mv"]
 
 [ext_resource type="Script" path="res://Scripts/PauseMenu.gd" id="1_uyufw"]
 [ext_resource type="Texture2D" uid="uid://cx1ivo4dktafx" path="res://assets/Pause/Resume.png" id="2_6o30h"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cotfsvj83hl47" path="res://assets/Pause/Exit1-Sheet.png" id="4_xewiv"]
 [ext_resource type="Texture2D" uid="uid://byaslye1okftk" path="res://assets/MenuScreen/Nintendo.png" id="5_mmeuw"]
 [ext_resource type="FontFile" uid="uid://bcgfc10ec43fu" path="res://04B_30__.TTF" id="6_qgw1k"]
+[ext_resource type="AudioStream" uid="uid://cdouqjt7qssh6" path="res://Audio/Focus_Mode.mp3" id="7_h4whg"]
+[ext_resource type="AudioStream" uid="uid://jvmcvloykwkp" path="res://Audio/Select.mp3" id="8_p1sq6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cln6u"]
 
@@ -567,6 +569,16 @@ theme = SubResource("Theme_o5p6q")
 text = "BUILD"
 fit_content = true
 scroll_active = false
+
+[node name="Focus" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_h4whg")
+volume_db = -7.564
+pitch_scale = 0.78
+
+[node name="Select" type="AudioStreamPlayer2D" parent="Focus"]
+stream = ExtResource("8_p1sq6")
+volume_db = -4.727
+pitch_scale = 0.82
 
 [connection signal="focus_entered" from="Resume/R_Button" to="." method="_on_r_button_focus_entered"]
 [connection signal="focus_exited" from="Resume/R_Button" to="." method="_on_r_button_focus_exited"]

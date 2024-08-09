@@ -1,15 +1,18 @@
 extends Control
 
 @onready var battle_sound = $Battle_Sound
-
+@onready var exit = $Exit2
+var cancel = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Bomb/Play.grab_focus()
+	$"Background Music".play()
+
 
 #quit
 func _on_quit_pressed():
-	get_tree().quit()
-
+	exit.play()
+		
 #Play Button
 @onready var animation = $AnimationPlayer
 var Toggle = true
@@ -29,6 +32,7 @@ func _on_button_pressed():
 			$"PvE'/PvE".focus_mode = Control.FOCUS_NONE
 			$Customize.focus_mode = Control.FOCUS_NONE
 			$Quit.focus_mode = Control.FOCUS_NONE
+			$Battle_Sound.play()
 			$Transition.start()
 	else:
 		animation.play_backwards("Button_Battle_Click")
@@ -66,11 +70,14 @@ func _on_out_timer_timeout():
 	$OutTimer.stop()
 
 func _on_pv_p_pressed():
-	get_tree().change_scene_to_file("res://Scenes/CharacterSelectionArea.tscn")
+	cancel = false
+	$Battle_Sound/Battle_Sound_Inverse/Hover/Blow/Select.play()
+	
 	
 var recent_animation = ""
 #Pvp button
 func _on_pv_p_focus_entered():
+	$Battle_Sound/Battle_Sound_Inverse/Hover/Blow.play()
 	animation.play("Hover_PvP")
 	recent_animation = "Hover_PvP"
 func _on_pv_p_focus_exited():
@@ -78,6 +85,7 @@ func _on_pv_p_focus_exited():
 	
 #Pve button
 func _on_pv_e_focus_entered():
+	$Battle_Sound/Battle_Sound_Inverse/Hover/Blow.play()
 	recent_animation = "Hover_PvE"
 	animation.play("Hover_PvE")
 func _on_pv_e_focus_exited():
@@ -127,6 +135,7 @@ func _on_pressed_timeout():
 
 #customize button
 func _on_customize_pressed():
+	$Customize2.play()
 	if Toggle:
 		$Ninentndo.show()
 		animation.play("Customize_On_Pressed")
@@ -165,3 +174,31 @@ func _on_customize_in_timeout():
 	$Bomb/Play.focus_mode = Control.FOCUS_NONE
 	$Quit.focus_mode = Control.FOCUS_NONE
 	$Customize_out/Customize_In.stop()
+
+
+func _on_customize_focus_entered():
+	$Battle_Sound/Battle_Sound_Inverse/Hover.play()
+
+
+func _on_quit_focus_entered():
+	$Battle_Sound/Battle_Sound_Inverse/Hover.play()
+
+
+func _on_play_focus_entered():
+	$Battle_Sound/Battle_Sound_Inverse/Hover.play()
+
+
+func _on_exit_2_finished():
+	get_tree().quit()
+
+
+func _on_pv_e_pressed():
+	print_debug(cancel)
+	$Battle_Sound/Battle_Sound_Inverse/Hover/Blow/Select.play()
+	cancel = true
+
+func _on_select_finished():
+	if !cancel:
+		get_tree().change_scene_to_file("res://Scenes/CharacterSelectionArea.tscn")
+	else:
+		pass
