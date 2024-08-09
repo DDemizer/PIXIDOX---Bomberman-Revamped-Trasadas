@@ -1200,7 +1200,7 @@ focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../Bomb/Play")
 focus_neighbor_bottom = NodePath("../Quit")
 theme = SubResource("Theme_ks3xc")
-text = "CUSTOMIZE"
+text = "CONTROLS"
 metadata/_edit_lock_ = true
 
 [node name="Quit" type="Button" parent="."]

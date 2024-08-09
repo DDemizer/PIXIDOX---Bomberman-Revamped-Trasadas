@@ -10,7 +10,6 @@ extends Control
 @onready var player_3 = $Player3
 @onready var player_4 = $Player4
 
-
 @onready var p1 = $Player1/Frame1/P1
 @onready var p2 = $Player2/Frame2/P2
 @onready var p3 = $Player3/Frame3/P3
@@ -60,7 +59,8 @@ var build4_cooldown_percentage
 var run4_gauge_percentage = 0
 @export var running4_active = false
 
-
+var character_build_deduction = 9
+#var build_cooldowns = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	BattleManager.connect('build1_activated_to_BUI', build1_start_cooldown)
@@ -68,6 +68,14 @@ func _ready():
 	BattleManager.connect('build3_activated_to_BUI', build3_start_cooldown)
 	BattleManager.connect('build4_activated_to_BUI', build4_start_cooldown)
 #	BattleManager.connect('running', on_running)
+	build1_cooldown.wait_time = CharacterSelectionManager.character1_build_cooldown
+	build2_cooldown.wait_time = CharacterSelectionManager.character2_build_cooldown
+	build3_cooldown.wait_time = CharacterSelectionManager.character3_build_cooldown
+	build4_cooldown.wait_time = CharacterSelectionManager.character4_build_cooldown
+	build1_cooldown.start()
+	build2_cooldown.start()
+	build3_cooldown.start()
+	build4_cooldown.start()
 	
 	
 	
@@ -89,7 +97,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	# PLAYER 1
 	if bomb1_cooldown.time_left > 0:
 		bomb1_cooldown_percentage = (

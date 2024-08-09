@@ -18,6 +18,11 @@ var player2_texture
 var player3_texture
 var player4_texture
 
+var character1_build_cooldown = 10
+var character2_build_cooldown = 10
+var character3_build_cooldown = 10
+var character4_build_cooldown = 10
+
 
 var characters = {
 	'raccoon' : preload("res://Scenes/character-scenes/raccoon.tscn"),

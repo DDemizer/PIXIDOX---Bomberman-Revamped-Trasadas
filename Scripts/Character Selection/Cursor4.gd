@@ -42,7 +42,7 @@ func _process(delta):
 	if Input.is_joy_button_pressed(player, right):
 		position.x += SPEED
 
-	
+
 	if cursor_on_raccoon:
 		player4_character.texture = parent.raccoon_character_hovered_texture
 		if Input.is_joy_button_pressed(player, yellow):
@@ -72,6 +72,7 @@ func _process(delta):
 			CharacterSelectionManager.player4 = CharacterSelectionManager.characters['beaver']
 			player4_character.texture = parent.beaver_character_picked_texture
 			CharacterSelectionManager.player4_texture = parent.beaver_character_picked_texture
+			CharacterSelectionManager.character4_build_cooldown = 7
 		
 	if cursor_on_monkey:
 		player4_character.texture = parent.monkey_character_hovered_texture

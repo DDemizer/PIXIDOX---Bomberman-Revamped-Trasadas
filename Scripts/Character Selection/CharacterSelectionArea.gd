@@ -80,8 +80,9 @@ func _process(delta):
 	if CharacterSelectionManager.player1_ready:
 		if Input.is_joy_button_pressed(0, red):
 			cursor1.process_mode = 0
-			CharacterSelectionManager.players_ready = 0
-		
+			CharacterSelectionManager.players_ready -= 1
+			CharacterSelectionManager.player1_ready = false
+	
 	if player2Activated == false and CharacterSelectionManager.players_ready == CharacterSelectionManager.players_in_game:
 		if Input.is_joy_button_pressed(1, start_button):
 			player2Activated = true
@@ -92,7 +93,8 @@ func _process(delta):
 	if CharacterSelectionManager.player2_ready:
 		if Input.is_joy_button_pressed(1, red):
 			cursor2.process_mode = 0
-			CharacterSelectionManager.players_ready = 0
+			CharacterSelectionManager.players_ready -= 1
+			CharacterSelectionManager.player2_ready = false
 		
 	if player3Activated == false and CharacterSelectionManager.players_ready == CharacterSelectionManager.players_in_game:
 		if Input.is_joy_button_pressed(2, start_button):
@@ -104,7 +106,8 @@ func _process(delta):
 	if CharacterSelectionManager.player3_ready:
 		if Input.is_joy_button_pressed(2, red):
 			cursor3.process_mode = 3
-			CharacterSelectionManager.players_ready = 0
+			CharacterSelectionManager.players_ready -= 1
+			CharacterSelectionManager.player3_ready = false
 			
 	if player4Activated == false and CharacterSelectionManager.players_ready == CharacterSelectionManager.players_in_game:
 		if Input.is_joy_button_pressed(3, start_button):
@@ -116,7 +119,8 @@ func _process(delta):
 	if CharacterSelectionManager.player4_ready:
 		if Input.is_joy_button_pressed(3, red):
 			cursor4.process_mode = 0
-			CharacterSelectionManager.players_ready = 0
+			CharacterSelectionManager.players_ready -= 1
+			CharacterSelectionManager.player4_ready = false
 		
 			
 	if  CharacterSelectionManager.players_in_game != 0 and CharacterSelectionManager.players_ready == CharacterSelectionManager.players_in_game:

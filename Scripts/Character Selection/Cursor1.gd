@@ -78,7 +78,7 @@ func _process(delta):
 			CharacterSelectionManager.player1 = CharacterSelectionManager.characters['beaver']
 			player1_character.texture = parent.beaver_character_picked_texture
 			CharacterSelectionManager.player1_texture = parent.beaver_character_picked_texture
-			
+			CharacterSelectionManager.character1_build_cooldown = 7
 		
 	if cursor_on_monkey:
 		player1_character.texture = parent.monkey_character_hovered_texture

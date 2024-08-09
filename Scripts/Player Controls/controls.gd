@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 const SPEED = 70
 var speed_multiplier = 1
+var character_speed_addition = 0
+var character_bomb_addition = 0
+
 #const JUMP_VELOCITY = -400.0
 # NODES
 @onready var animation = get_node("AnimationPlayer")
@@ -75,7 +78,12 @@ func _ready():
 	connect('build4_activated', BattleManager.on_build4_activated)
 	connect('pause', BattleManager.on_pause)
 #	connect('running', BattleManager.on_run)
-	
+
+	# Special Feature for Characters
+	if self.name == "Raccoon":
+		character_bomb_addition = 1
+	if self.name == "Cat":
+		character_speed_addition = 0.2
 
 func _physics_process(delta):
 	# buttons
@@ -118,33 +126,33 @@ func _physics_process(delta):
 		if player == 0:
 			if BattleManager.running1_avail:
 				$'../BattleUI'.running1_active = true
-				speed_multiplier = 2
+				speed_multiplier = 2 + character_speed_addition
 			else:
 				$'../BattleUI'.running1_active = false
-				speed_multiplier = 1
+				speed_multiplier = 1 + character_speed_addition
 		if player == 1:
 			if BattleManager.running2_avail:
 				$'../BattleUI'.running2_active = true
-				speed_multiplier = 2
+				speed_multiplier = 2 + character_speed_addition
 			else:
 				$'../BattleUI'.running2_active = false
-				speed_multiplier = 1
+				speed_multiplier = 1 + character_speed_addition
 		if player == 2:
 			if BattleManager.running3_avail:
 				$'../BattleUI'.running3_active = true
-				speed_multiplier = 2
+				speed_multiplier = 2 + character_speed_addition
 			else:
 				$'../BattleUI'.running3_active = false
-				speed_multiplier = 1
+				speed_multiplier = 1 + character_speed_addition
 		if player == 3:
 			if BattleManager.running4_avail:
 				$'../BattleUI'.running4_active = true
-				speed_multiplier = 2
+				speed_multiplier = 2 + character_speed_addition
 			else:
 				$'../BattleUI'.running4_active = false
-				speed_multiplier = 1
+				speed_multiplier = 1 + character_speed_addition
 	else:
-		speed_multiplier = 1
+		speed_multiplier = 1 + character_speed_addition
 		if player == 0:
 			$'../BattleUI'.running1_active = false
 		if player == 1:
