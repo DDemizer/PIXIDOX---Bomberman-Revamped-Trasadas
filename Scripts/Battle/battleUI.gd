@@ -84,6 +84,10 @@ func _ready():
 	BattleManager.connect('punch2_activated_to_BUI', punch2_start_cooldown)
 	BattleManager.connect('punch3_activated_to_BUI', punch3_start_cooldown)
 	BattleManager.connect('punch4_activated_to_BUI', punch4_start_cooldown)
+	BattleManager.connect('bomb1_activated_to_BUI', bomb1_start_cooldown)
+	BattleManager.connect('bomb2_activated_to_BUI', bomb2_start_cooldown)
+	BattleManager.connect('bomb3_activated_to_BUI', bomb3_start_cooldown)
+	BattleManager.connect('bomb4_activated_to_BUI', bomb4_start_cooldown)
 #	BattleManager.connect('running', on_running)
 	build1_cooldown.wait_time = CharacterSelectionManager.character1_build_cooldown
 	build2_cooldown.wait_time = CharacterSelectionManager.character2_build_cooldown
@@ -215,17 +219,32 @@ func _process(delta):
 
 # BOMB
 func _on_bomb1_cooldown_timeout():
-	pass # Replace with function body.
+	BattleManager.bomb1_active = true
+
+func bomb1_start_cooldown():
+	bomb1_cooldown.start()
+	bomb1_cooldown_percentage = 0
 
 func _on_bomb2_cooldown_timeout():
-	pass # Replace with function body.
+	BattleManager.bomb2_active = true
 
+func bomb2_start_cooldown():
+	bomb2_cooldown.start()
+	bomb2_cooldown_percentage = 0
+	
 func _on_bomb3_cooldown_timeout():
-	pass # Replace with function body.
+	BattleManager.bomb3_active = true
 
+func bomb3_start_cooldown():
+	bomb3_cooldown.start()
+	bomb3_cooldown_percentage = 0
+	
 func _on_bomb4_cooldown_timeout():
-	pass # Replace with function body.
-
+	BattleManager.bomb4_active = true
+	
+func bomb4_start_cooldown():
+	bomb4_cooldown.start()
+	bomb4_cooldown_percentage = 0
 
 # BUILD
 func _on_build1_cooldown_timeout():

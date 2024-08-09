@@ -31,7 +31,7 @@ extends Control
 @export var player4Activated = false
 
 # Maps
-var maps = [ 'beach']
+var maps = ['grassland', 'desert', 'beach']
 # Buttons
 var general_start_button = Input.is_action_just_pressed("general_start_button")
 var general_select_button = Input.is_action_just_pressed("general_select_button")

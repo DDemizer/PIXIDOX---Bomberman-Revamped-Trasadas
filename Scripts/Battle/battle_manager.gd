@@ -5,6 +5,11 @@ var build2_active = false
 var build3_active = false
 var build4_active = false
 
+var bomb1_active = true
+var bomb2_active = true
+var bomb3_active = true
+var bomb4_active = true
+
 var running1_avail = true
 var running2_avail = true
 var running3_avail = true
@@ -40,6 +45,10 @@ signal punch1_activated_to_BUI
 signal punch2_activated_to_BUI
 signal punch3_activated_to_BUI
 signal punch4_activated_to_BUI
+signal bomb1_activated_to_BUI
+signal bomb2_activated_to_BUI
+signal bomb3_activated_to_BUI
+signal bomb4_activated_to_BUI
 
 signal paused
 #signal running

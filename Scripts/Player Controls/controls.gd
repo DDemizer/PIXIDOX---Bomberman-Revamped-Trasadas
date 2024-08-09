@@ -108,6 +108,10 @@ signal punch1_activated
 signal punch2_activated
 signal punch3_activated
 signal punch4_activated
+signal bomb1_activated
+signal bomb2_activated
+signal bomb3_activated
+signal bomb4_activated
 signal pause
 #signal running
 
@@ -120,6 +124,10 @@ func _ready():
 	connect('punch2_activated', BattleManager.on_punch2_activated)
 	connect('punch3_activated', BattleManager.on_punch3_activated)
 	connect('punch4_activated', BattleManager.on_punch4_activated)
+	connect('bomb1_activated', BattleManager.on_bomb1_activated)
+	connect('bomb2_activated', BattleManager.on_bomb2_activated)
+	connect('bomb3_activated', BattleManager.on_bomb3_activated)
+	connect('bomb4_activated', BattleManager.on_bomb4_activated)
 	connect('pause', BattleManager.on_pause)
 #	connect('running', BattleManager.on_run)
 
@@ -251,7 +259,7 @@ func _physics_process(delta):
 		BattleManager.player4_stun_bonus = 0
 		
 		
-	# BUILDING
+	# RUNNING
 	if Input.is_joy_button_pressed(player,l1):
 		if player == 0:
 			if BattleManager.running1_avail:
@@ -318,6 +326,7 @@ func _process(delta):
 
 
 func _input(event):
+	#BUILDING
 	if Input.is_joy_button_pressed(player, blue):
 		if player == 0 and BattleManager.build1_active:
 			place_block()
@@ -337,8 +346,23 @@ func _input(event):
 			emit_signal('build4_activated')
 		
 	if Input.is_joy_button_pressed(player, green):
-		place_bomb()
-		
+		if player == 0 and BattleManager.bomb1_active:
+			place_bomb()
+			BattleManager.bomb1_active = false
+			emit_signal('bomb1_activated')
+		if player == 1 and BattleManager.bomb2_active:
+			place_bomb()
+			BattleManager.bomb2_active = false
+			emit_signal('bomb2_activated')
+		if player == 2 and BattleManager.bomb3_active:
+			place_bomb()
+			BattleManager.bomb3_active = false
+			emit_signal('bomb3_activated')
+		if player == 3 and BattleManager.bomb4_active:
+			place_bomb()
+			BattleManager.bomb4_active = false
+			emit_signal('bomb4_activated')
+			
 func place_bomb():
 #position of the character
 	character = self.global_position
