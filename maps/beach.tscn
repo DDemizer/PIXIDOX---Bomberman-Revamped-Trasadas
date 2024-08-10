@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cvwjryg5dnb4v"]
+[gd_scene load_steps=20 format=3 uid="uid://cyaharm14ky6e"]
 
 [ext_resource type="Texture2D" uid="uid://bju11m6kkfleb" path="res://assets/world-assets/black-bg.png" id="1_fn2ue"]
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_y8d6w"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ck0jlvwhgtj4p" path="res://assets/world-assets/beach.png" id="3_jgfiv"]
 [ext_resource type="Texture2D" uid="uid://dmfgsrt4feias" path="res://bomb-sprite.png" id="4_ooprr"]
 [ext_resource type="PackedScene" uid="uid://diu1ysasq12kx" path="res://Scenes/battleUI.tscn" id="5_obwco"]
+[ext_resource type="Texture2D" path="res://upgrade.png" id="5_sfspn"]
 [ext_resource type="PackedScene" uid="uid://be13jgfm7k3mv" path="res://Scenes/PauseMenu.tscn" id="6_26pd4"]
+[ext_resource type="AudioStream" path="res://Audio/SFX_Powerup_19.wav" id="10_7es5j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_53663"]
 size = Vector2(1081, 103)
@@ -34,53 +36,45 @@ texture_region_size = Vector2i(60, 60)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+0:0/0/custom_data_1 = true
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -6, -6, -6, -6, -12, 6, -12, 6, -6, 12, -6, 12, 6, 6, 6, 6, 12, -6, 12, -6, 6, -12, 6)
 1:0/0/custom_data_0 = true
 0:2/0 = 0
-0:2/0/terrain = 0
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
 0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 1:2/0 = 0
-1:2/0/terrain = 0
 1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_0/angular_velocity = 0.0
 1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 2:2/0 = 0
-2:2/0/terrain = 0
 2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:2/0/physics_layer_0/angular_velocity = 0.0
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 0:3/0 = 0
-0:3/0/terrain = 0
 0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:3/0/physics_layer_0/angular_velocity = 0.0
 0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 2:3/0 = 0
-2:3/0/terrain = 0
 2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:3/0/physics_layer_0/angular_velocity = 0.0
 2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 0:4/0 = 0
-0:4/0/terrain = 0
 0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:4/0/physics_layer_0/angular_velocity = 0.0
 0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 1:4/0 = 0
-1:4/0/terrain = 0
 1:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:4/0/physics_layer_0/angular_velocity = 0.0
 1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 2:4/0 = 0
-2:4/0/terrain = 0
 2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:4/0/physics_layer_0/angular_velocity = 0.0
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
 0:1/0 = 0
-0:1/0/terrain = 0
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
 
@@ -123,6 +117,17 @@ texture_region_size = Vector2i(60, 60)
 2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:4/0/physics_layer_0/angular_velocity = 0.0
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-30, -30, 30, -30, 30, 30, -30, 30)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/custom_data_1 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_11kjk"]
+texture = ExtResource("5_sfspn")
+texture_region_size = Vector2i(60, 60)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_tpt78"]
 tile_size = Vector2i(60, 60)
@@ -130,9 +135,12 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 3
 custom_data_layer_0/name = "breakable"
 custom_data_layer_0/type = 1
+custom_data_layer_1/name = "unbreakable"
+custom_data_layer_1/type = 1
 sources/1 = SubResource("TileSetAtlasSource_i44x4")
 sources/0 = SubResource("TileSetAtlasSource_myl2j")
 sources/2 = SubResource("TileSetAtlasSource_bjhv0")
+sources/5 = SubResource("TileSetAtlasSource_11kjk")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w7wjv"]
 texture = ExtResource("4_ooprr")
@@ -219,3 +227,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_26pd4")]
 visible = false
+
+[node name="PowerUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_7es5j")
