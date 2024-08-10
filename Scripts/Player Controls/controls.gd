@@ -92,18 +92,6 @@ var upper_collision = true
 var down_collision = true
 signal bomba_placed 
 var bomb_range = []
-var center : Vector2i
-var explode = false
-
-
-
-# power up
-var chance
-var power_up_pos = []
-var char_par_pos
-var character_power_position
-var power_index
-
 
 
 # punching
@@ -124,10 +112,6 @@ signal bomb1_activated
 signal bomb2_activated
 signal bomb3_activated
 signal bomb4_activated
-signal bomb1_pressed
-signal bomb2_pressed
-signal bomb3_pressed
-signal bomb4_pressed
 signal pause
 #signal running
 
@@ -330,28 +314,15 @@ func _process(delta):
 		if character_Position != charToTileMapPosition:
 			tile_map.set_cell(sand, charToTileMapPosition, source_id_Wphysics, atlastCoords)
 			placed_block = false
-	char_par_pos = self.global_position
-	character_power_position = tile_map.local_to_map(char_par_pos)
-	
-	if character_power_position in power_up_pos:
-		tile_map.erase_cell(1, character_power_position)
-		for i in power_up_pos:
-			power_index = -1
-			if i == character_Position:
-				break
-			else:
-				power_index += 1
-		power_up_pos.pop_at(power_index)
-		power_index = 0
-		$PowerUpSound.play()
-		if bomb_level < 5:
-			bomb_level += 1
-		
-		
-		
-			
-#	
-	
+#	if placed_bomb == true:
+#		char_pos = self.global_position
+#		character_Position = bomb.local_to_map(char_pos)
+#		placed_bomb = false
+#		bomb_handler(charToTileMapPosition)
+#		if character_Position != charToTileMapPosition:
+#			bomb.set_cell(0,charToTileMapPosition, bombId_Wphysics, atlastCoordsBomb)
+#			placed_bomb = false
+#			bomb_handler(charToTileMapPosition)
 
 
 func _input(event):
@@ -379,31 +350,25 @@ func _input(event):
 			place_bomb()
 			BattleManager.bomb1_active = false
 			emit_signal('bomb1_activated')
-			emit_signal('bomb1_pressed')
 		if player == 1 and BattleManager.bomb2_active:
 			place_bomb()
 			BattleManager.bomb2_active = false
 			emit_signal('bomb2_activated')
-			emit_signal('bomb2_pressed')
 		if player == 2 and BattleManager.bomb3_active:
 			place_bomb()
 			BattleManager.bomb3_active = false
 			emit_signal('bomb3_activated')
-			emit_signal('bomb3_pressed')
 		if player == 3 and BattleManager.bomb4_active:
 			place_bomb()
 			BattleManager.bomb4_active = false
 			emit_signal('bomb4_activated')
-			emit_signal('bomb4_pressed')
 			
 func place_bomb():
 #position of the character
-	
 	character = self.global_position
 	
 	#position coords
 	charToTileMapPosition = bomb.local_to_map(character)
-	placed_bomb = true
 	#place the bomb
 #		if tile_data(tile_map, sand, charToTileMapPosition) == true:
 	var xx : TileData = tile_map.get_cell_tile_data(0, charToTileMapPosition)
@@ -452,8 +417,6 @@ func bomb_handler(bomb_position):
 	var bombs = Vector2i(bomb_position.x, bomb_position.y)
 	emit_signal('bomba_placed')
 	await get_tree().create_timer(1.5).timeout
-	placed_bomb = false
-	explode = true
 	bomb_explosion(bomb_position, bomb_level)
 	bomb.erase_cell(0, bombs)
 	
@@ -461,7 +424,7 @@ func bomb_handler(bomb_position):
 	
 		
 func bomb_explosion(bomb_position, bomb_level: int):
-	center = bomb_position
+	var center : Vector2i = bomb_position
 	var upper :Vector2i = Vector2i(center.x, center.y - 1)
 	var left : Vector2i = Vector2i(center.x - 1, center.y)
 	var right : Vector2i = Vector2i(center.x + 1, center.y)
@@ -492,10 +455,6 @@ func bomb_explosion(bomb_position, bomb_level: int):
 				s2breakable = s2left.get_custom_data(is_breakable)
 				if s2breakable:
 					tile_map.erase_cell(1, left)
-					chance = randi() % 100
-					if chance < 18:
-						tile_map.set_cell(1, left, 5, Vector2i(0,0))
-						power_up_pos.append(left)
 					break
 
 				else:
@@ -511,10 +470,6 @@ func bomb_explosion(bomb_position, bomb_level: int):
 				s3breakable = s3right.get_custom_data(is_breakable)
 				if s3breakable:
 					tile_map.erase_cell(1, right)
-					chance = randi() % 100
-					if chance < 18:
-						tile_map.set_cell(1, right, 5, Vector2i(0,0))
-						power_up_pos.append(right)
 					break
 				
 				else:
@@ -530,10 +485,6 @@ func bomb_explosion(bomb_position, bomb_level: int):
 				s4breakable = s4down.get_custom_data(is_breakable)
 				if s4breakable:
 					tile_map.erase_cell(1, down)
-					chance = randi() % 100
-					if chance < 18:
-						tile_map.set_cell(1, down, 5, Vector2i(0,0))
-						power_up_pos.append(down)
 					break
 					
 				else:
@@ -549,10 +500,6 @@ func bomb_explosion(bomb_position, bomb_level: int):
 				s5breakable = s5upper.get_custom_data(is_breakable)
 				if s5breakable:
 					tile_map.erase_cell(1, upper)
-					chance = randi() % 100
-					if chance < 18:
-						tile_map.set_cell(1, upper, 5, Vector2i(0,0))
-						power_up_pos.append(upper)
 					break
 					
 				else:
@@ -560,7 +507,7 @@ func bomb_explosion(bomb_position, bomb_level: int):
 					if s5breakable:
 						break
 		
-		explode = false
+			
 			
 	
 	
@@ -579,10 +526,6 @@ func bomb_explosion(bomb_position, bomb_level: int):
 				s2breakable = s2left.get_custom_data(is_breakable)
 				if s2breakable:
 					tile_map.erase_cell(1, left)
-					chance = randi() % 100
-					if chance < 18:
-						tile_map.set_cell(1, left, 5, Vector2i(0,0))
-						power_up_pos.append(left)
 
 				else:
 					s2breakable = s2left.get_custom_data(is_unbreakable)
@@ -597,10 +540,6 @@ func bomb_explosion(bomb_position, bomb_level: int):
 				s3breakable = s3right.get_custom_data(is_breakable)
 				if s3breakable:
 					tile_map.erase_cell(1, right)
-					chance = randi() % 100
-					if chance < 18:
-						tile_map.set_cell(1, right, 5, Vector2i(0,0))
-						power_up_pos.append(right)
 				
 				else:
 					s3breakable = s3right.get_custom_data(is_unbreakable)
@@ -615,10 +554,6 @@ func bomb_explosion(bomb_position, bomb_level: int):
 				s4breakable = s4down.get_custom_data(is_breakable)
 				if s4breakable:
 					tile_map.erase_cell(1, down)
-					chance = randi() % 100
-					if chance < 18:
-						tile_map.set_cell(1, down, 5, Vector2i(0,0))
-						power_up_pos.append(down)
 					
 				else:
 					s4breakable = s4down.get_custom_data(is_unbreakable)
@@ -633,10 +568,6 @@ func bomb_explosion(bomb_position, bomb_level: int):
 				s5breakable = s5upper.get_custom_data(is_breakable)
 				if s5breakable:
 					tile_map.erase_cell(1, upper)
-					chance = randi() % 100
-					if chance < 18:
-						tile_map.set_cell(1, upper, 5, Vector2i(0,0))
-						power_up_pos.append(upper)
 					
 				else:
 					s5breakable = s5upper.get_custom_data(is_unbreakable)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://djhi2e8stfblr"]
+[gd_scene load_steps=19 format=3 uid="uid://djhi2e8stfblr"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_4qkrb"]
 [ext_resource type="PackedScene" uid="uid://bf6ug0hg4i48x" path="res://character-scenes/Bomba.tscn" id="2_27chv"]
@@ -6,11 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cdkcdqqalvng2" path="res://assets/world-assets/gray-bg.png" id="4_r287j"]
 [ext_resource type="Texture2D" uid="uid://cx3b5hgaadud4" path="res://assets/world-assets/desert 4.png" id="5_wp815"]
 [ext_resource type="Texture2D" uid="uid://celf4huwgcvyp" path="res://assets/world-assets/desert things.png" id="6_0a6hd"]
-[ext_resource type="Texture2D" path="res://upgrade.png" id="7_6cbpp"]
 [ext_resource type="Texture2D" uid="uid://dmfgsrt4feias" path="res://bomb-sprite.png" id="7_ki0jt"]
 [ext_resource type="PackedScene" uid="uid://diu1ysasq12kx" path="res://Scenes/battleUI.tscn" id="7_pqh25"]
 [ext_resource type="PackedScene" uid="uid://be13jgfm7k3mv" path="res://Scenes/PauseMenu.tscn" id="8_71e33"]
-[ext_resource type="PackedScene" uid="uid://dqx0ehvhcjke6" path="res://Audio/power_up_sound.tscn" id="11_0ei6l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y414"]
 size = Vector2(1081, 103)
@@ -133,13 +131,6 @@ texture_region_size = Vector2i(60, 60)
 2:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0/custom_data_1 = true
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vj87u"]
-texture = ExtResource("7_6cbpp")
-texture_region_size = Vector2i(60, 60)
-0:0/0 = 0
-0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-0:0/0/physics_layer_0/angular_velocity = 0.0
-
 [sub_resource type="TileSet" id="TileSet_g5h3g"]
 tile_size = Vector2i(60, 60)
 physics_layer_0/collision_layer = 1
@@ -156,7 +147,6 @@ custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_7i11l")
 sources/1 = SubResource("TileSetAtlasSource_vpouj")
 sources/2 = SubResource("TileSetAtlasSource_4qros")
-sources/5 = SubResource("TileSetAtlasSource_vj87u")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ixi5"]
 texture = ExtResource("7_ki0jt")
@@ -251,5 +241,3 @@ format = 2
 
 [node name="PauseMenu" parent="." instance=ExtResource("8_71e33")]
 visible = false
-
-[node name="PowerUpSound" parent="." instance=ExtResource("11_0ei6l")]

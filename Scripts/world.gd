@@ -4,11 +4,6 @@ var player1
 var player2
 var player3
 var player4
-var bomba1
-var bomba2
-var bomba3
-var bomba4
-var ins_bomb = preload("res://character-scenes/Bomba.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready(): 
@@ -20,14 +15,6 @@ func _ready():
 		player3 = CharacterSelectionManager.player3.instantiate()
 	if CharacterSelectionManager.player4 != null:
 		player4 = CharacterSelectionManager.player4.instantiate()
-		
-	bomba1 = ins_bomb.instantiate()
-	bomba2 = ins_bomb.instantiate()
-	bomba3 = ins_bomb.instantiate()
-	bomba4 = ins_bomb.instantiate()
-	
-	
-	
 	SpawnCharacters()
 
 func SpawnCharacters():
@@ -68,42 +55,4 @@ func SpawnCharacters():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if player1.placed_bomb:
-		explosion(player1.charToTileMapPosition, 1)
-	if player2 != null:
-		if player2.placed_bomb:
-			explosion(player2.charToTileMapPosition, 2)
-	if player3 != null:
-		if player3.placed_bomb:
-			explosion(player3.charToTileMapPosition, 3)
-	if player4 != null:
-		if player4.placed_bomb:
-			explosion(player4.charToTileMapPosition, 4)
-	
-	
-
-func explosion(bomb_position ,player):
-	
-	
-	if player == 1:
-		var char_pos = player1.global_position
-		var char_pos_tile = $Map.local_to_map(char_pos)
-		bomba1.position = bomb_position
-		call_deferred('add_child', bomba1)
-	if player == 2:
-		var char_pos = player2.global_position
-		var char_pos_tile = $Map.local_to_map(char_pos)
-		bomba2.position = char_pos_tile
-		add_child(bomba1)
-	if player == 3:
-		var char_pos = player3.global_position
-		var char_pos_tile = $Map.local_to_map(char_pos)
-		bomba3.position = char_pos_tile
-		add_child(bomba1)
-	if player == 4:
-		var char_pos = player4.global_position
-		var char_pos_tile = $Map.local_to_map(char_pos)
-		bomba4.position.x = char_pos_tile.x
-	
-		add_child(bomba1)
-	
+	pass
